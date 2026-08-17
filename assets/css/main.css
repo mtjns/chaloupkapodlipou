@@ -296,3 +296,23 @@ a:not(.is-active)[hreflang]:hover {
     font-size: 1.05rem;
     color: hsl(var(--muted));
 }
+/* iOS Safari centers the value inside <input type="date"> via WebKit pseudo-
+   elements that Tailwind's text-left can't reach. Force left alignment so the
+   date reads flush with the other left-aligned form fields. */
+input[type="date"] {
+    text-align: left;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    text-align: left;
+}
+
+/* Guest-book "Informace" accordion chevron: vertical flip (not a rotation) when
+   the <details> is open. Pairs with Tailwind's transition-transform on the icon. */
+details[open] .gb-chevron {
+    transform: scaleY(-1);
+}

@@ -5,6 +5,7 @@ lang: en
 ref: faq
 permalink: /en/frequently-asked-questions/
 ---
+{%- assign wa = site.phone_link | remove: '+' -%}
 <section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
     <div class="max-w-3xl mx-auto opacity-fade">
         <h1 class="text-brand text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6">Frequently Asked Questions
@@ -22,16 +23,75 @@ permalink: /en/frequently-asked-questions/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">What are the reservation terms?</h3>
                 <p class="text-muted leading-relaxed">
-                    You'll find detailed information about reservation conditions and booking on our Reservation page.
+                    You'll find the reservation terms and detailed information on how to book a stay with us on our
+                    <a href="{{ '/en/reservation/' | relative_url }}" class="text-brand font-medium hover:underline">Reservation</a> page.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="border-b border-line/10 pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Can I change my dates?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Do you need to know our exact arrival time?</h3>
                 <p class="text-muted leading-relaxed">
-                    Yes, changes are possible. Please contact us as soon as possible so we can find a suitable
-                    alternative date.
+                    Yes, it helps us a lot. We don't have a classic reception desk at the cottage — we usually hand
+                    over the keys in person, or leave them for you in a secure lockbox.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Is a deposit paid in advance?</h3>
+                <p class="text-muted leading-relaxed">
+                    Yes, the deposit is 20 % of the total price, or as individually agreed. The balance is due on
+                    arrival. If you cancel the reservation more than 30 days before arrival, we refund the entire
+                    deposit paid. If you cancel 30 days or fewer before arrival, the deposit is non-refundable.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Can I request a change to my stay dates?</h3>
+                <p class="text-muted leading-relaxed">
+                    Yes, a date change is possible by arrangement (though we may no longer have availability, and we
+                    may require a new deposit). Please get in touch as soon as possible so we can find another suitable
+                    date together.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">What should we bring with us?</h3>
+                <p class="text-muted leading-relaxed">
+                    We recommend packing indoor shoes and, in the summer months, definitely something good for the
+                    grill or the fire. Otherwise the cottage is fully equipped — we try to make sure you lack
+                    nothing and feel right at home. You'll find the list of what's available to you
+                    <a href="{{ '/en/#vybaveni' | relative_url }}" class="text-brand font-medium hover:underline">on our website</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Can you recommend a trip?</h3>
+                <p class="text-muted leading-relaxed">
+                    The area around the cottage has a lot to offer. You'll find a few tips and our interactive map on
+                    our website in the
+                    <a href="{{ '/en/area/' | relative_url }}" class="text-brand font-medium hover:underline">local area section</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Can we bring a dog to the cottage?</h3>
+                <p class="text-muted leading-relaxed">
+                    Unfortunately, we don't allow dogs or other pets.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Should we bring our own bed linen and towels?</h3>
+                <p class="text-muted leading-relaxed">
+                    No need — don't worry about a thing. Everything will be waiting for you freshly made up and ready,
+                    including hand towels and bath towels.
                 </p>
             </div>
 
@@ -39,22 +99,20 @@ permalink: /en/frequently-asked-questions/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Is the cottage suitable for small children?</h3>
                 <p class="text-muted leading-relaxed">
-                    The cottage features five comfortable bedrooms, well-equipped bathrooms, and a spacious living room.
-                    For families with young children, we can provide a crib upon request — please let us know in
-                    advance.
+                    Yes, we're fully prepared for families with children. Children have plenty of space to play in the
+                    fresh air. Inside, there's plenty of room for time together and for relaxing. For families with
+                    small children we'll prepare a cot — just let us know in advance.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Have other questions?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Have more questions?</h3>
                 <p class="text-muted leading-relaxed">
-                    If you didn't find the answer you're looking for, please
-                    <a href="mailto:chaloupkapodlipou@gmail.com" class="text-brand font-medium hover:underline">contact
-                        us by email</a>
-                    or fill out the
-                    <a href="{{ '/en/reservation/' | relative_url }}"
-                        class="text-brand font-medium hover:underline">form on our reservation page</a>.
+                    If you didn't find the answer to your question, please
+                    <a href="mailto:{{ site.email }}" class="text-brand font-medium hover:underline">contact us by email</a>
+                    or on
+                    <a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener" class="text-brand font-medium hover:underline">WhatsApp</a>.
                 </p>
             </div>
         </div>

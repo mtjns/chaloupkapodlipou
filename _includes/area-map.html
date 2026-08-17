@@ -1,7 +1,7 @@
-{%- comment -%}Google My Maps embed shared by the CZ/EN Okolí ("Local area") pages.{%- endcomment -%}
+{%- comment -%}Google My Maps embed shared by the Okolí ("Local area") pages in all languages.{%- endcomment -%}
 <div class="rounded-2xl overflow-hidden border border-line/10 bg-base">
     <iframe
         src="https://www.google.com/maps/d/u/0/embed?mid=1Mptxm6dJShuZY1IVB-uhdIqTJ6ztKxI&ll=50.51239737815251%2C16.120085312765063&z=9"
-        height="480" width="100%" frameborder="0" loading="lazy"
-        title="{% if page.lang == 'en' %}Map of the local area{% else %}Mapa okolí{% endif %}"></iframe>
+        height="680" width="100%" frameborder="0" loading="lazy"
+        title="{{ site.data[page.lang].common.map_title }}"></iframe>
 </div>

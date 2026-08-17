@@ -3,28 +3,21 @@ layout: default
 title: "Chaloupka pod lípou"
 lang: cs
 ref: home
-og_description: "Stylová chalupa pro 5 rodin v Malých Svatoňovicích v Podkrkonoší — prostorný obývací pokoj s krbovými
-kamny, plně vybavená kuchyně, 5 ložnic a zahrada s posezením."
 permalink: /
-reservation_url: /rezervace/
-area_url: /okoli/
-lang_url: /en/
+reservation_url: /rezervace
 priority: 1.0
 ---
 <!-- Hero -->
 <section class="relative h-dvh flex items-center justify-center overflow-hidden bg-surface">
     <div class="absolute inset-0">
         <img src="{{ '/assets/images/chaloupka.jpg' | relative_url }}" alt="Exteriér chalupy pod lípou"
-            class="w-full h-full object-cover" loading="eager" width="1600" height="1143">
+            class="w-full h-full object-cover object-bottom" loading="eager" width="1600" height="1143">
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10 pointer-events-none"></div>
 
     <div class="relative z-10 px-4 text-center">
-        <p
-            class="text-white/90 uppercase tracking-[0.3em] text-xs md:text-sm mb-4 font-semibold [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
-            Malé Svatoňovice &middot; Podkrkonoší</p>
         <h1
-            class="text-white text-5xl md:text-7xl font-serif font-black tracking-tight leading-[1.05] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]">
+            class="text-white text-6xl md:text-7xl font-serif font-black tracking-tight leading-[1.05] text-center [text-shadow:0_2px_12px_rgba(0,0,0,0.35)]">
             Chaloupka<br>pod lípou
         </h1>
         <a href="{{ page.reservation_url | relative_url }}"
@@ -47,7 +40,7 @@ priority: 1.0
 <!-- O chaloupce -->
 <section id="o-chaloupce" class="bg-base py-20 md:py-32 px-4 md:px-8">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
             <img src="{{ '/assets/images/zahrada-zezadu.jpg' | relative_url }}" alt="Chaloupka — pohled na zahradu"
                 class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
         </div>
@@ -104,15 +97,16 @@ priority: 1.0
                 {% endfor %}
             </ul>
         </div>
-        <div class="order-1 md:order-2 aspect-[4/3] rounded-2xl overflow-hidden" data-carousel>
+        <div class="order-1 md:order-2 aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto bg-neutral-950/80"
+            data-carousel>
             <img src="{{ '/assets/images/obyvak.jpg' | relative_url }}" alt="Obývací pokoj"
                 class="carousel-slide active w-full h-full object-cover" loading="lazy" width="1600" height="1143">
-            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Kuchyně"
-                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
-            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Koupelna"
-                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
-            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Zahrada a terasa"
-                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+            <img src="{{ '/assets/images/kuchyn.webp' | relative_url }}" alt="Kuchyně"
+                class="carousel-slide w-full h-full object-contain" loading="lazy" width="3072" height="4096">
+            <img src="{{ '/assets/images/koupelna1.webp' | relative_url }}" alt="Koupelna v přízemí"
+                class="carousel-slide w-full h-full object-contain" loading="lazy" width="3072" height="4096">
+            <img src="{{ '/assets/images/koupelna2.webp' | relative_url }}" alt="Koupelna v patře"
+                class="carousel-slide w-full h-full object-contain" loading="lazy" width="3072" height="4096">
             <button data-carousel-prev aria-label="Předchozí"
                 class="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 backdrop-blur-sm text-white flex items-center justify-center opacity-50 hover:opacity-100 hover:bg-black/55 transition-all duration-200 hover:scale-105">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -259,8 +253,8 @@ priority: 1.0
 <!-- Kolárna -->
 <section id="kolarna" class="bg-base py-20 md:py-32 px-4 md:px-8">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
-            <img src="{{ '/assets/images/bike-shed.jpg' | relative_url }}" alt="Chaloupka — pohled na zahradu"
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
+            <img src="{{ '/assets/images/bike-shed.jpg' | relative_url }}" alt="Kolárna pro uložení kol a koloběžek"
                 class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
         </div>
         <div class="opacity-fade">
@@ -295,8 +289,8 @@ priority: 1.0
                 kdykoliv po předchozí domluvě.
             </p>
         </div>
-        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
-            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Chaloupka — pohled na zahradu"
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Domácí med od vlastních včelek"
                 class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
         </div>
     </div>

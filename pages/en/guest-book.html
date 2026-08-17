@@ -1,38 +1,38 @@
 ---
 layout: minimal
-title: "Kniha hostů"
-lang: cs
+title: "Guest book"
+lang: en
 ref: guestbook
-permalink: /kniha-hostu
-description: "Ubytovací kniha Chaloupky pod lípou — registrace ubytovaných hostů."
+permalink: /en/guest-book
+og_description: "Chaloupka pod lípou guest registration book — registration of accommodated guests."
 noindex: true
 sitemap: false
 ---
 <header class="text-center max-w-2xl mx-auto mb-10">
     <span class="block w-10 h-0.5 bg-brand/45 rounded-full mx-auto mb-6"></span>
-    <h1 class="text-fg text-4xl md:text-5xl font-serif font-bold tracking-tight">Kniha hostů</h1>
+    <h1 class="text-fg text-4xl md:text-5xl font-serif font-bold tracking-tight">Guest book</h1>
 
     <details open id="gb-info" class="group mt-6">
         <summary class="flex items-center justify-center gap-2 cursor-pointer list-none py-3 text-brand text-sm font-semibold tracking-widest uppercase [&::-webkit-details-marker]:hidden">
-            Informace
+            Information
             <svg class="gb-chevron w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
         </summary>
         <div class="pt-2 pb-2 space-y-4 text-left text-fg text-lg leading-relaxed">
-            <p>Pro splnění zákonných povinností (Zákon o evidenci ubytovaných osob, Zákon o pobytu
-                cizinců) a pro zajištění bezproblémového pobytu v Chaloupce pod lípou vás prosíme o vyplnění údajů
-                všech ubytovaných hostů.</p>
-            <p>Vyplnění zabere přibližně 10 minut. Odkaz na formulář můžete sdílet s
-                ostatními ve vaší skupině, aby každá rodina nebo jednotlivec mohl vyplnit údaje samostatně.
-                Rozpracovaný formulář se průběžně ukládá ve vašem prohlížeči, takže o data nepřijdete.</p>
-            <p>Vaše údaje jsou uchovávány bezpečně (v souladu s GDPR a dalšími
-                předpisy) a budou použity výhradně pro účely rezervace a zákonných povinností. Více informací
-                naleznete v
+            <p>To meet our legal obligations (the Act on the Registration of Accommodated Persons and
+                the Act on the Residence of Foreign Nationals) and to ensure a smooth stay at Chaloupka pod lípou, we
+                kindly ask you to fill in the details of all accommodated guests.</p>
+            <p>It takes about 10 minutes to complete. You can share the form link with
+                others in your group so that each family or individual can fill in their details separately. Your
+                progress is saved continuously in your browser, so you won't lose your data.</p>
+            <p>Your data is stored securely (in accordance with GDPR and other
+                regulations) and will be used solely for reservation purposes and legal obligations. You can find more
+                information in our
                 <a href="{{ site.data[page.lang].footer.privacy_url | relative_url }}"
-                    class="text-brand font-medium hover:underline">zásadách ochrany osobních údajů</a>.
-                S dotazy nebo pro osobní předání údajů nás kontaktujte na
+                    class="text-brand font-medium hover:underline">privacy policy</a>.
+                For questions or to hand over your details in person, contact us at
                 <a href="mailto:{{ site.email }}"
                     class="text-brand font-medium hover:underline">{{ site.email }}</a>.</p>
         </div>
@@ -42,7 +42,7 @@ sitemap: false
 <div id="gb-intro" class="max-w-2xl mx-auto text-center mb-16">
     <button type="button" id="gb-fill-btn"
         class="inline-block bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
-        Vyplnit dotazník
+        Fill out the form
     </button>
 </div>
 

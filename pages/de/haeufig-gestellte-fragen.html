@@ -5,6 +5,7 @@ lang: de
 ref: faq
 permalink: /de/haeufig-gestellte-fragen/
 ---
+{%- assign wa = site.phone_link | remove: '+' -%}
 <section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
     <div class="max-w-3xl mx-auto opacity-fade">
         <h1 class="text-brand text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6">Häufig gestellte Fragen
@@ -22,17 +23,79 @@ permalink: /de/haeufig-gestellte-fragen/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Was sind die Reservierungsbedingungen?</h3>
                 <p class="text-muted leading-relaxed">
-                    Detaillierte Informationen zu Reservierungsbedingungen und Buchungen finden Sie auf unserer
-                    Reservierungsseite.
+                    Die Reservierungsbedingungen und ausführliche Informationen dazu, wie Sie bei uns einen Termin
+                    buchen, finden Sie auf unserer Seite
+                    <a href="{{ '/de/reservierung/' | relative_url }}" class="text-brand font-medium hover:underline">Reservierung</a>.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="border-b border-line/10 pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Kann ich meine Daten ändern?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Müssen Sie unsere genaue Ankunftszeit kennen?</h3>
                 <p class="text-muted leading-relaxed">
-                    Ja, Änderungen sind möglich. Bitte kontaktieren Sie uns so bald wie möglich, damit wir ein
-                    geeignetes alternatives Datum finden können.
+                    Ja, das hilft uns sehr. Im Ferienhaus haben wir keine klassische Rezeption — die Schlüssel
+                    übergeben wir Ihnen in der Regel persönlich, oder wir hinterlegen sie für Sie in einem sicheren
+                    Schlüsseltresor.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Wird eine Anzahlung im Voraus geleistet?</h3>
+                <p class="text-muted leading-relaxed">
+                    Ja, die Anzahlung beträgt 20 % des Gesamtpreises, oder nach individueller Vereinbarung. Der
+                    Restbetrag ist bei der Anreise fällig. Wenn Sie die Reservierung mehr als 30 Tage vor der Anreise
+                    stornieren, erstatten wir die gesamte gezahlte Anzahlung. Bei einer Stornierung 30 Tage oder
+                    weniger vor der Anreise ist die Anzahlung nicht erstattungsfähig.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Kann ich eine Änderung des Aufenthaltstermins beantragen?</h3>
+                <p class="text-muted leading-relaxed">
+                    Ja, eine Terminänderung ist nach Absprache möglich (wir haben jedoch möglicherweise keinen Platz
+                    mehr und können eine neue Anzahlung verlangen). Bitte melden Sie sich so bald wie möglich, damit
+                    wir gemeinsam einen anderen passenden Termin finden.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Was sollen wir mitbringen?</h3>
+                <p class="text-muted leading-relaxed">
+                    Wir empfehlen, Hausschuhe einzupacken und in den Sommermonaten auf jeden Fall etwas Gutes für den
+                    Grill oder das Feuer. Ansonsten ist das Ferienhaus voll ausgestattet — wir bemühen uns,
+                    dass es Ihnen an nichts fehlt und Sie sich wie zu Hause fühlen. Die Liste dessen, was Ihnen bei uns
+                    zur Verfügung steht, finden Sie
+                    <a href="{{ '/de/#vybaveni' | relative_url }}" class="text-brand font-medium hover:underline">auf unserer Website</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Können Sie uns einen Ausflug empfehlen?</h3>
+                <p class="text-muted leading-relaxed">
+                    Die Umgebung des Ferienhauses hat wirklich viel zu bieten. Einige Tipps und unsere interaktive
+                    Karte finden Sie auf unserer Website im
+                    <a href="{{ '/de/umgebung/' | relative_url }}" class="text-brand font-medium hover:underline">Bereich Umgebung</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Dürfen wir einen Hund ins Ferienhaus mitbringen?</h3>
+                <p class="text-muted leading-relaxed">
+                    Hunde und andere Haustiere erlauben wir leider nicht.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Sollen wir eigene Bettwäsche und Handtücher mitbringen?</h3>
+                <p class="text-muted leading-relaxed">
+                    Das müssen Sie nicht, machen Sie sich keine Sorgen. Im Ferienhaus erwartet Sie alles frisch bezogen
+                    und vorbereitet, einschließlich Hand- und Badetücher.
                 </p>
             </div>
 
@@ -40,9 +103,10 @@ permalink: /de/haeufig-gestellte-fragen/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Ist das Ferienhaus für kleine Kinder geeignet?</h3>
                 <p class="text-muted leading-relaxed">
-                    Das Ferienhaus verfügt über fünf komfortable Schlafzimmer, gut ausgestattete Badezimmer und ein
-                    geräumiges Wohnzimmer. Für Familien mit kleinen Kindern können wir auf Anfrage ein Kinderbett
-                    bereitstellen — bitte geben Sie uns Bescheid.
+                    Ja, auf Familien mit Kindern sind wir bestens vorbereitet. Die Kinder haben viel Platz zum Spielen
+                    an der frischen Luft. Im Haus gibt es genug Platz für gemeinsame Zeit und Erholung. Für Familien
+                    mit kleinen Kindern bereiten wir ein Kinderbett vor — geben Sie uns einfach rechtzeitig
+                    Bescheid.
                 </p>
             </div>
 
@@ -50,12 +114,10 @@ permalink: /de/haeufig-gestellte-fragen/
             <div class="pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Haben Sie weitere Fragen?</h3>
                 <p class="text-muted leading-relaxed">
-                    Wenn Sie die gesuchte Antwort nicht gefunden haben, bitte
-                    <a href="mailto:chaloupkapodlipou@gmail.com"
-                        class="text-brand font-medium hover:underline">kontaktieren Sie uns per E-Mail</a>
-                    oder füllen Sie das
-                    <a href="{{ '/en/reservation/' | relative_url }}"
-                        class="text-brand font-medium hover:underline">Formular auf unserer Reservierungsseite</a> aus.
+                    Wenn Sie die Antwort auf Ihre Frage nicht gefunden haben,
+                    <a href="mailto:{{ site.email }}" class="text-brand font-medium hover:underline">kontaktieren Sie uns bitte per E-Mail</a>
+                    oder über
+                    <a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener" class="text-brand font-medium hover:underline">WhatsApp</a>.
                 </p>
             </div>
         </div>

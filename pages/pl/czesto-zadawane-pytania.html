@@ -5,12 +5,13 @@ lang: pl
 ref: faq
 permalink: /pl/czesto-zadawane-pytania/
 ---
+{%- assign wa = site.phone_link | remove: '+' -%}
 <section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
     <div class="max-w-3xl mx-auto opacity-fade">
         <h1 class="text-brand text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6">Często zadawane pytania
         </h1>
         <p class="text-fg text-lg leading-relaxed">
-            Tutaj znajdziesz odpowiedzi na najczęstsze pytania dotyczące pobytu w naszym domu.
+            Tutaj znajdą Państwo odpowiedzi na najczęstsze pytania dotyczące pobytu w naszym domku.
         </p>
     </div>
 </section>
@@ -22,39 +23,98 @@ permalink: /pl/czesto-zadawane-pytania/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Jakie są warunki rezerwacji?</h3>
                 <p class="text-muted leading-relaxed">
-                    Szczegółowe informacje o warunkach rezerwacji i zarezerwowaniu znajdziesz na naszej stronie
-                    Rezerwacji.
+                    Warunki rezerwacji oraz szczegółowe informacje o tym, jak zarezerwować u nas termin, znajdą Państwo
+                    na naszej stronie
+                    <a href="{{ '/pl/rezerwacja/' | relative_url }}" class="text-brand font-medium hover:underline">Rezerwacja</a>.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="border-b border-line/10 pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Czy mogę zmienić datę pobytu?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy powinni Państwo podać dokładny czas przyjazdu do domku?</h3>
                 <p class="text-muted leading-relaxed">
-                    Tak, zmiany są możliwe. Prosimy o kontakt jak najszybciej, abyśmy mogli znaleźć odpowiednią
-                    alternatywną datę.
+                    Tak, bardzo nam to pomaga. W domku nie mamy klasycznej recepcji — klucze zwykle przekazujemy
+                    osobiście lub zostawiamy je dla Państwa w bezpiecznej skrytce na klucze.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="border-b border-line/10 pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Czy dom jest odpowiedni dla małych dzieci?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy pobierana jest zaliczka z góry?</h3>
                 <p class="text-muted leading-relaxed">
-                    Dom posiada pięć wygodnych sypialni, dobrze wyposażone łazienki i przestronny salon. Dla rodzin z
-                    małymi dziećmi możemy zapewnić łóżeczko dziecięce na życzenie — prosimy nas o to z wyprzedzeniem.
+                    Tak, zaliczka wynosi 20 % całkowitej ceny lub według indywidualnych ustaleń. Pozostała kwota jest
+                    płatna przy przyjeździe. W przypadku anulowania rezerwacji na więcej niż 30 dni przed przyjazdem
+                    zwracamy całą wpłaconą zaliczkę. W przypadku anulowania na 30 dni lub mniej przed przyjazdem
+                    zaliczka jest bezzwrotna.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy można poprosić o zmianę terminu pobytu?</h3>
+                <p class="text-muted leading-relaxed">
+                    Tak, zmiana terminu jest możliwa po uzgodnieniu (możemy jednak nie mieć już miejsca i możemy
+                    wymagać nowej zaliczki). Prosimy o kontakt jak najszybciej, abyśmy wspólnie znaleźli inny
+                    odpowiedni termin.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Co powinni Państwo zabrać ze sobą?</h3>
+                <p class="text-muted leading-relaxed">
+                    Zalecamy zabranie obuwia domowego, a w miesiącach letnich na pewno też czegoś dobrego na grilla lub
+                    ognisko. Poza tym domek jest w pełni wyposażony — staramy się, aby niczego Państwu nie brakowało
+                    i aby czuli się Państwo jak w domu. Listę rzeczy, które są u nas do dyspozycji, znajdą Państwo
+                    <a href="{{ '/pl/#vybaveni' | relative_url }}" class="text-brand font-medium hover:underline">na naszej stronie</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Gdzie warto wybrać się na wycieczkę?</h3>
+                <p class="text-muted leading-relaxed">
+                    Okolica domku ma naprawdę wiele do zaoferowania. Kilka wskazówek i naszą interaktywną mapę znajdą
+                    Państwo na naszej stronie w
+                    <a href="{{ '/pl/okolica/' | relative_url }}" class="text-brand font-medium hover:underline">sekcji okolica</a>.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy możemy przywieźć do domku psa?</h3>
+                <p class="text-muted leading-relaxed">
+                    Psów ani innych zwierząt domowych niestety nie akceptujemy.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy mamy przywieźć własną pościel i ręczniki?</h3>
+                <p class="text-muted leading-relaxed">
+                    Nie muszą Państwo, prosimy się nie martwić. W domku wszystko będzie na Państwa czekać świeżo
+                    pościelone i przygotowane, wraz z ręcznikami i ręcznikami kąpielowymi.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Czy w domku są odpowiednie warunki dla małych dzieci?</h3>
+                <p class="text-muted leading-relaxed">
+                    Tak, na rodziny z dziećmi jesteśmy w pełni przygotowani. Dzieci mają mnóstwo miejsca do zabawy na
+                    świeżym powietrzu. W domku jest wystarczająco dużo miejsca na wspólny czas i odpoczynek. Dla rodzin
+                    z małymi dziećmi przygotujemy łóżeczko dziecięce — wystarczy dać nam znać z wyprzedzeniem.
                 </p>
             </div>
 
             <!-- FAQ item -->
             <div class="pb-6">
-                <h3 class="text-lg font-semibold text-fg mb-2">Masz inne pytania?</h3>
+                <h3 class="text-lg font-semibold text-fg mb-2">Mają Państwo więcej pytań?</h3>
                 <p class="text-muted leading-relaxed">
-                    Jeśli nie znalazłeś odpowiedzi, którą szukasz, prosimy
-                    <a href="mailto:chaloupkapodlipou@gmail.com"
-                        class="text-brand font-medium hover:underline">skontaktuj się z nami e-mailem</a>
-                    lub wypełnij
-                    <a href="{{ '/en/reservation/' | relative_url }}"
-                        class="text-brand font-medium hover:underline">formularz na naszej stronie rezerwacji</a>.
+                    Jeśli nie znaleźli Państwo odpowiedzi na swoje pytanie, prosimy o
+                    <a href="mailto:{{ site.email }}" class="text-brand font-medium hover:underline">kontakt z nami e-mailem</a>
+                    lub przez
+                    <a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener" class="text-brand font-medium hover:underline">WhatsApp</a>.
                 </p>
             </div>
         </div>

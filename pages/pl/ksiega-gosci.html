@@ -1,38 +1,39 @@
 ---
 layout: minimal
-title: "Kniha hostů"
-lang: cs
+title: "Księga gości"
+lang: pl
 ref: guestbook
-permalink: /kniha-hostu
-description: "Ubytovací kniha Chaloupky pod lípou — registrace ubytovaných hostů."
+permalink: /pl/ksiega-gosci
+og_description: "Księga gości Chaloupki pod lípou — rejestracja zakwaterowanych gości."
 noindex: true
 sitemap: false
 ---
 <header class="text-center max-w-2xl mx-auto mb-10">
     <span class="block w-10 h-0.5 bg-brand/45 rounded-full mx-auto mb-6"></span>
-    <h1 class="text-fg text-4xl md:text-5xl font-serif font-bold tracking-tight">Kniha hostů</h1>
+    <h1 class="text-fg text-4xl md:text-5xl font-serif font-bold tracking-tight">Księga gości</h1>
 
     <details open id="gb-info" class="group mt-6">
         <summary class="flex items-center justify-center gap-2 cursor-pointer list-none py-3 text-brand text-sm font-semibold tracking-widest uppercase [&::-webkit-details-marker]:hidden">
-            Informace
+            Informacje
             <svg class="gb-chevron w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor"
                 viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
         </summary>
         <div class="pt-2 pb-2 space-y-4 text-left text-fg text-lg leading-relaxed">
-            <p>Pro splnění zákonných povinností (Zákon o evidenci ubytovaných osob, Zákon o pobytu
-                cizinců) a pro zajištění bezproblémového pobytu v Chaloupce pod lípou vás prosíme o vyplnění údajů
-                všech ubytovaných hostů.</p>
-            <p>Vyplnění zabere přibližně 10 minut. Odkaz na formulář můžete sdílet s
-                ostatními ve vaší skupině, aby každá rodina nebo jednotlivec mohl vyplnit údaje samostatně.
-                Rozpracovaný formulář se průběžně ukládá ve vašem prohlížeči, takže o data nepřijdete.</p>
-            <p>Vaše údaje jsou uchovávány bezpečně (v souladu s GDPR a dalšími
-                předpisy) a budou použity výhradně pro účely rezervace a zákonných povinností. Více informací
-                naleznete v
+            <p>W celu spełnienia obowiązków prawnych (Ustawa o ewidencji osób zakwaterowanych, Ustawa
+                o pobycie cudzoziemców) oraz zapewnienia bezproblemowego pobytu w Chaloupce pod lípou prosimy o
+                wypełnienie danych wszystkich zakwaterowanych gości.</p>
+            <p>Wypełnienie zajmuje około 10 minut. Link do formularza mogą Państwo
+                udostępnić pozostałym osobom w swojej grupie, aby każda rodzina lub osoba mogła wypełnić swoje dane
+                samodzielnie. Rozpoczęty formularz jest na bieżąco zapisywany w Państwa przeglądarce, więc dane nie
+                zostaną utracone.</p>
+            <p>Państwa dane są przechowywane bezpiecznie (zgodnie z RODO i innymi
+                przepisami) i będą wykorzystywane wyłącznie do celów rezerwacji i obowiązków prawnych. Więcej
+                informacji znajdą Państwo w
                 <a href="{{ site.data[page.lang].footer.privacy_url | relative_url }}"
-                    class="text-brand font-medium hover:underline">zásadách ochrany osobních údajů</a>.
-                S dotazy nebo pro osobní předání údajů nás kontaktujte na
+                    class="text-brand font-medium hover:underline">polityce prywatności</a>.
+                W razie pytań lub w celu osobistego przekazania danych prosimy o kontakt pod adresem
                 <a href="mailto:{{ site.email }}"
                     class="text-brand font-medium hover:underline">{{ site.email }}</a>.</p>
         </div>
@@ -42,7 +43,7 @@ sitemap: false
 <div id="gb-intro" class="max-w-2xl mx-auto text-center mb-16">
     <button type="button" id="gb-fill-btn"
         class="inline-block bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
-        Vyplnit dotazník
+        Wypełnij ankietę
     </button>
 </div>
 

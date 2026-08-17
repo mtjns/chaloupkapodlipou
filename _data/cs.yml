@@ -4,14 +4,14 @@ nav:
   home: "Domů"
   home_url: "/"
   reservation: "Rezervace"
-  reservation_url: "/rezervace/"
+  reservation_url: "/rezervace"
   area: "Okolí"
-  area_url: "/okoli/"
+  area_url: "/okoli"
   accommodation: "Ubytování"
   faq_label: "Často kladené dotazy"
-  faq_url: "/casto-kladene-dotazy/"
+  faq_url: "/casto-kladene-dotazy"
   info_label: "Informace pro hosty"
-  info_url: "/informace/"
+  info_url: "/informace"
 
 footer:
   tagline: "Malé Svatoňovice, Podkrkonoší — chalupa pro klidnou dovolenou i výlety do hor."
@@ -20,9 +20,9 @@ footer:
   operator_label: "Provozovatel"
   operator_note: "fyzická osoba podnikající podle zákona zapsaná v Živnostenském rejstříku"
   info_label: "Informace pro hosty"
-  info_url: "/informace/"
+  info_url: "/informace"
   privacy_label: "Zásady ochrany osobních údajů"
-  privacy_url: "/ochrana-soukromi/"
+  privacy_url: "/ochrana-soukromi"
   made_by: "vytvořil"
   rights: "Všechna práva vyhrazena."
   registered-comment: "Fyzická osoba podnikající podle zákona zapsaná v Živnostenském rejstříku."
@@ -31,6 +31,14 @@ common:
   back_home: "Zpět na hlavní stránku"
   not_found_title: "Stránka nenalezena"
   not_found_body: "Omlouváme se, hledanou stránku se nepodařilo najít. Možná byla přesunuta nebo již neexistuje."
+  map_title: "Mapa okolí"
+
+# Availability calendar (echalupy-calendar.html) — iframe title + in-page legend.
+calendar:
+  title: "Kalendář obsazenosti"
+  available: "Volno"
+  occupied: "Obsazeno"
+  arrival_departure: "Příjezd / odjezd"
 
 form:
   title: "Poptávkový formulář"
