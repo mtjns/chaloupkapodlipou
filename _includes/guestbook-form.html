@@ -15,14 +15,14 @@ IDs are namespaced gb-* to stay clear of the reservation form.
 {%- assign t = site.data[page.lang].guestbook -%}
 {%- assign privacy_url = site.data[page.lang].footer.privacy_url -%}
 
-<form class="max-w-3xl mx-auto md:w-[58rem] md:max-w-[calc(100vw-3rem)] md:relative md:left-1/2 md:-translate-x-1/2" id="guestbook-form" novalidate>
+<form class="w-full max-w-3xl md:max-w-[58rem] mx-auto hidden" id="guestbook-form" novalidate>
     <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
 
     <!-- Editor (dates + roster + detail + consent) -->
     <div id="gb-editor">
         <!-- Stay dates (shared for all guests) — block centered, contents left-aligned -->
-        <div class="max-w-md mx-auto">
-            <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">{{ t.dates_title }}
+        <div class="max-w-md mx-auto border-t border-line/10 pt-10">
+            <p class="text-brand text-base font-bold tracking-widest uppercase mb-4 text-center">{{ t.dates_title }}
                 <span class="text-red-600 normal-case tracking-normal">*</span></p>
             <div class="grid grid-cols-2 gap-6">
                 <div>
@@ -43,21 +43,23 @@ IDs are namespaced gb-* to stay clear of the reservation form.
 
         <hr class="border-0 border-t border-line/10 my-10">
 
-        <!-- Master–detail: the detail is centered on the page, the roster sticks out
-             to its left on large screens (and stacks above it on smaller ones). -->
-        <div class="lg:flex lg:justify-center mb-12">
-            <div class="relative w-full max-w-lg mx-auto lg:mx-0">
-                <!-- Roster: stacked above on small screens, absolute to the left on lg+ -->
-                <div class="mb-10 lg:mb-0 lg:absolute lg:right-full lg:top-0 lg:w-52 lg:mr-8 lg:border-r lg:border-line/10 lg:pr-6">
-                    <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">{{ t.roster_title }}</p>
-                    <ul id="gb-roster" class="space-y-1"></ul>
-                    <button type="button" id="gb-add-guest"
-                        class="mt-4 flex items-center gap-1.5 text-brand text-sm font-semibold hover:opacity-70 transition-opacity">
-                        <span class="text-lg leading-none">+</span> {{ t.add_guest }}
-                    </button>
-                </div>
+        <!-- Master–detail: roster + selected-guest fields. Stacks on small screens
+             (roster above the detail) and sits side-by-side, centered as a group, on
+             large screens. Flexbox (no absolute positioning) so it folds cleanly at
+             any width or zoom. -->
+        <div class="flex flex-col lg:flex-row lg:justify-center lg:items-start gap-10 mb-12">
+            <!-- Roster -->
+            <div class="w-full max-w-lg mx-auto lg:mx-0 lg:w-52 lg:shrink-0 lg:border-r lg:border-line/10 lg:pr-6">
+                <p class="text-brand text-base font-bold tracking-widest uppercase mb-4 text-center">{{ t.roster_title }}</p>
+                <ul id="gb-roster" class="space-y-1"></ul>
+                <button type="button" id="gb-add-guest"
+                    class="mt-2 flex items-center gap-1.5 min-h-[44px] text-brand text-sm font-semibold hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:underline">
+                    <span class="text-lg leading-none">+</span> {{ t.add_guest }}
+                </button>
+            </div>
 
-                <!-- Detail: the selected guest's fields flow directly on the page -->
+            <!-- Detail: the selected guest's fields -->
+            <div class="w-full max-w-lg mx-auto lg:mx-0">
                 <h3 id="gb-detail-title" class="text-fg text-2xl font-serif font-bold mb-1">{{ t.detail_title }} 1</h3>
                 <div class="w-10 h-0.5 bg-brand/40 mb-7"></div>
 
@@ -75,8 +77,9 @@ IDs are namespaced gb-* to stay clear of the reservation form.
                             class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.last_name }}
                             <span class="text-red-600">*</span></label>
                         <input type="text" id="gb-last-name" data-field="last_name" autocomplete="family-name"
-                            placeholder="{{ t.last_name_placeholder }}"
+                            list="gb-lastname-suggestions" placeholder="{{ t.last_name_placeholder }}"
                             class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+                        <datalist id="gb-lastname-suggestions"></datalist>
                     </div>
                     <div>
                         <label for="gb-bdate"
@@ -93,7 +96,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
                             class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base focus:outline-none focus:border-brand transition-colors">
                             <option value="" disabled selected>{{ t.citizenship_placeholder }}</option>
                             {%- for c in site.data.countries -%}
-                            <option value="{{ c.en }}">{{ c.cs }}</option>
+                            <option value="{{ c.en }}">{{ c[page.lang] }}</option>
                             {%- endfor -%}
                         </select>
                     </div>
@@ -134,13 +137,13 @@ IDs are namespaced gb-* to stay clear of the reservation form.
             </div>
 
             <button type="button" id="gb-review-btn"
-                class="block mx-auto bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                class="block mx-auto bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed">
                 {{ t.review_button }}
             </button>
         </div>
     </div>
 
-    <!-- Review step (hidden until "Zkontrolovat a odeslat") -->
+    <!-- Review step (hidden until the review button is pressed) -->
     <div id="gb-review" class="hidden">
         <h3 class="text-fg text-2xl md:text-3xl font-serif font-bold tracking-tight mb-8">{{ t.review_title }}</h3>
 
@@ -152,11 +155,11 @@ IDs are namespaced gb-* to stay clear of the reservation form.
 
         <div class="flex items-center justify-center gap-4">
             <button type="button" id="gb-edit-btn"
-                class="font-semibold uppercase tracking-wider text-sm py-3.5 px-8 rounded-full border border-line/25 text-fg hover:border-brand hover:text-brand transition-colors">
+                class="font-semibold uppercase tracking-wider text-sm py-3.5 px-8 rounded-full border border-line/25 text-fg hover:border-brand hover:text-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2">
                 {{ t.edit }}
             </button>
             <button type="submit" id="gb-submit-btn"
-                class="flex items-center justify-center gap-2 bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                class="flex items-center justify-center gap-2 bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed">
                 {{ t.submit }}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -175,7 +178,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
         <h3 class="text-fg text-2xl md:text-3xl font-serif font-bold tracking-tight max-w-xl mx-auto">{{ t.success_title }}</h3>
         <p class="text-muted mt-3">{{ t.success_note }}</p>
         <button type="button" id="gb-again"
-            class="mt-8 text-brand text-sm font-semibold hover:opacity-70 transition-opacity">{{ t.success_again }}</button>
+            class="mt-8 text-brand text-sm font-semibold hover:opacity-70 transition-opacity focus-visible:outline-none focus-visible:underline">{{ t.success_again }}</button>
     </div>
 
     <div id="guestbook-form-result" class="hidden mt-6 rounded-lg border px-4 py-3 text-sm text-center"></div>
@@ -187,6 +190,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
         if (!form) return;
 
         var STORAGE_KEY = 'guestbook-draft-v1';
+        var SUBMITTED_KEY = 'guestbook-submitted-v1';
         var T = {
             guestFallback: {{ t.guest_fallback | jsonify }},
             detailTitle: {{ t.detail_title | jsonify }},
@@ -205,10 +209,10 @@ IDs are namespaced gb-* to stay clear of the reservation form.
             clearDraft: {{ t.clear_draft | jsonify }},
             incompleteLabel: {{ t.incomplete_label | jsonify }}
         };
-        // Czech-label lookup for the citizenship value (for review display).
-        var COUNTRY_CS = {};
+        // Localized-label lookup for the citizenship value (for review display).
+        var COUNTRY_LABEL = {};
         {%- for c in site.data.countries -%}
-        COUNTRY_CS[{{ c.en | jsonify }}] = {{ c.cs | jsonify }};
+        COUNTRY_LABEL[{{ c.en | jsonify }}] = {{ c[page.lang] | jsonify }};
         {%- endfor -%}
 
         var FIELDS = ['first_name', 'last_name', 'bdate', 'citizenship', 'passport', 'address'];
@@ -230,6 +234,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
         var result = document.getElementById('guestbook-form-result');
         var addressInput = document.getElementById('gb-address');
         var addressSuggestions = document.getElementById('gb-address-suggestions');
+        var lastNameSuggestions = document.getElementById('gb-lastname-suggestions');
         var detailInputs = {};
         FIELDS.forEach(function (f) {
             detailInputs[f] = form.querySelector('[data-field="' + f + '"]');
@@ -275,9 +280,9 @@ IDs are namespaced gb-* to stay clear of the reservation form.
         }
 
         // --- Dates ---
-        var today = new Date().toISOString().split('T')[0];
-        checkinInput.min = today;
-        checkoutInput.min = today;
+        // No lower bound on check-in: guests register around (or after) arrival, so the
+        // stay may start today or earlier. Departure is only constrained to fall after
+        // the chosen arrival (see the check-in change handler + date validation).
 
         function nightsBetween(a, b) {
             if (!a || !b) return 0;
@@ -306,7 +311,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
                 var li = document.createElement('li');
                 var selected = i === activeIndex;
                 // Selection shown by a left accent bar, not a bordered card.
-                li.className = 'group flex items-baseline gap-2.5 py-2 pl-3 -ml-px border-l-2 cursor-pointer transition-colors ' +
+                li.className = 'group flex items-center gap-2.5 min-h-[44px] pl-3 -ml-px border-l-2 cursor-pointer transition-colors ' +
                     (selected ? 'border-brand' : 'border-transparent hover:border-line/25');
                 // Keyboard-operable: rows behave like buttons (Tab to focus, Enter/Space to select).
                 li.setAttribute('role', 'button');
@@ -340,11 +345,11 @@ IDs are namespaced gb-* to stay clear of the reservation form.
                 // Fixed-width remove slot, present on every row (empty on guest 1) so
                 // the dot's position never shifts between rows or on hover.
                 var rmSlot = document.createElement('span');
-                rmSlot.className = 'shrink-0 self-center w-5 flex justify-center';
+                rmSlot.className = 'shrink-0 w-11 flex justify-center';
                 if (state.guests.length > 1 && i > 0) {
                     var rm = document.createElement('button');
                     rm.type = 'button';
-                    rm.className = 'p-1 -m-0.5 text-muted/50 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:text-red-600 transition-all text-base leading-none';
+                    rm.className = 'w-11 h-11 flex items-center justify-center rounded-full text-muted/60 hover:text-red-600 transition-colors text-lg leading-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand';
                     rm.setAttribute('aria-label', T.removeGuest);
                     rm.textContent = '×';
                     rm.addEventListener('click', function (ev) { ev.stopPropagation(); removeGuest(i); });
@@ -372,6 +377,10 @@ IDs are namespaced gb-* to stay clear of the reservation form.
             var base = (activeIndex > 0 && state.guests[0]) ? String(state.guests[0].address || '').trim() : '';
             addressSuggestions.innerHTML = base ? '<option></option>' : '';
             if (base) addressSuggestions.firstChild.value = base;
+            // Same for the surname — family members usually share it.
+            var lastBase = (activeIndex > 0 && state.guests[0]) ? String(state.guests[0].last_name || '').trim() : '';
+            lastNameSuggestions.innerHTML = lastBase ? '<option></option>' : '';
+            if (lastBase) lastNameSuggestions.firstChild.value = lastBase;
         }
 
         function selectGuest(i) {
@@ -417,7 +426,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
 
         checkinInput.addEventListener('change', function () {
             state.checkin = this.value;
-            checkoutInput.min = this.value || today;
+            checkoutInput.min = this.value;
             if (state.checkout && state.checkout < this.value) {
                 state.checkout = this.value;
                 checkoutInput.value = this.value;
@@ -504,8 +513,8 @@ IDs are namespaced gb-* to stay clear of the reservation form.
 
                 var meta = document.createElement('p');
                 meta.className = 'text-sm text-muted';
-                var cs = COUNTRY_CS[g.citizenship] || g.citizenship;
-                meta.textContent = fmtDate(g.bdate) + ' · ' + cs + ' · ' + g.passport + ' · ' + g.address;
+                var country = COUNTRY_LABEL[g.citizenship] || g.citizenship;
+                meta.textContent = fmtDate(g.bdate) + ' · ' + country + ' · ' + g.passport + ' · ' + g.address;
                 body.appendChild(meta);
 
                 li.appendChild(body);
@@ -594,6 +603,7 @@ IDs are namespaced gb-* to stay clear of the reservation form.
                 var json = await response.json();
                 if (json.status === 'success') {
                     clearDraft();
+                    try { localStorage.setItem(SUBMITTED_KEY, '1'); } catch (e) {}
                     result.classList.add('hidden');
                     editor.classList.add('hidden');
                     review.classList.add('hidden');
@@ -621,6 +631,31 @@ IDs are namespaced gb-* to stay clear of the reservation form.
         renderNights();
         renderRoster();
         renderDetail();
+
+        // --- Intro gate ---
+        // The page shows a big description + "fill out" button first (#gb-intro); the
+        // form starts hidden and is revealed on click. Skip straight to the form if a
+        // draft is in progress, or the guest already submitted on this device.
+        var introEl = document.getElementById('gb-intro');
+        var fillBtn = document.getElementById('gb-fill-btn');
+        var infoAccordion = document.getElementById('gb-info');
+        function showForm() {
+            if (introEl) introEl.classList.add('hidden');
+            if (infoAccordion) infoAccordion.open = false;
+            form.classList.remove('hidden');
+        }
+        var alreadySubmitted = false;
+        try { alreadySubmitted = localStorage.getItem(SUBMITTED_KEY) === '1'; } catch (e) {}
+        if (fillBtn) {
+            fillBtn.addEventListener('click', function () {
+                showForm();
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+        if (!introEl || alreadySubmitted || restored) {
+            showForm();
+        }
+
         if (restored) {
             showResult(T.restoredNote + '  ', 'pending');
             var clearBtn = document.createElement('button');

@@ -3,8 +3,321 @@ layout: default
 title: "Chaloupka pod lípou"
 lang: pl
 ref: home
+og_description: "Stylowy domek dla 5 rodzin w Malých Svatoňovicích w regionie Podkrkonoší — przestronny salon z piecem
+kominkowym, w pełni wyposażona kuchnia, 5 sypialni i ogród."
 permalink: /pl/
-og_description: "Chaloupka pod lípou — stylowy domek w Malých Svatoňovicích w regionie Podkrkonoší. Pełna polska wersja strony wkrótce."
+reservation_url: /pl/rezerwacja/
+area_url: /pl/okolica/
 priority: 0.6
 ---
-{% include home-stub.html %}
+<!-- Hero -->
+<section class="relative h-dvh flex items-center justify-center overflow-hidden bg-surface">
+    <div class="absolute inset-0">
+        <img src="{{ '/assets/images/chaloupka.jpg' | relative_url }}" alt="Domek pod lipą — widok z zewnątrz"
+            class="w-full h-full object-cover" loading="eager" width="1600" height="1143">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10 pointer-events-none"></div>
+
+    <div class="relative z-10 px-4 text-center">
+        <h1
+            class="text-white text-6xl md:text-7xl font-serif font-black tracking-tight leading-[1.05] text-center [text-shadow:0_2px_12px_rgba(0,0,0,0.35)]">
+            Chaloupka<br>pod lípou
+        </h1>
+        <a href="{{ page.reservation_url | relative_url }}"
+            class="inline-flex items-center gap-3 mt-10 bg-brand text-onbrand px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-brand/90 transition-colors shadow-lg">
+            Zobacz dostępne terminy
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </a>
+    </div>
+
+    <a href="#o-chaloupce" aria-label="Przewiń w dół"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/80 hover:text-white transition-colors">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </a>
+</section>
+
+<!-- O domku -->
+<section id="o-chaloupce" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
+            <img src="{{ '/assets/images/zahrada-zezadu.jpg' | relative_url }}" alt="Domek — widok na ogród"
+                class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+        </div>
+        <div class="opacity-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Nasz domek</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Nasza Chaloupka pod
+                lípou</h2>
+            <p class="text-fg text-lg leading-relaxed">
+                to miejsce, w którym historia łączy się z nowoczesnym komfortem. Ten stylowy domek znajduje się w
+                miejscowości <strong class="text-fg font-semibold">Malé Svatoňovice</strong> i jest idealnym miejscem
+                na Państwa urlop. Niezależnie od tego, czy szukają Państwo spokoju, wygody, czy piękna przyrody, u nas
+                znajdą Państwo wszystko. Domek jest wyposażony w nowoczesne wnętrze, zachowując jednocześnie urok
+                tradycyjnej wiejskiej chaty.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Jak się u nas mieszka -->
+<section id="vybaveni" class="bg-surface py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="order-2 md:order-1">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Wyposażenie</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Jak się u nas mieszka
+            </h2>
+            <p class="text-fg text-lg leading-relaxed mb-6">
+                Chaloupka pod lípou jest w pełni wyposażona na Państwa komfortowy pobyt. W domku znajdą Państwo
+                <strong class="text-fg font-semibold">przestronny salon</strong> z wygodną sofą i piecem kominkowym,
+                połączony z <strong class="text-fg font-semibold">w pełni wyposażoną kuchnią</strong> z nowoczesnym
+                sprzętem, w tym kuchenką, lodówką, zmywarką i ekspresem do kawy.
+            </p>
+            <p class="text-fg text-lg leading-relaxed mb-8">
+                <strong class="text-fg font-semibold">Pięć sypialni</strong> oferuje wygodne łóżka dwuosobowe i
+                pojedyncze oraz mnóstwo miejsca do przechowywania. <strong class="text-fg font-semibold">Dwie
+                łazienki</strong> są wyposażone w kabinę prysznicową, WC i pralkę. Do dyspozycji jest również Wi-Fi,
+                telewizor oraz meble ogrodowe do relaksu na zewnętrznym tarasie. Dla Państwa komfortu cały domek jest
+                wyposażony w centralne ogrzewanie i inne detale, które uprzyjemnią Państwa pobyt.
+            </p>
+            <ul class="columns-2 gap-x-6 gap-y-3">
+                {% assign amenities = "5 sypialni,2 łazienki,W pełni wyposażona
+                kuchnia,Wi-Fi i TV,Ekspres do kawy,Piec kominkowy,Miejsce do siedzenia w ogrodzie,Rowerownia,Grill,Palenisko" | split: "," %}
+                {% for item in amenities %}
+                <li class="flex items-center gap-2 text-base text-fg break-inside-avoid mb-3">
+                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {{ item }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="order-1 md:order-2 aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto" data-carousel>
+            <img src="{{ '/assets/images/obyvak.jpg' | relative_url }}" alt="Salon"
+                class="carousel-slide active w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Kuchnia"
+                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Łazienka"
+                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Ogród i taras"
+                class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+            <button data-carousel-prev aria-label="Poprzednie"
+                class="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 backdrop-blur-sm text-white flex items-center justify-center opacity-50 hover:opacity-100 hover:bg-black/55 transition-all duration-200 hover:scale-105">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button data-carousel-next aria-label="Następne"
+                class="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 backdrop-blur-sm text-white flex items-center justify-center opacity-50 hover:opacity-100 hover:bg-black/55 transition-all duration-200 hover:scale-105">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Pokoje -->
+<section id="pokoje" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto opacity-fade">
+        <div class="text-center mb-14">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Wyposażenie</span>
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight">Pokoje</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-3xl lg:max-w-5xl mx-auto mb-8">
+            <!-- Pokój 1 -->
+            <div class="max-w-xs mx-auto w-full">
+                <div class="aspect-[4/3] mb-4 rounded-2xl overflow-hidden">
+                    <img src="{{ '/assets/images/rooms/1.webp' | relative_url }}" alt="Pokój 1"
+                        class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+                </div>
+                <h3 class="text-fg font-semibold mb-2">Pokój 1</h3>
+                <div class="flex flex-nowrap items-center mb-2">
+                    <img src="{{ '/assets/icons/bed-double.svg' | relative_url }}" alt="Łóżko podwójne"
+                        class="bed-icon bed-icon-double">
+                </div>
+                <p class="text-muted text-sm leading-relaxed">Na parterze, z dostępem z salonu.</p>
+            </div>
+            <!-- Pokój 2 -->
+            <div class="max-w-xs mx-auto w-full">
+                <div class="aspect-[4/3] mb-4 rounded-2xl overflow-hidden">
+                    <img src="{{ '/assets/images/rooms/2.webp' | relative_url }}" alt="Pokój 2"
+                        class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+                </div>
+                <h3 class="text-fg font-semibold mb-2">Pokój 2</h3>
+                <div class="flex flex-nowrap items-center mb-2">
+                    <img src="{{ '/assets/icons/bed-double.svg' | relative_url }}" alt="Łóżko podwójne"
+                        class="bed-icon bed-icon-double">
+                </div>
+                <p class="text-muted text-sm leading-relaxed">Na parterze, z dostępem z salonu. Łóżko
+                    podwójne.</p>
+            </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-3xl lg:max-w-5xl mx-auto">
+            <!-- Pokój 3 -->
+            <div class="max-w-xs mx-auto w-full">
+                <div class="aspect-[4/3] mb-4 rounded-2xl overflow-hidden">
+                    <img src="{{ '/assets/images/rooms/3.webp' | relative_url }}" alt="Pokój 3 — okno dachowe"
+                        class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+                </div>
+                <h3 class="text-fg font-semibold mb-2">Pokój 3</h3>
+                <div class="flex flex-nowrap items-center mb-2">
+                    <img src="{{ '/assets/icons/bed-double.svg' | relative_url }}" alt="Łóżko podwójne"
+                        class="bed-icon bed-icon-double">
+                </div>
+                <p class="text-muted text-sm leading-relaxed">Na piętrze, z oknem dachowym.</p>
+            </div>
+            <!-- Pokój 4 -->
+            <div class="max-w-xs mx-auto w-full">
+                <div class="group aspect-[4/3] mb-4 rounded-2xl overflow-hidden" data-carousel>
+                    <img src="{{ '/assets/images/rooms/4-1.webp' | relative_url }}" alt="Pokój 4"
+                        class="carousel-slide active w-full h-full object-cover" loading="lazy" width="1600"
+                        height="1143">
+                    <img src="{{ '/assets/images/rooms/4-2.webp' | relative_url }}" alt="Pokój 4"
+                        class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+                    <img src="{{ '/assets/images/rooms/4-3.webp' | relative_url }}" alt="Pokój 4"
+                        class="carousel-slide w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+
+                    <!-- Dolny gradient, aby strzałki/kropki pozostały czytelne na każdym zdjęciu -->
+                    <div
+                        class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/35 to-transparent pointer-events-none">
+                    </div>
+
+                    <button data-carousel-prev aria-label="Poprzednie"
+                        class="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 backdrop-blur-sm text-white flex items-center justify-center opacity-50 hover:opacity-100 hover:bg-black/55 transition-all duration-200 hover:scale-105">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button data-carousel-next aria-label="Następne"
+                        class="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/35 backdrop-blur-sm text-white flex items-center justify-center opacity-50 hover:opacity-100 hover:bg-black/55 transition-all duration-200 hover:scale-105">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <div class="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5">
+                        <button data-carousel-dot aria-label="Zdjęcie 1" class="carousel-dot is-active"></button>
+                        <button data-carousel-dot aria-label="Zdjęcie 2" class="carousel-dot"></button>
+                        <button data-carousel-dot aria-label="Zdjęcie 3" class="carousel-dot"></button>
+                    </div>
+                </div>
+                <h3 class="text-fg font-semibold mb-2">Pokój 4</h3>
+                <div class="flex flex-nowrap items-center mb-2">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-0.5">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-1.5">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-1.5">
+                </div>
+                <p class="text-muted text-sm leading-relaxed">Na piętrze, z połączonym łóżkiem podwójnym i dwoma
+                    pojedynczymi.</p>
+            </div>
+            <!-- Pokój 5 -->
+            <div class="max-w-xs mx-auto w-full">
+                <div class="aspect-[4/3] mb-4 rounded-2xl overflow-hidden">
+                    <img src="{{ '/assets/images/rooms/5.webp' | relative_url }}" alt="Pokój 5"
+                        class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+                </div>
+                <h3 class="text-fg font-semibold mb-2">Pokój 5</h3>
+                <div class="flex flex-nowrap items-center mb-2">
+                    <img src="{{ '/assets/icons/bed-double.svg' | relative_url }}" alt="Łóżko podwójne"
+                        class="bed-icon bed-icon-double">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-0.5">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-1.5">
+                    <img src="{{ '/assets/icons/bed-single.svg' | relative_url }}" alt="Łóżko pojedyncze"
+                        class="bed-icon bed-icon-single ml-1.5">
+                </div>
+                <p class="text-muted text-sm leading-relaxed">Na piętrze, z łóżkiem podwójnym i trzema
+                    pojedynczymi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rowerownia -->
+<section id="kolarna" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
+            <img src="{{ '/assets/images/bike-shed.jpg' | relative_url }}" alt="Rowerownia do przechowywania rowerów i hulajnóg"
+                class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+        </div>
+        <div class="opacity-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Ogród</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Rowerownia</h2>
+            <p class="text-fg text-lg leading-relaxed">
+                Do bezpiecznego przechowywania Państwa rowerów, hulajnóg czy wózków w pełni służy nasza
+                <strong class="text-fg font-semibold">przestronna rowerownia</strong>. Zapewnia osłonięte miejsce na
+                Państwa rzeczy, aby mieli je Państwo pod ręką, gdy zechcą się Państwo wybrać na spacer lub wycieczkę po
+                okolicy.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Miód -->
+<section id="med" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="opacity-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Miód</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Domowy miód</h2>
+            <p class="text-fg text-lg leading-relaxed">
+                Przez cały rok mogą Państwo kupić u nas miód od naszych własnych pszczół. Dbamy o nie z największą miłością i
+                wierzymy, że czuć to w każdym słoiku. Miód można nabyć bezpośrednio u nas w domku – zarówno podczas
+                pobytu, jak i o każdej porze po wcześniejszym uzgodnieniu.
+            </p>
+        </div>
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden max-w-md w-full mx-auto">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Domowy miód od naszych własnych pszczół"
+                class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-brand text-onbrand py-16 md:py-20 px-4 md:px-8 text-center">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-tight mb-4">Planują Państwo pobyt na łonie natury?</h2>
+        <p class="text-onbrand/85 text-lg mb-8">Prosimy sprawdzić aktualną dostępność i ceny na rok 2026.</p>
+        <a href="{{ page.reservation_url | relative_url }}"
+            class="inline-flex items-center gap-3 bg-onbrand text-brand px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-onbrand/90 transition-colors">
+            Przejdź do rezerwacji
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </a>
+    </div>
+</section>
+
+<button id="scroll-top-btn" aria-label="Do góry" type="button"
+    class="fixed bottom-8 right-8 w-12 h-12 bg-brand text-onbrand rounded-full flex items-center justify-center cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300 hover:scale-110 z-40">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>

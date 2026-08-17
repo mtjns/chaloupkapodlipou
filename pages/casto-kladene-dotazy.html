@@ -3,7 +3,9 @@ layout: default
 title: "Často kladené dotazy"
 lang: cs
 ref: faq
-permalink: /casto-kladene-dotazy/
+description: "Odpovědi na časté dotazy k pobytu v Chaloupce pod lípou"
+permalink: /casto-kladene-dotazy
+priority: 0.7
 ---
 {%- assign wa = site.phone_link | remove: '+' -%}
 <section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
@@ -23,7 +25,7 @@ permalink: /casto-kladene-dotazy/
                 <h3 class="text-lg font-semibold text-fg mb-2">Jaké jsou podmínky rezervace?</h3>
                 <p class="text-muted leading-relaxed">
                     Podmínky rezervace a podrobné informace o tom, jak si u nás rezervovat termín, najdete na naší stránce 
-                    <a href="{{ '/rezervace/' | relative_url }}" class="text-brand font-medium hover:underline">Rezervace</a>.
+                    <a href="{{ '/rezervace' | relative_url }}" class="text-brand font-medium hover:underline">Rezervace</a>.
                 </p>
             </div>
 
@@ -38,10 +40,20 @@ permalink: /casto-kladene-dotazy/
 
             <!-- FAQ item -->
             <div class="border-b border-line/10 pb-6">
+                <h3 class="text-lg font-semibold text-fg mb-2">Platí se záloha předem?</h3>
+                <p class="text-muted leading-relaxed">
+                    Ano, záloha činí 20 % z celkové ceny, případně dle individuální dohody. Doplatek je splatný při příjezdu.
+                    Pokud zrušíte rezervaci více než 30 dní před příjezdem, vracíme celou uhrazenou zálohu.
+                    Pokud rezervaci zrušíte 30 a méně dní před příjezdem, záloha už je nevratná.
+                </p>
+            </div>
+
+            <!-- FAQ item -->
+            <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Je možné si vyžádat změnu termínu pobytu?</h3>
                 <p class="text-muted leading-relaxed">
-                    Ano, změna termínu je po domluvě možná. Ozvěte se nám prosím co nejdříve, abychom společně
-                    našli jiný vhodný volný termín.
+                    Ano, změna termínu je po domluvě možná (nemusíme však už mít místo a můžeme po vás vyžadovat novou zálohu). Ozvěte se nám prosím co nejdříve, abychom společně
+                    našli jiný vhodný termín.
                 </p>
             </div>
 
@@ -50,7 +62,7 @@ permalink: /casto-kladene-dotazy/
                 <h3 class="text-lg font-semibold text-fg mb-2">Co si máme vzít s sebou?</h3>
                 <p class="text-muted leading-relaxed">
                     Doporučujeme přibalit domácí obuv a v letních měsících určitě i něco dobrého na gril nebo na
-                    oheň. Jinak je chaloupka skvěle vybavená – snažíme se, aby vám u nás nic nechybělo a cítili
+                    oheň. Jinak je chaloupka plně vybavená – snažíme se, aby vám u nás nic nechybělo a cítili
                     jste se jako doma. Seznam věcí, které vám jsou u nás k dispozici, najdete
                     <a href="{{ '/#vybaveni' | relative_url }}" class="text-brand font-medium hover:underline">na našem webu</a>.
                 </p>
@@ -60,10 +72,8 @@ permalink: /casto-kladene-dotazy/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Doporučíte nám nějaký výlet?</h3>
                 <p class="text-muted leading-relaxed">
-                    Okolí chaloupky toho nabízí opravdu hodně. Určitě byste v našem regionu Jestřebích hor měli
-                    navštívit hrad Pecka, přehradu Les Království a Safari park ZOO Dvůr Králové nad Labem.
-                    Možností je opravdu spousty. Několik tipů a naši interaktivní mapu najdete na našem webu
-                    v <a href="{{ '/okoli/' | relative_url }}" class="text-brand font-medium hover:underline">sekci okolí</a>.
+                    Okolí chaloupky toho nabízí opravdu hodně. Několik tipů a naši interaktivní mapu najdete na našem webu
+                    v <a href="{{ '/okoli' | relative_url }}" class="text-brand font-medium hover:underline">sekci okolí</a>.
                 </p>
             </div>
 
@@ -71,7 +81,7 @@ permalink: /casto-kladene-dotazy/
             <div class="border-b border-line/10 pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Můžeme si na chaloupku přivést pejska?</h3>
                 <p class="text-muted leading-relaxed">
-                    Pejsky ani jiné mazlíčky u nás zpravidla nepovolujeme.
+                    Pejsky ani jiné mazlíčky u nás bohužel nepovolujeme.
                 </p>
             </div>
 
@@ -99,7 +109,7 @@ permalink: /casto-kladene-dotazy/
             <div class="pb-6">
                 <h3 class="text-lg font-semibold text-fg mb-2">Máte další dotazy?</h3>
                 <p class="text-muted leading-relaxed">
-                    Pokud jste nenašli odpověď na vaši otázku, prosím
+                    Pokud jste nenašli odpověď na vaši otázku, prosíme
                     <a href="mailto:{{ site.email }}" class="text-brand font-medium hover:underline">kontaktujte nás e-mailem</a>
                     nebo na
                     <a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener" class="text-brand font-medium hover:underline">WhatsApp</a>.

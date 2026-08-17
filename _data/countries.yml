@@ -1,46 +1,207 @@
 # Citizenship dropdown source for the guest-registration form (kniha hostů).
 #   en: submitted value — MUST match the sheet's flag / is-Czech logic. "Czech
-#       Republic" triggers isCompleted=TRUE and drives the flag IMAGE() lookup
+#       Republic" triggers isCompleted=TRUE and drives the flag IMAGE() lookup in the sheet.
 #       (flag file name = the en value with spaces → underscores).
 #   cs: visible Czech label.
-# Czech first, then common nationalities alphabetically by Czech label.
-- { en: "Czech Republic", cs: "Česko" }
-- { en: "Slovakia", cs: "Slovensko" }
-- { en: "Belgium", cs: "Belgie" }
-- { en: "Bulgaria", cs: "Bulharsko" }
-- { en: "China", cs: "Čína" }
-- { en: "Denmark", cs: "Dánsko" }
-- { en: "Estonia", cs: "Estonsko" }
-- { en: "Finland", cs: "Finsko" }
-- { en: "France", cs: "Francie" }
-- { en: "Croatia", cs: "Chorvatsko" }
-- { en: "Ireland", cs: "Irsko" }
-- { en: "Italy", cs: "Itálie" }
-- { en: "Israel", cs: "Izrael" }
-- { en: "Japan", cs: "Japonsko" }
-- { en: "South Africa", cs: "Jižní Afrika" }
-- { en: "Canada", cs: "Kanada" }
-- { en: "South Korea", cs: "Korejská republika" }
-- { en: "Lithuania", cs: "Litva" }
-- { en: "Latvia", cs: "Lotyšsko" }
-- { en: "Luxembourg", cs: "Lucembursko" }
-- { en: "Hungary", cs: "Maďarsko" }
-- { en: "Germany", cs: "Německo" }
-- { en: "Netherlands", cs: "Nizozemsko" }
-- { en: "Norway", cs: "Norsko" }
-- { en: "Poland", cs: "Polsko" }
-- { en: "Portugal", cs: "Portugalsko" }
-- { en: "Austria", cs: "Rakousko" }
-- { en: "Romania", cs: "Rumunsko" }
-- { en: "Russia", cs: "Rusko" }
-- { en: "Greece", cs: "Řecko" }
-- { en: "Slovenia", cs: "Slovinsko" }
-- { en: "Serbia", cs: "Srbsko" }
-- { en: "Spain", cs: "Španělsko" }
-- { en: "Sweden", cs: "Švédsko" }
-- { en: "Switzerland", cs: "Švýcarsko" }
-- { en: "Ukraine", cs: "Ukrajina" }
-- { en: "United Kingdom", cs: "Velká Británie" }
-- { en: "United States", cs: "Spojené státy americké" }
-- { en: "Australia", cs: "Austrálie" }
-- { en: "Other", cs: "Jiné" }
+#   de: visible German label.
+#   pl: visible Polish label.
+# Common first, then nationalities alphabetically by English label.
+- { en: "Czech Republic", cs: "Česko", de: "Tschechien", pl: "Czechy" }
+- { en: "Poland", cs: "Polsko", de: "Polen", pl: "Polska" }
+- { en: "Germany", cs: "Německo", de: "Deutschland", pl: "Niemcy" }
+- { en: "Austria", cs: "Rakousko", de: "Österreich", pl: "Austria" }
+- { en: "Afghanistan", cs: "Afghánistán", de: "Afghanistan", pl: "Afganistan" }
+- { en: "Albania", cs: "Albánie", de: "Albanien", pl: "Albania" }
+- { en: "Algeria", cs: "Alžírsko", de: "Algerien", pl: "Algieria" }
+- { en: "Andorra", cs: "Andorra", de: "Andorra", pl: "Andora" }
+- { en: "Angola", cs: "Angola", de: "Angola", pl: "Angola" }
+- { en: "Antigua and Barbuda", cs: "Antigua a Barbuda", de: "Antigua und Barbuda", pl: "Antigua i Barbuda" }
+- { en: "Argentina", cs: "Argentina", de: "Argentinien", pl: "Argentyna" }
+- { en: "Armenia", cs: "Arménie", de: "Armenien", pl: "Armenia" }
+- { en: "Australia", cs: "Austrálie", de: "Australien", pl: "Australia" }
+- { en: "Azerbaijan", cs: "Ázerbájdžán", de: "Aserbaidschan", pl: "Azerbejdżan" }
+- { en: "Bahamas", cs: "Bahamy", de: "Bahamas", pl: "Bahamy" }
+- { en: "Bahrain", cs: "Bahrajn", de: "Bahrain", pl: "Bahrajn" }
+- { en: "Bangladesh", cs: "Bangladéš", de: "Bangladesch", pl: "Bangladesz" }
+- { en: "Barbados", cs: "Barbados", de: "Barbados", pl: "Barbados" }
+- { en: "Belarus", cs: "Bělorusko", de: "Belarus", pl: "Białoruś" }
+- { en: "Belgium", cs: "Belgie", de: "Belgien", pl: "Belgia" }
+- { en: "Belize", cs: "Belize", de: "Belize", pl: "Belize" }
+- { en: "Benin", cs: "Benin", de: "Benin", pl: "Benin" }
+- { en: "Bhutan", cs: "Bhútán", de: "Bhutan", pl: "Bhutan" }
+- { en: "Bolivia", cs: "Bolívie", de: "Bolivien", pl: "Boliwia" }
+- { en: "Bosnia and Herzegovina", cs: "Bosna a Hercegovina", de: "Bosnien und Herzegowina", pl: "Bośnia i Hercegowina" }
+- { en: "Botswana", cs: "Botswana", de: "Botswana", pl: "Botswana" }
+- { en: "Brazil", cs: "Brazílie", de: "Brasilien", pl: "Brazylia" }
+- { en: "Brunei", cs: "Brunej", de: "Brunei", pl: "Brunei" }
+- { en: "Bulgaria", cs: "Bulharsko", de: "Bulgarien", pl: "Bułgaria" }
+- { en: "Burkina Faso", cs: "Burkina Faso", de: "Burkina Faso", pl: "Burkina Faso" }
+- { en: "Burundi", cs: "Burundi", de: "Burundi", pl: "Burundi" }
+- { en: "Cabo Verde", cs: "Kapverdy", de: "Kap Verde", pl: "Republika Zielonego Przylądka" }
+- { en: "Cambodia", cs: "Kambodža", de: "Kambodscha", pl: "Kambodża" }
+- { en: "Cameroon", cs: "Kamerun", de: "Kamerun", pl: "Kamerun" }
+- { en: "Canada", cs: "Kanada", de: "Kanada", pl: "Kanada" }
+- { en: "Central African Republic", cs: "Středoafrická republika", de: "Zentralafrikanische Republik", pl: "Republika Środkowoafrykańska" }
+- { en: "Chad", cs: "Čad", de: "Tschad", pl: "Czad" }
+- { en: "Chile", cs: "Chile", de: "Chile", pl: "Chile" }
+- { en: "China", cs: "Čína", de: "China", pl: "Chiny" }
+- { en: "Colombia", cs: "Kolumbie", de: "Kolumbien", pl: "Kolumbia" }
+- { en: "Comoros", cs: "Komory", de: "Komoren", pl: "Komory" }
+- { en: "Congo", cs: "Kongo", de: "Kongo", pl: "Kongo" }
+- { en: "Costa Rica", cs: "Kostarika", de: "Costa Rica", pl: "Kostaryka" }
+- { en: "Croatia", cs: "Chorvatsko", de: "Kroatien", pl: "Chorwacja" }
+- { en: "Cuba", cs: "Kuba", de: "Kuba", pl: "Kuba" }
+- { en: "Cyprus", cs: "Kypr", de: "Zypern", pl: "Cypr" }
+- { en: "Democratic Republic of the Congo", cs: "Demokratická republika Kongo", de: "Demokratische Republik Kongo", pl: "Demokratyczna Republika Konga" }
+- { en: "Denmark", cs: "Dánsko", de: "Dänemark", pl: "Dania" }
+- { en: "Djibouti", cs: "Džibutsko", de: "Dschibuti", pl: "Dżibuti" }
+- { en: "Dominica", cs: "Dominika", de: "Dominica", pl: "Dominika" }
+- { en: "Dominican Republic", cs: "Dominikánská republika", de: "Dominikanische Republik", pl: "Dominikana" }
+- { en: "East Timor", cs: "Východní Timor", de: "Osttimor", pl: "Timor Wschodni" }
+- { en: "Ecuador", cs: "Ekvádor", de: "Ecuador", pl: "Ekwador" }
+- { en: "Egypt", cs: "Egypt", de: "Ägypten", pl: "Egipt" }
+- { en: "El Salvador", cs: "Salvador", de: "El Salvador", pl: "Salwador" }
+- { en: "Equatorial Guinea", cs: "Rovníková Guinea", de: "Äquatorialguinea", pl: "Gwinea Równikowa" }
+- { en: "Eritrea", cs: "Eritrea", de: "Eritrea", pl: "Erytrea" }
+- { en: "Estonia", cs: "Estonsko", de: "Estland", pl: "Estonia" }
+- { en: "Eswatini", cs: "Eswatini", de: "Eswatini", pl: "Eswatini" }
+- { en: "Ethiopia", cs: "Etiopie", de: "Äthiopien", pl: "Etiopia" }
+- { en: "Fiji", cs: "Fidži", de: "Fidschi", pl: "Fidżi" }
+- { en: "Finland", cs: "Finsko", de: "Finnland", pl: "Finlandia" }
+- { en: "France", cs: "Francie", de: "Frankreich", pl: "Francja" }
+- { en: "Gabon", cs: "Gabon", de: "Gabun", pl: "Gabon" }
+- { en: "Gambia", cs: "Gambie", de: "Gambia", pl: "Gambia" }
+- { en: "Georgia", cs: "Gruzie", de: "Georgien", pl: "Gruzja" }
+- { en: "Ghana", cs: "Ghana", de: "Ghana", pl: "Ghana" }
+- { en: "Greece", cs: "Řecko", de: "Griechenland", pl: "Grecja" }
+- { en: "Grenada", cs: "Grenada", de: "Grenada", pl: "Grenada" }
+- { en: "Guatemala", cs: "Guatemala", de: "Guatemala", pl: "Gwatemala" }
+- { en: "Guinea", cs: "Guinea", de: "Guinea", pl: "Gwinea" }
+- { en: "Guinea-Bissau", cs: "Guinea-Bissau", de: "Guinea-Bissau", pl: "Gwinea Bissau" }
+- { en: "Guyana", cs: "Guyana", de: "Guyana", pl: "Gujana" }
+- { en: "Haiti", cs: "Haiti", de: "Haiti", pl: "Haiti" }
+- { en: "Honduras", cs: "Honduras", de: "Honduras", pl: "Honduras" }
+- { en: "Hungary", cs: "Maďarsko", de: "Ungarn", pl: "Węgry" }
+- { en: "Iceland", cs: "Island", de: "Island", pl: "Islandia" }
+- { en: "India", cs: "Indie", de: "Indien", pl: "Indie" }
+- { en: "Indonesia", cs: "Indonésie", de: "Indonesien", pl: "Indonezja" }
+- { en: "Iran", cs: "Írán", de: "Iran", pl: "Iran" }
+- { en: "Iraq", cs: "Irák", de: "Irak", pl: "Irak" }
+- { en: "Ireland", cs: "Irsko", de: "Irland", pl: "Irlandia" }
+- { en: "Israel", cs: "Izrael", de: "Israel", pl: "Izrael" }
+- { en: "Italy", cs: "Itálie", de: "Italien", pl: "Włochy" }
+- { en: "Ivory Coast", cs: "Pobřeží slonoviny", de: "Elfenbeinküste", pl: "Wybrzeże Kości Słoniowej" }
+- { en: "Jamaica", cs: "Jamajka", de: "Jamaika", pl: "Jamajka" }
+- { en: "Japan", cs: "Japonsko", de: "Japan", pl: "Japonia" }
+- { en: "Jordan", cs: "Jordánsko", de: "Jordanien", pl: "Jordania" }
+- { en: "Kazakhstan", cs: "Kazachstán", de: "Kasachstan", pl: "Kazachstan" }
+- { en: "Kenya", cs: "Keňa", de: "Kenia", pl: "Kenia" }
+- { en: "Kiribati", cs: "Kiribati", de: "Kiribati", pl: "Kiribati" }
+- { en: "Kosovo", cs: "Kosovo", de: "Kosovo", pl: "Kosowo" }
+- { en: "Kuwait", cs: "Kuvajt", de: "Kuwait", pl: "Kuwejt" }
+- { en: "Kyrgyzstan", cs: "Kyrgyzstán", de: "Kirgisistan", pl: "Kirgistan" }
+- { en: "Laos", cs: "Laos", de: "Laos", pl: "Laos" }
+- { en: "Latvia", cs: "Lotyšsko", de: "Lettland", pl: "Łotwa" }
+- { en: "Lebanon", cs: "Libanon", de: "Libanon", pl: "Liban" }
+- { en: "Lesotho", cs: "Lesotho", de: "Lesotho", pl: "Lesotho" }
+- { en: "Liberia", cs: "Libérie", de: "Liberia", pl: "Liberia" }
+- { en: "Libya", cs: "Libye", de: "Libyen", pl: "Libia" }
+- { en: "Liechtenstein", cs: "Lichtenštejnsko", de: "Liechtenstein", pl: "Liechtenstein" }
+- { en: "Lithuania", cs: "Litva", de: "Litauen", pl: "Litwa" }
+- { en: "Luxembourg", cs: "Lucembursko", de: "Luxemburg", pl: "Luksemburg" }
+- { en: "Madagascar", cs: "Madagaskar", de: "Madagaskar", pl: "Madagaskar" }
+- { en: "Malawi", cs: "Malawi", de: "Malawi", pl: "Malawi" }
+- { en: "Malaysia", cs: "Malajsie", de: "Malaysia", pl: "Malezja" }
+- { en: "Maldives", cs: "Maledivy", de: "Malediven", pl: "Malediwy" }
+- { en: "Mali", cs: "Mali", de: "Mali", pl: "Mali" }
+- { en: "Malta", cs: "Malta", de: "Malta", pl: "Malta" }
+- { en: "Marshall Islands", cs: "Marshallovy ostrovy", de: "Marshallinseln", pl: "Wyspy Marshalla" }
+- { en: "Mauritania", cs: "Mauritánie", de: "Mauretanien", pl: "Mauretania" }
+- { en: "Mauritius", cs: "Mauricius", de: "Mauritius", pl: "Mauritius" }
+- { en: "Mexico", cs: "Mexiko", de: "Mexiko", pl: "Meksyk" }
+- { en: "Micronesia", cs: "Mikronésie", de: "Mikronesien", pl: "Mikronezja" }
+- { en: "Moldova", cs: "Moldavsko", de: "Moldau", pl: "Mołdawia" }
+- { en: "Monaco", cs: "Monako", de: "Monaco", pl: "Monako" }
+- { en: "Mongolia", cs: "Mongolsko", de: "Mongolei", pl: "Mongolia" }
+- { en: "Montenegro", cs: "Černá Hora", de: "Montenegro", pl: "Czarnogóra" }
+- { en: "Morocco", cs: "Maroko", de: "Marokko", pl: "Maroko" }
+- { en: "Mozambique", cs: "Mosambik", de: "Mosambik", pl: "Mozambik" }
+- { en: "Myanmar", cs: "Myanmar", de: "Myanmar", pl: "Mjanma" }
+- { en: "Namibia", cs: "Namibie", de: "Namibia", pl: "Namibia" }
+- { en: "Nauru", cs: "Nauru", de: "Nauru", pl: "Nauru" }
+- { en: "Nepal", cs: "Nepál", de: "Nepal", pl: "Nepal" }
+- { en: "Netherlands", cs: "Nizozemsko", de: "Niederlande", pl: "Holandia" }
+- { en: "New Zealand", cs: "Nový Zéland", de: "Neuseeland", pl: "Nowa Zelandia" }
+- { en: "Nicaragua", cs: "Nikaragua", de: "Nicaragua", pl: "Nikaragua" }
+- { en: "Niger", cs: "Niger", de: "Niger", pl: "Niger" }
+- { en: "Nigeria", cs: "Nigérie", de: "Nigeria", pl: "Nigeria" }
+- { en: "North Korea", cs: "Severní Korea", de: "Nordkorea", pl: "Korea Północna" }
+- { en: "North Macedonia", cs: "Severní Makedonie", de: "Nordmazedonien", pl: "Macedonia Północna" }
+- { en: "Norway", cs: "Norsko", de: "Norwegen", pl: "Norwegia" }
+- { en: "Oman", cs: "Omán", de: "Oman", pl: "Oman" }
+- { en: "Pakistan", cs: "Pákistán", de: "Pakistan", pl: "Pakistan" }
+- { en: "Palau", cs: "Palau", de: "Palau", pl: "Palau" }
+- { en: "Palestine", cs: "Palestina", de: "Palästina", pl: "Palestyna" }
+- { en: "Panama", cs: "Panama", de: "Panama", pl: "Panama" }
+- { en: "Papua New Guinea", cs: "Papua-Nová Guinea", de: "Papua-Neuguinea", pl: "Papua-Nowa Gwinea" }
+- { en: "Paraguay", cs: "Paraguay", de: "Paraguay", pl: "Paragwaj" }
+- { en: "Peru", cs: "Peru", de: "Peru", pl: "Peru" }
+- { en: "Philippines", cs: "Filipíny", de: "Philippinen", pl: "Filipiny" }
+- { en: "Portugal", cs: "Portugalsko", de: "Portugal", pl: "Portugalia" }
+- { en: "Qatar", cs: "Katar", de: "Katar", pl: "Katar" }
+- { en: "Romania", cs: "Rumunsko", de: "Rumänien", pl: "Rumunia" }
+- { en: "Russia", cs: "Rusko", de: "Russland", pl: "Rosja" }
+- { en: "Rwanda", cs: "Rwanda", de: "Ruanda", pl: "Rwanda" }
+- { en: "Saint Kitts and Nevis", cs: "Svatý Kryštof a Nevis", de: "St. Kitts und Nevis", pl: "Saint Kitts i Nevis" }
+- { en: "Saint Lucia", cs: "Svatá Lucie", de: "St. Lucia", pl: "Saint Lucia" }
+- { en: "Saint Vincent and the Grenadines", cs: "Svatý Vincenc a Grenadiny", de: "St. Vincent und die Grenadinen", pl: "Saint Vincent i Grenadyny" }
+- { en: "Samoa", cs: "Samoa", de: "Samoa", pl: "Samoa" }
+- { en: "San Marino", cs: "San Marino", de: "San Marino", pl: "San Marino" }
+- { en: "Sao Tome and Principe", cs: "Svatý Tomáš a Princův ostrov", de: "São Tomé und Príncipe", pl: "Wyspy Świętego Tomasza i Książęca" }
+- { en: "Saudi Arabia", cs: "Saúdská Arábie", de: "Saudi-Arabien", pl: "Arabia Saudyjska" }
+- { en: "Senegal", cs: "Senegal", de: "Senegal", pl: "Senegal" }
+- { en: "Serbia", cs: "Srbsko", de: "Serbien", pl: "Serbia" }
+- { en: "Seychelles", cs: "Seychely", de: "Seychellen", pl: "Seszele" }
+- { en: "Sierra Leone", cs: "Sierra Leone", de: "Sierra Leone", pl: "Sierra Leone" }
+- { en: "Singapore", cs: "Singapur", de: "Singapur", pl: "Singapur" }
+- { en: "Slovakia", cs: "Slovensko", de: "Slowakei", pl: "Słowacja" }
+- { en: "Slovenia", cs: "Slovinsko", de: "Slowenien", pl: "Słowenia" }
+- { en: "Solomon Islands", cs: "Šalamounovy ostrovy", de: "Salomonen", pl: "Wyspy Salomona" }
+- { en: "Somalia", cs: "Somálsko", de: "Somalia", pl: "Somalia" }
+- { en: "South Africa", cs: "Jižní Afrika", de: "Südafrika", pl: "Republika Południowej Afryki" }
+- { en: "South Korea", cs: "Jižní Korea", de: "Südkorea", pl: "Korea Południowa" }
+- { en: "South Sudan", cs: "Jižní Súdán", de: "Südsudan", pl: "Sudan Południowy" }
+- { en: "Spain", cs: "Španělsko", de: "Spanien", pl: "Hiszpania" }
+- { en: "Sri Lanka", cs: "Srí Lanka", de: "Sri Lanka", pl: "Sri Lanka" }
+- { en: "Sudan", cs: "Súdán", de: "Sudan", pl: "Sudan" }
+- { en: "Suriname", cs: "Surinam", de: "Suriname", pl: "Surinam" }
+- { en: "Sweden", cs: "Švédsko", de: "Schweden", pl: "Szwecja" }
+- { en: "Switzerland", cs: "Švýcarsko", de: "Schweiz", pl: "Szwajcaria" }
+- { en: "Syria", cs: "Sýrie", de: "Syrien", pl: "Syria" }
+- { en: "Taiwan", cs: "Tchaj-wan", de: "Taiwan", pl: "Tajwan" }
+- { en: "Tajikistan", cs: "Tádžikistán", de: "Tadschikistan", pl: "Tadżykistan" }
+- { en: "Tanzania", cs: "Tanzanie", de: "Tansania", pl: "Tanzania" }
+- { en: "Thailand", cs: "Thajsko", de: "Thailand", pl: "Tajlandia" }
+- { en: "Togo", cs: "Togo", de: "Togo", pl: "Togo" }
+- { en: "Tonga", cs: "Tonga", de: "Tonga", pl: "Tonga" }
+- { en: "Trinidad and Tobago", cs: "Trinidad a Tobago", de: "Trinidad und Tobago", pl: "Trynidad i Tobago" }
+- { en: "Tunisia", cs: "Tunisko", de: "Tunesien", pl: "Tunezja" }
+- { en: "Turkey", cs: "Turecko", de: "Türkei", pl: "Turcja" }
+- { en: "Turkmenistan", cs: "Turkmenistán", de: "Turkmenistan", pl: "Turkmenistan" }
+- { en: "Tuvalu", cs: "Tuvalu", de: "Tuvalu", pl: "Tuvalu" }
+- { en: "Uganda", cs: "Uganda", de: "Uganda", pl: "Uganda" }
+- { en: "Ukraine", cs: "Ukrajina", de: "Ukraine", pl: "Ukraina" }
+- { en: "United Arab Emirates", cs: "Spojené arabské emiráty", de: "Vereinigte Arabische Emirate", pl: "Zjednoczone Emiraty Arabskie" }
+- { en: "United Kingdom", cs: "Velká Británie", de: "Vereinigtes Königreich", pl: "Wielka Brytania" }
+- { en: "United States", cs: "Spojené státy americké", de: "Vereinigte Staaten", pl: "Stany Zjednoczone" }
+- { en: "Uruguay", cs: "Uruguay", de: "Uruguay", pl: "Urugwaj" }
+- { en: "Uzbekistan", cs: "Uzbekistán", de: "Usbekistan", pl: "Uzbekistan" }
+- { en: "Vanuatu", cs: "Vanuatu", de: "Vanuatu", pl: "Vanuatu" }
+- { en: "Vatican City", cs: "Vatikán", de: "Vatikanstadt", pl: "Watykan" }
+- { en: "Venezuela", cs: "Venezuela", de: "Venezuela", pl: "Wenezuela" }
+- { en: "Vietnam", cs: "Vietnam", de: "Vietnam", pl: "Wietnam" }
+- { en: "Yemen", cs: "Jemen", de: "Jemen", pl: "Jemen" }
+- { en: "Zambia", cs: "Zambie", de: "Sambia", pl: "Zambia" }
+- { en: "Zimbabwe", cs: "Zimbabwe", de: "Simbabwe", pl: "Zimbabwe" }
+# Fallback option for guests not finding their country
+- { en: "Other", cs: "Jiné", de: "Andere", pl: "Inne" }

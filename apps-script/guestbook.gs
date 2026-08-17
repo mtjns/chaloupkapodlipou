@@ -17,7 +17,7 @@
  */
 
 // --- Config ---------------------------------------------------------------
-var SPREADSHEET_ID = '';                        // target spreadsheet key (from its URL: /d/<ID>/edit)
+var SPREADSHEET_ID = '1YNO2cTpjr1tibTvi_Zr79a59g57HdXS75orfaRmrUAE';  // target spreadsheet key (from its URL: /d/<ID>/edit)
 var SHEET_GID = 16871345;                       // target tab (gid) within that spreadsheet
 var NOTIFY_TO = 'chaloupkapodlipou@gmail.com';  // notification recipient
 var CZECH_VALUE = 'Czech Republic';             // citizenship value that marks a domestic guest

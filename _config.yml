@@ -1,11 +1,11 @@
 title: "Chaloupka pod lípou"
-tagline: "Chalupa v Malých Svatoňovicích na úpatí Jestřebích hor"
-# Google/SEO meta description (kept under ~155 chars so it isn't truncated in search
-# results). The longer share/social blurb lives in og_description on each page.
-description: "Stylová chalupa pro 5 rodin v Malých Svatoňovicích v Podkrkonoší. Prostorná zahrada, 5 ložnic, plně vybavená kuchyně — ideální pro klidnou dovolenou i výlety do okolí."
+tagline: "Chaloupkapa v Malých Svatoňovicích"
+# Google/SEO meta description (Czech default; en/de/pl get their own via `defaults`
+# below). The longer share/social blurb lives in og_description on each page.
+description: "Naše Chaloupka pod lípou je místo, kde se historie snoubí s moderním pohodlím. Tato stylová chalupa se nachází v obci Malé Svatoňovice a je ideálním místem pro vaši dovolenou."
 logo: "/assets/images/logo/logo.png"
 
-url: "https://chaloupkapodlipou.cz"
+url: "https://test.chaloupkapodlipou.cz"
 baseurl: ""
 
 # Site-wide default language. Individual pages under /en/ override this via
@@ -31,6 +31,21 @@ defaults:
       path: "en"
     values:
       lang: en
+  # Per-language default SEO meta description. Without these, jekyll-seo-tag falls
+  # back to the (Czech) site.description on every en/de/pl page — so foreign-language
+  # search snippets would appear in Czech. Pages can still override with `description`.
+  - scope:
+      path: "pages/en"
+    values:
+      description: "Chaloupka pod lípou is where history meets modern comfort. This charming cottage in Malé Svatoňovice is an ideal place for your holiday."
+  - scope:
+      path: "pages/de"
+    values:
+      description: "Die Chaloupka pod lípou verbindet Geschichte mit modernem Komfort. Dieses stilvolle Ferienhaus in Malé Svatoňovice ist der ideale Ort für Ihren Urlaub."
+  - scope:
+      path: "pages/pl"
+    values:
+      description: "Chaloupka pod lípou to miejsce, gdzie historia łączy się z nowoczesnym komfortem. Ten stylowy domek w Malých Svatoňovicach to idealne miejsce na Państwa wakacje."
 
 author:
   name: "Lenka Jansová"
@@ -50,9 +65,8 @@ echalupy_id: "17388"
 reservation_script_url: "https://script.google.com/macros/s/AKfycbzkmGbkCM20c2GRC-XyxXuKzOTFHSpNyrA4mLu-TwXXcmbT8eTPHHDpBbUWXo3vpJlF/exec"
 
 # Google Apps Script Web App URL that receives the guest-registration (kniha hostů)
-# submissions. PLACEHOLDER — replace with the new Web App /exec URL after deploying
 # apps-script/guestbook.gs (Execute as: me; Access: Anyone).
-guestbook_script_url: "REPLACE_WITH_GUESTBOOK_WEB_APP_URL"
+guestbook_script_url: "https://script.google.com/macros/s/AKfycbyBZNo27kUrhiTbjIKBEuUb_ICqMUn-v8GS1jd-kCzuhqVJnCuSlzWi-1pDG5Lj-9SH/exec"
 
 # Contact + legal/business info shown in the footer.
 email: "chaloupkapodlipou@gmail.com"
@@ -70,8 +84,6 @@ cottage_address: "Malé Svatoňovice 80"
 
 # Google Maps search query, used to build the "open in Maps" link in the footer.
 map_query: "Chaloupka pod lípou, Malé Svatoňovice 80"
-
-permalink: pretty
 
 # Exclude raw development files from the production build
 exclude:
