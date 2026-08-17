@@ -1,0 +1,195 @@
+{%- comment -%}
+Reservation/contact form. Field names and submit behaviour must stay exactly as
+provided (Google Apps Script Web App expects: email, name, telefon, rezervace_od,
+rezervace_do, dospeli, deti, message, gdpr, botcheck). Labels are translated via
+site.data[page.lang].form; the endpoint is shared across languages.
+{%- endcomment -%}
+{%- assign t = site.data[page.lang].form -%}
+{%- assign privacy_url = site.data[page.lang].footer.privacy_url -%}
+
+<form class="max-w-xl mx-auto" id="reservation-form">
+    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+    <h3 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-12 text-center">{{ t.title }}</h3>
+
+    <div class="mb-7">
+        <label for="res-email" class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.email }}
+            <span class="text-red-600">*</span></label>
+        <input type="email" id="res-email" name="email" placeholder="{{ t.email_placeholder }}" required
+            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+    </div>
+
+    <div class="mb-7">
+        <label for="res-name" class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.name }}
+            <span class="text-red-600">*</span></label>
+        <input type="text" id="res-name" name="name" placeholder="{{ t.name_placeholder }}" required
+            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+    </div>
+
+    <div class="mb-11">
+        <label for="res-phone"
+            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.phone }}</label>
+        <input type="tel" id="res-phone" name="telefon" placeholder="{{ t.phone_placeholder }}"
+            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+    </div>
+
+    <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">
+        {{ t.dates_label }} <span class="text-red-600 normal-case tracking-normal">*</span>
+    </p>
+    <div class="grid grid-cols-2 gap-6 mb-11">
+        <div>
+            <label for="res-od"
+                class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.date_from }}</label>
+            <input type="date" id="res-od" name="rezervace_od" required
+                class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg focus:outline-none focus:border-brand transition-colors">
+        </div>
+        <div>
+            <label for="res-do"
+                class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.date_to }}</label>
+            <input type="date" id="res-do" name="rezervace_do" required
+                class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg focus:outline-none focus:border-brand transition-colors">
+        </div>
+    </div>
+
+    <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">{{ t.guests_label }}</p>
+    <div class="grid grid-cols-2 gap-6 mb-11">
+        <div>
+            <label class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.adults }}</label>
+            <div class="flex items-center justify-start gap-5">
+                <button type="button" data-step="-1" data-target="res-dospeli" aria-label="{{ t.decrease }}"
+                    class="select-none w-8 h-8 shrink-0 rounded-full border border-line/25 text-fg text-lg leading-none flex items-center justify-center hover:border-brand hover:text-brand transition-colors">&minus;</button>
+                <input type="number" id="res-dospeli" name="dospeli" min="0" max="50" placeholder="0"
+                    inputmode="numeric"
+                    class="w-8 text-center bg-transparent border-0 text-fg font-semibold focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none">
+                <button type="button" data-step="1" data-target="res-dospeli" aria-label="{{ t.increase }}"
+                    class="select-none w-8 h-8 shrink-0 rounded-full border border-line/25 text-fg text-lg leading-none flex items-center justify-center hover:border-brand hover:text-brand transition-colors">+</button>
+            </div>
+        </div>
+        <div>
+            <label class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.children }}</label>
+            <div class="flex items-center justify-start gap-5">
+                <button type="button" data-step="-1" data-target="res-deti" aria-label="{{ t.decrease }}"
+                    class="select-none w-8 h-8 shrink-0 rounded-full border border-line/25 text-fg text-lg leading-none flex items-center justify-center hover:border-brand hover:text-brand transition-colors">&minus;</button>
+                <input type="number" id="res-deti" name="deti" min="0" max="50" placeholder="0" inputmode="numeric"
+                    class="w-8 text-center bg-transparent border-0 text-fg font-semibold focus:outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none">
+                <button type="button" data-step="1" data-target="res-deti" aria-label="{{ t.increase }}"
+                    class="select-none w-8 h-8 shrink-0 rounded-full border border-line/25 text-fg text-lg leading-none flex items-center justify-center hover:border-brand hover:text-brand transition-colors">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-8">
+        <label for="res-message"
+            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.message }}</label>
+        <textarea id="res-message" name="message" rows="3" placeholder="{{ t.message_placeholder }}"
+            class="w-full min-h-[6rem] bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg placeholder-muted/70 focus:outline-none focus:border-brand resize-y transition-colors"></textarea>
+    </div>
+
+    <div class="flex items-start gap-3 mb-2">
+        <input type="checkbox" id="res-gdpr" name="gdpr" required
+            class="mt-0.5 w-4 h-4 accent-brand shrink-0 cursor-pointer">
+        <label for="res-gdpr" class="text-sm text-muted leading-relaxed cursor-pointer">
+            {{ t.gdpr_prefix }}
+            <a href="{{ privacy_url | relative_url }}" class="text-brand font-medium hover:underline">{{ t.gdpr_link_text }}</a>.
+            <span class="text-red-600">*</span>
+        </label>
+    </div>
+    <p class="text-xs text-muted mb-8">{{ t.required_note }}</p>
+
+    <button type="submit"
+        class="flex items-center justify-center gap-2 mx-auto bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+        {{ t.submit }}
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+    </button>
+
+    <div id="reservation-form-result" class="hidden mt-4 rounded-lg border px-4 py-3 text-sm text-center"></div>
+</form>
+
+<script>
+    (function () {
+        var form = document.getElementById('reservation-form');
+        if (!form) return;
+        var result = document.getElementById('reservation-form-result');
+        var submitButton = form.querySelector('button[type="submit"]');
+        var odInput = document.getElementById('res-od');
+        var doInput = document.getElementById('res-do');
+
+        var today = new Date().toISOString().split('T')[0];
+        odInput.min = today;
+        doInput.min = today;
+
+        odInput.addEventListener('change', function () {
+            doInput.min = this.value;
+            if (doInput.value && doInput.value < this.value) doInput.value = this.value;
+        });
+
+        form.querySelectorAll('[data-step]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var target = document.getElementById(btn.dataset.target);
+                var step = parseInt(btn.dataset.step, 10);
+                var min = parseInt(target.min, 10);
+                var max = parseInt(target.max, 10);
+                var current = parseInt(target.value, 10);
+                if (isNaN(current)) current = 0;
+                var next = Math.min(max, Math.max(min, current + step));
+                target.value = next;
+            });
+        });
+
+        function showResult(message, tone) {
+            result.textContent = message;
+            result.classList.remove('hidden', 'bg-green-50', 'text-green-700', 'border-green-200',
+                'bg-red-50', 'text-red-700', 'border-red-200', 'bg-surface', 'text-muted', 'border-line/20');
+            if (tone === 'success') {
+                result.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+            } else if (tone === 'error') {
+                result.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+            } else {
+                result.classList.add('bg-surface', 'text-muted', 'border-line/20');
+            }
+        }
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(form);
+
+            if (formData.get('botcheck')) {
+                showResult('{{ t.error_botcheck | escape }}', 'error');
+                return;
+            }
+
+            formData.delete('gdpr');
+
+            showResult('{{ t.sending | escape }}', 'pending');
+            submitButton.disabled = true;
+
+            try {
+                var response = await fetch('{{ site.reservation_script_url }}', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData)
+                });
+
+                var json = await response.json();
+
+                if (json.status === 'success') {
+                    showResult('{{ t.success | escape }}', 'success');
+                    form.reset();
+                    setTimeout(function () { result.classList.add('hidden'); }, 15000);
+                } else {
+                    showResult('{{ t.error_generic | escape }}', 'error');
+                    setTimeout(function () { result.classList.add('hidden'); }, 10000);
+                }
+            } catch (err) {
+                showResult('{{ t.error_network | escape }}', 'error');
+                setTimeout(function () { result.classList.add('hidden'); }, 10000);
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+    })();
+</script>

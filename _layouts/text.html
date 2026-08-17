@@ -1,0 +1,29 @@
+{%- comment -%}
+Long-form text layout: nav + footer, content wrapped in a single narrow
+(max-w-3xl) article with an auto-generated <h1> (page.heading, falling
+back to page.title) and a .prose wrapper for typographic defaults.
+Used by copy-heavy pages like Privacy policy and Guest information.
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'cs' }}">
+
+{% include head.html %}
+
+<body>
+    {% include nav.html %}
+
+    <main class="pt-28 md:pt-32 pb-20 px-4 md:px-8">
+        <article class="max-w-3xl mx-auto">
+            <h1 class="text-fg text-3xl md:text-4xl font-serif font-bold tracking-tight mb-8">{{ page.heading | default: page.title }}</h1>
+            <div class="prose">
+                {{ content }}
+            </div>
+        </article>
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+
+</html>

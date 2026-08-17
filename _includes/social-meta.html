@@ -1,0 +1,16 @@
+{%- comment -%}
+Social-preview description for Facebook / LinkedIn (og:description) and X/Twitter
+(twitter:description), driven by `og_description` so the share blurb can differ from
+the on-page SEO meta description.
+
+Resolution order: page.og_description → page.description → site.description.
+Included BEFORE {% seo %} so that when set, these tags win with crawlers that read the
+first occurrence. When unset, nothing is emitted and jekyll-seo-tag's own
+description-based tags are used — so there are no duplicate tags in the common case.
+{%- endcomment -%}
+{%- assign og_desc = page.og_description | default: page.description | default: site.description -%}
+{%- if og_desc -%}
+{%- assign og_desc = og_desc | markdownify | strip_html | normalize_whitespace | escape -%}
+<meta property="og:description" content="{{ og_desc }}">
+<meta name="twitter:description" content="{{ og_desc }}">
+{%- endif -%}

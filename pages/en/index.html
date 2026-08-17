@@ -1,0 +1,252 @@
+---
+layout: default
+title: "Chaloupka pod lípou"
+lang: en
+ref: home
+og_description: "A cosy cottage for 5 families in Malé Svatoňovice, Podkrkonoší — spacious living room with a fireplace,
+fully equipped kitchen, 5 bedrooms and a garden."
+permalink: /en/
+reservation_url: /en/reservation/
+area_url: /en/area/
+lang_url: /
+priority: 0.9
+---
+<!-- Hero -->
+<section class="relative min-h-[92vh] flex items-center justify-center pt-20 overflow-hidden bg-surface">
+    <div class="absolute inset-0">
+        {% include placeholder-img.html label="Cottage exterior" class="" bare=true %}
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10 pointer-events-none"></div>
+
+    <div class="relative z-10 px-4 text-center">
+        <p
+            class="text-white/90 uppercase tracking-[0.3em] text-xs md:text-sm mb-4 font-semibold [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+            Malé Svatoňovice &middot; Podkrkonoší</p>
+        <h1
+            class="text-white text-5xl md:text-7xl font-serif font-black tracking-tight leading-[1.05] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)]">
+            Chaloupka<br>pod lípou
+        </h1>
+        <a href="{{ page.reservation_url | relative_url }}"
+            class="inline-flex items-center gap-3 mt-10 bg-brand text-onbrand px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-brand/90 transition-colors shadow-lg">
+            Check availability
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </a>
+    </div>
+
+    <a href="#about" aria-label="Scroll down"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/80 hover:text-white transition-colors">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"></path>
+        </svg>
+    </a>
+</section>
+
+<!-- Our cottage -->
+<section id="about" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="aspect-[4/3]">
+            {% include placeholder-img.html label="Cottage — garden view" class="aspect-[4/3]" %}
+        </div>
+        <div class="opacity-fade">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Our cottage</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Chaloupka pod lípou
+            </h2>
+            <p class="text-fg text-lg leading-relaxed">
+                is a place where history meets modern comfort. This stylish cottage is located in the small
+                town of <strong class="text-fg font-semibold">Malé Svatoňovice</strong> and is the ideal place
+                for your vacation. Whether you're looking for peace, comfort, or the beauty of nature, you'll
+                find it all here. The cottage is equipped with a modern interior while still preserving the
+                charm of a traditional countryside home.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Staying at Chaloupka pod lípou -->
+<section class="bg-surface py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div class="order-2 md:order-1">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Amenities</span>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight mb-6">Staying at
+                Chaloupka pod lípou</h2>
+            <p class="text-fg text-lg leading-relaxed mb-6">
+                Chaloupka pod lípou is fully equipped for a comfortable stay. The cottage features a
+                <strong class="text-fg font-semibold">spacious living room</strong> with a cozy sofa and
+                fireplace, connected to a <strong class="text-fg font-semibold">fully equipped kitchen</strong>
+                with modern appliances including a stove, refrigerator, dishwasher, and coffee maker.
+            </p>
+            <p class="text-fg text-lg leading-relaxed mb-8">
+                <strong class="text-fg font-semibold">Five bedrooms</strong> offer comfortable double and
+                single beds, along with ample storage space. <strong class="text-fg font-semibold">Two
+                    bathrooms</strong>, each with a shower, toilet, and washing machine. Wi-Fi, a TV, and
+                garden furniture for relaxing on the outdoor terrace are also available. For your comfort,
+                the entire cottage is fitted with central heating and other thoughtful details to make your
+                stay even more enjoyable.
+            </p>
+            <ul class="grid grid-cols-2 gap-x-6 gap-y-3">
+                {% assign amenities = "Wood-burning stove,Fully equipped kitchen,5 bedrooms,2 bathrooms,Wi-Fi &
+                TV,Garden furniture,Central heating,Washing machine" | split: "," %}
+                {% for item in amenities %}
+                <li class="flex items-center gap-2 text-sm text-fg">
+                    <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {{ item }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="order-1 md:order-2 aspect-[4/3]" data-carousel>
+            <div class="carousel-slide active w-full h-full">
+                {% include placeholder-img.html label="Living room with fireplace" class="aspect-[4/3]" %}
+            </div>
+            <div class="carousel-slide w-full h-full">
+                {% include placeholder-img.html label="Kitchen" class="aspect-[4/3]" %}
+            </div>
+            <div class="carousel-slide w-full h-full">
+                {% include placeholder-img.html label="Bathroom" class="aspect-[4/3]" %}
+            </div>
+            <div class="carousel-slide w-full h-full">
+                {% include placeholder-img.html label="Garden & terrace" class="aspect-[4/3]" %}
+            </div>
+            <button data-carousel-prev aria-label="Previous"
+                class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button data-carousel-next aria-label="Next"
+                class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Rooms -->
+<section id="rooms" class="bg-base py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Amenities</span>
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight">Rooms</h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Room 1 -->
+            <div class="opacity-fade">
+                <div class="aspect-[4/3] mb-4">
+                    {% include placeholder-img.html label="Room 1" class="aspect-[4/3]" %}
+                </div>
+                <h3 class="text-fg font-semibold mb-1">Room 1</h3>
+                <p class="text-muted text-sm leading-relaxed">Ground floor, with access from the living room.</p>
+            </div>
+            <!-- Room 2 -->
+            <div class="opacity-fade">
+                <div class="aspect-[4/3] mb-4" data-carousel>
+                    <div class="carousel-slide active w-full h-full">
+                        {% include placeholder-img.html label="Room 2" class="aspect-[4/3]" %}
+                    </div>
+                    <div class="carousel-slide w-full h-full">
+                        {% include placeholder-img.html label="Room 2 — double bed" class="aspect-[4/3]" %}
+                    </div>
+                    <button data-carousel-prev aria-label="Previous"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button data-carousel-next aria-label="Next"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="text-fg font-semibold mb-1">Room 2</h3>
+                <p class="text-muted text-sm leading-relaxed">Ground floor, with access from the living room.
+                    Double bed.</p>
+            </div>
+            <!-- Room 3 -->
+            <div class="opacity-fade">
+                <div class="aspect-[4/3] mb-4" data-carousel>
+                    <div class="carousel-slide active w-full h-full">
+                        {% include placeholder-img.html label="Room 3 — skylight" class="aspect-[4/3]" %}
+                    </div>
+                    <div class="carousel-slide w-full h-full">
+                        {% include placeholder-img.html label="Room 3" class="aspect-[4/3]" %}
+                    </div>
+                    <div class="carousel-slide w-full h-full">
+                        {% include placeholder-img.html label="Room 3" class="aspect-[4/3]" %}
+                    </div>
+                    <button data-carousel-prev aria-label="Previous"
+                        class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <button data-carousel-next aria-label="Next"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-base/80 text-fg flex items-center justify-center hover:bg-base transition shadow">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="text-fg font-semibold mb-1">Room 3</h3>
+                <p class="text-muted text-sm leading-relaxed">Upstairs, with a skylight.</p>
+            </div>
+            <!-- Room 4 -->
+            <div class="opacity-fade">
+                <div class="aspect-[4/3] mb-4">
+                    {% include placeholder-img.html label="Room 4" class="aspect-[4/3]" %}
+                </div>
+                <h3 class="text-fg font-semibold mb-1">Room 4</h3>
+                <p class="text-muted text-sm leading-relaxed">Upstairs, with a joined double bed and two single
+                    beds.</p>
+            </div>
+            <!-- Room 5 -->
+            <div class="opacity-fade">
+                <div class="aspect-[4/3] mb-4">
+                    {% include placeholder-img.html label="Room 5" class="aspect-[4/3]" %}
+                </div>
+                <h3 class="text-fg font-semibold mb-1">Room 5</h3>
+                <p class="text-muted text-sm leading-relaxed">Upstairs, with a double bed and three single beds.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-brand text-onbrand py-16 md:py-20 px-4 md:px-8 text-center">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-tight mb-4">Planning a trip to nature?</h2>
+        <p class="text-onbrand/85 text-lg mb-8">Check current availability and indicative rates for 2026.</p>
+        <a href="{{ page.reservation_url | relative_url }}"
+            class="inline-flex items-center gap-3 bg-onbrand text-brand px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-onbrand/90 transition-colors">
+            Go to reservation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </a>
+    </div>
+</section>
+
+<button id="scroll-top-btn" aria-label="Scroll to top" type="button"
+    class="fixed bottom-8 right-8 w-12 h-12 bg-brand text-onbrand rounded-full flex items-center justify-center cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300 hover:scale-110 z-40">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>

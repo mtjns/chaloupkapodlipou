@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "@id": "{{ site.url }}/#business",
+  "name": "Chaloupka pod lípou",
+  "description": {{ site.description | jsonify }},
+  "url": "{{ site.url }}",
+  "image": "{{ '/assets/images/og-image.jpg' | absolute_url }}",
+  "email": "chaloupkapodlipou@gmail.com",
+  "priceRange": "$$",
+  "currenciesAccepted": "CZK",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Malé Svatoňovice",
+    "addressRegion": "Královéhradecký kraj",
+    "addressCountry": "CZ"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Česká republika"
+  }
+}
+</script>

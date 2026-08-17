@@ -1,0 +1,23 @@
+{%- comment -%}
+Standalone layout for utility pages that want the full site nav but not the
+reservation CTA (e.g. the guest-registration book). Uses nav.html with
+hide_cta=true; the page body supplies its own heading/intro.
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'cs' }}">
+
+{% include head.html %}
+
+<body>
+    {% include nav.html hide_cta=true %}
+
+    <main class="pt-28 md:pt-32 pb-20 px-4 md:px-8">
+        {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+
+</html>

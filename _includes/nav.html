@@ -1,0 +1,58 @@
+{%- assign t = site.data[page.lang] -%}
+<header class="fixed w-full z-50 border-b border-line/10 bg-base/90 backdrop-blur-md">
+    <nav class="relative flex items-center justify-between px-6 md:px-10 lg:px-14 py-4 max-w-[100rem] mx-auto w-full">
+
+        <a href="{{ t.nav.home_url | relative_url }}" aria-label="Chaloupka pod lípou" id="logo"
+            class="flex items-baseline gap-2 shrink-0">
+            <span class="font-serif font-bold text-lg md:text-xl text-fg leading-none tracking-wide">Chaloupka pod
+                lípou</span>
+        </a>
+
+        <div class="flex items-center gap-2 md:gap-6">
+
+            <div id="mobile-nav"
+                class="hidden md:flex absolute md:static inset-x-0 top-full z-50 w-full md:w-auto flex-col md:flex-row items-stretch md:items-center gap-1 md:gap-8 bg-base/95 backdrop-blur-md md:backdrop-blur-none md:bg-transparent p-4 md:p-0 rounded-b-2xl md:rounded-none border-b md:border-0 border-line/10 shadow-xl md:shadow-none">
+                <a href="{{ t.nav.home_url | relative_url }}"
+                    class="block w-full md:w-auto text-center py-3 md:py-0 rounded-lg md:rounded-none hover:bg-surface md:hover:bg-transparent font-serif transition tracking-wide {% if page.ref == 'home' %}text-fg font-bold{% else %}text-muted font-normal hover:text-fg{% endif %}">{{ t.nav.home }}</a>
+                <a href="{{ t.nav.area_url | relative_url }}"
+                    class="block w-full md:w-auto text-center py-3 md:py-0 rounded-lg md:rounded-none hover:bg-surface md:hover:bg-transparent font-serif transition tracking-wide {% if page.ref == 'area' %}text-fg font-bold{% else %}text-muted font-normal hover:text-fg{% endif %}">{{ t.nav.area }}</a>
+                <!-- Accommodation dropdown: FAQ + Guest info. Native <details> needs no JS for
+                     open/close; assets/js/main.js only adds the outside-click-to-close on desktop. -->
+                <details class="nav-guests group relative">
+                    <summary
+                        class="flex items-center justify-center gap-1 cursor-pointer list-none w-full md:w-auto py-3 md:py-0 rounded-lg md:rounded-none hover:bg-surface md:hover:bg-transparent font-serif transition tracking-wide {% if page.ref == 'faq' or page.ref == 'info' %}text-fg font-bold{% else %}text-muted font-normal hover:text-fg{% endif %}">
+                        {{ t.nav.accommodation }}
+                        <svg class="w-3 h-3 transition-transform group-open:rotate-180" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </summary>
+                    <div
+                        class="flex flex-col items-stretch md:items-start gap-1 pl-4 md:pl-0 mt-1 md:mt-4 md:absolute md:top-full md:left-1/2 md:-translate-x-1/2 md:w-48 md:bg-base/90 md:backdrop-blur-md md:border md:border-line/10 md:rounded-xl md:shadow-sm md:p-2">
+                        <a href="{{ t.nav.faq_url | relative_url }}"
+                            class="block w-full text-center md:text-left py-2 px-3 rounded-lg hover:bg-surface font-serif text-sm transition {% if page.ref == 'faq' %}text-fg font-bold{% else %}text-muted font-normal hover:text-fg{% endif %}">{{ t.nav.faq_label }}</a>
+                        <a href="{{ t.nav.info_url | relative_url }}"
+                            class="block w-full text-center md:text-left py-2 px-3 rounded-lg hover:bg-surface font-serif text-sm transition {% if page.ref == 'info' %}text-fg font-bold{% else %}text-muted font-normal hover:text-fg{% endif %}">{{ t.nav.info_label }}</a>
+                    </div>
+                </details>
+                {%- unless include.hide_cta -%}
+                <a href="{{ t.nav.reservation_url | relative_url }}"
+                    class="block w-full md:w-auto text-center py-2.5 px-5 md:ml-2 rounded-full bg-brand text-onbrand font-serif font-semibold tracking-wide hover:bg-brand/90 transition-colors shadow-sm">{{ t.nav.reservation }}</a>
+                {%- endunless -%}
+
+                <!-- Language switcher: inline row on desktop, full-width row on mobile -->
+                <div class="md:pl-6 md:border-l md:border-line/15 mt-2 md:mt-0">
+                    {% include lang-switcher.html
+                        class="flex items-center justify-center gap-1"
+                        link_class="px-2 py-1 text-xs font-semibold tracking-widest rounded transition-colors" %}
+                </div>
+            </div>
+
+            <div id="mobile-menu-btn" class="md:hidden cursor-pointer flex flex-col gap-1.5 p-2">
+                <div class="w-6 h-0.5 bg-fg transition-all" id="line1"></div>
+                <div class="w-6 h-0.5 bg-fg transition-all" id="line2"></div>
+                <div class="w-6 h-0.5 bg-fg transition-all" id="line3"></div>
+            </div>
+        </div>
+    </nav>
+</header>

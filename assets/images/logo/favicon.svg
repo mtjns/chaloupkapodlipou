@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500&quot; style=&quot;background-color: transparent;" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <clipPath id="rounded-clip">
+      <rect width="500" height="500" rx="110"/>
+    </clipPath>
+    <linearGradient id="color-0" bx:pinned="true" gradientUnits="userSpaceOnUse">
+      <stop style="stop-color: rgb(0, 0, 0);"/>
+    </linearGradient>
+    <linearGradient id="color-1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.006695, 0, 0, 1.015509, 478.897017, -940.794808)">
+      <stop style="stop-color: rgb(15, 15, 15);"/>
+    </linearGradient>
+  </defs>
+  <g transform="matrix(1.400232, 0, 0, 1.400232, -100.057791, 0.923192)" style="background-color: transparent;" clip-path="url(#rounded-clip)">
+    <rect width="357.083" height="357.083" style="fill: rgb(255, 255, 255); background-color: transparent; stroke-width: 3.57084px;" rx="110" x="71.458" y="-0.659"/>
+    <g transform="matrix(1.003236, 0, 0, 1.003236, -0.381684, -0.126617)" style="">
+      <path style="fill: none; stroke-miterlimit: 1; stroke-linecap: round; stroke-linejoin: round; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" d="M 114.391 295.945 C 181.841 281.238 316.83 283.189 382.745 293.688">
+        <title>země</title>
+      </path>
+      <g transform="matrix(1, 0, 0, 1, 17.666624, 0.676019)">
+        <title>dům</title>
+        <polyline style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" points="244.96 225.921 176.01 155.893 104.547 224.844">
+          <title>střecha</title>
+        </polyline>
+        <line style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" x1="115.679" y1="216.502" x2="115.633" y2="282.024"/>
+        <line style="fill: none; stroke-linecap: round; stroke-linejoin: round; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" x1="233.109" y1="215.066" x2="233.133" y2="275.224"/>
+        <rect x="164.888" y="229.059" width="20.761" height="28.601" style="stroke-linecap: round; stroke-linejoin: round; fill: none; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;">
+          <title>okno</title>
+        </rect>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 17.666624, 0.676019)" style="">
+        <title>strom</title>
+        <path style="fill: none; stroke-linejoin: round; stroke-linecap: round; visibility: visible; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" d="M 270.88 95.456 C 281.087 49.658 331.752 65.772 330.078 95.411 C 369.313 99.181 376.685 164.767 352.236 180.096 C 363.122 215.612 313.432 226.001 301.506 210.765 C 268.767 231.66 241.801 201.038 251.921 179.525 C 224.895 161.783 235.771 94.864 270.88 95.456 Z">
+          <title>strom 4</title>
+        </path>
+        <path style="fill: none; stroke-linecap: round; stroke-linejoin: round; visibility: visible; stroke: url(&quot;#color-1&quot;); stroke-width: 9.25423px;" d="M 247.496 284.951 C 262.985 284.442 298.024 291.84 300.911 235.416 L 303.035 170.156">
+          <title>kmen 2</title>
+        </path>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,114 @@
+---
+layout: default
+title: "Local area"
+lang: en
+ref: area
+og_description: "Malé Svatoňovice, birthplace of Karel Čapek, trips into the Jestřebí Mountains and around Podkrkonoší —
+tips for the area around Chaloupka pod lípou."
+permalink: /en/area/
+reservation_url: /en/reservation/
+area_url: /en/area/
+lang_url: /okoli/
+priority: 0.7
+---
+<section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <h1 class="text-brand text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6">Local area</h1>
+        <h2 class="text-brand text-xl font-semibold mb-4">Explore the surroundings</h2>
+        <p class="text-fg text-lg leading-relaxed">
+            Chaloupka pod lípou is located in the charming town of <strong class="text-fg font-semibold">Malé
+                Svatoňovice</strong>, perfect for a peaceful getaway or an active holiday. It's also a great
+            starting point for exploring the beautiful <strong class="text-fg font-semibold">Podkrkonoší</strong>
+            region.
+        </p>
+    </div>
+</section>
+
+<section class="bg-base py-16 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-20">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Žaltman lookout tower view"
+                class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+        </div>
+        <div class="opacity-fade">
+            <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-4">Step out and
+                breathe in the outdoors</h2>
+            <p class="text-fg text-lg leading-relaxed">
+                The area offers plenty of opportunities for walks, hikes, and cycling. Take a trip to
+                <strong class="text-fg font-semibold">Jirásek Rocks</strong>, or head up to
+                <a href="https://www.kudyznudy.cz/aktivity/rozhledna-zaltman-v-jestrebich-horach" target="_blank"
+                    rel="noopener" class="text-brand font-medium hover:underline">Žaltman</a>
+                — the highest peak of the Jestřebí Mountains — where you'll enjoy wide, breathtaking views of
+                the whole region.
+            </p>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center mb-20">
+        <div class="md:order-2 aspect-[4/3] rounded-2xl overflow-hidden">
+            <img src="{{ '/assets/images/vcely.jpg' | relative_url }}" alt="Čapek Brothers Museum"
+                class="w-full h-full object-cover" loading="lazy" width="1600" height="1143">
+        </div>
+        <div class="md:order-1">
+            <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-4">A town with heart
+                and history</h2>
+            <p class="text-fg text-lg leading-relaxed">
+                Malé Svatoňovice is best known as the birthplace of the famous writer and playwright
+                <strong class="text-fg font-semibold">Karel Čapek</strong>. Right on the town square, you'll
+                find <a href="https://www.kudyznudy.cz/aktivity/muzeum-bratri-capku-v-malych-svatonovicich"
+                    target="_blank" rel="noopener" class="text-brand font-medium hover:underline">the Čapek
+                    Brothers Museum</a>, where you can explore exhibits about their lives and work, as well as
+                original paintings by the renowned <strong class="text-fg font-semibold">Josef Čapek</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto mb-20">
+        <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-6 text-center">Where to
+            explore next?</h2>
+        <ul class="space-y-4 text-muted text-lg leading-relaxed">
+            <li class="flex gap-3">
+                <span class="text-brand mt-1">&bull;</span>
+                <span><a href="https://www.adrspasskeskaly.cz/" target="_blank" rel="noopener"
+                        class="text-brand font-medium hover:underline">Adršpašsko-Teplice Rocks</a> – a unique
+                    rock formations area around 20 minutes away.</span>
+            </li>
+            <li class="flex gap-3">
+                <span class="text-brand mt-1">&bull;</span>
+                <span><a href="https://www.ratiborice-babiccinoudoli.cz/" target="_blank" rel="noopener"
+                        class="text-brand font-medium hover:underline">Grandmother's Valley</a> in Ratibořice – a
+                    romantic spot made famous by Božena Němcová's novel.</span>
+            </li>
+            <li class="flex gap-3">
+                <span class="text-brand mt-1">&bull;</span>
+                <span><a href="https://www.pevnostjosefov.cz/" target="_blank" rel="noopener"
+                        class="text-brand font-medium hover:underline">Josefov Fortress</a>,
+                    <a href="https://www.stachelberg.cz/" target="_blank" rel="noopener"
+                        class="text-brand font-medium hover:underline">Stachberg Fort</a>, or
+                    <a href="https://www.zamek-nachod.cz/cs/o-zamku" target="_blank" rel="noopener"
+                        class="text-brand font-medium hover:underline">Náchod Castle</a> – perfect for lovers of
+                    history and architecture.</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="bg-surface py-16 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto opacity-fade">
+        <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-4 text-center">A handy
+            map for all your trips</h2>
+        <p class="text-fg text-lg leading-relaxed text-center mb-8">
+            To make it easier for you to get oriented and plan your stay, we've created an interactive map that
+            helps you find all the interesting spots, hiking trails, restaurants, and other recommended places
+            in the area.
+        </p>
+        {% include area-map.html %}
+    </div>
+</section>
+
+<button id="scroll-top-btn" aria-label="Scroll to top" type="button"
+    class="fixed bottom-8 right-8 w-12 h-12 bg-brand text-onbrand rounded-full flex items-center justify-center cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300 hover:scale-110 z-40">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>

@@ -1,0 +1,31 @@
+---
+layout: minimal
+title: "Kniha hostů"
+lang: cs
+ref: guestbook
+permalink: /kniha-hostu
+og_description: "Ubytovací kniha Chaloupky pod lípou — registrace ubytovaných hostů."
+noindex: true
+sitemap: false
+---
+<header class="text-center max-w-2xl mx-auto mb-14">
+    <span class="block w-10 h-0.5 bg-brand/45 rounded-full mx-auto mb-6"></span>
+    <h1 class="text-fg text-4xl md:text-5xl font-serif font-bold tracking-tight">Kniha hostů</h1>
+    <div class="mt-6 space-y-4 text-muted text-[15px] leading-relaxed">
+        <p>Pro splnění zákonných povinností (Zákon o evidenci ubytovaných osob, Zákon o pobytu cizinců)
+            a pro zajištění bezproblémového pobytu v Chaloupce pod lípou vás prosíme o vyplnění údajů všech
+            ubytovaných hostů.</p>
+        <p>Vyplnění zabere přibližně 10 minut. Odkaz na formulář můžete sdílet s ostatními ve vaší skupině,
+            aby každá rodina nebo jednotlivec mohl vyplnit údaje samostatně. Rozpracovaný formulář se průběžně
+            ukládá ve vašem prohlížeči, takže o data nepřijdete.</p>
+        <p>Vaše údaje jsou uchovávány bezpečně (v souladu s GDPR a dalšími předpisy) a budou použity výhradně
+            pro účely rezervace a zákonných povinností. Více informací naleznete v
+            <a href="{{ site.data[page.lang].footer.privacy_url | relative_url }}"
+                class="text-brand font-medium hover:underline">zásadách ochrany osobních údajů</a>.
+            S dotazy nebo pro osobní předání údajů nás kontaktujte na
+            <a href="mailto:chaloupkapodlipou@gmail.com"
+                class="text-brand font-medium hover:underline">chaloupkapodlipou@gmail.com</a>.</p>
+    </div>
+</header>
+
+{% include guestbook-form.html %}

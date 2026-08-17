@@ -1,0 +1,17 @@
+# Languages offered by the site, in display order. Consumed by
+# _includes/lang-switcher.html and used across nav/footer.
+#   code  — matches each page's `lang:` front matter and the _data/<code>.yml file
+#   label — short code shown in the switcher (CZ/EN/PL/DE)
+#   name  — full language name (title attribute / accessibility)
+- code: cs
+  label: CZ
+  name: Čeština
+- code: en
+  label: EN
+  name: English
+- code: pl
+  label: PL
+  name: Polski
+- code: de
+  label: DE
+  name: Deutsch

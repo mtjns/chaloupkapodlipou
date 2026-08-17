@@ -1,0 +1,44 @@
+{%- comment -%}
+Guide layout: nav + footer, content wrapped in a centered card with an
+optional eyebrow/heading/intro header block (page.eyebrow/heading/intro)
+and an optional closing outro line (page.outro). Content itself renders
+in a space-y-5 stack rather than prose. Used by the guest info (informace + pl/de/en equivalents).
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'cs' }}">
+
+{% include head.html %}
+
+<body>
+    {% include nav.html %}
+
+    <main class="pt-28 md:pt-32 pb-20 px-4 md:px-8">
+        <div class="max-w-3xl mx-auto">
+            <header class="text-center mb-12">
+                {% if page.eyebrow %}
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">{{ page.eyebrow }}</span>
+                {% endif %}
+                <h1 class="text-fg text-3xl md:text-4xl font-serif font-bold tracking-tight mt-3">{{ page.heading | default: page.title }}</h1>
+                {% if page.intro %}
+                <p class="text-muted text-lg mt-4 leading-relaxed max-w-xl mx-auto">{{ page.intro }}</p>
+                {% endif %}
+            </header>
+
+            <div class="space-y-5">
+                {{ content }}
+            </div>
+
+            {% if page.outro %}
+            <div class="mt-12 text-center">
+                <p class="inline-block font-serif text-lg text-brand border-t border-line/15 pt-6 px-4">{{ page.outro }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+
+</html>

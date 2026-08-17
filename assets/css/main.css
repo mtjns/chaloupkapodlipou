@@ -1,0 +1,298 @@
+/* Fonts are loaded (preconnect + preload) in _includes/head.html to avoid a
+   render-blocking @import. Merriweather = headings/accent, Open Sans = body/UI. */
+
+/* Theme tokens, matched to the original Google Sites site's computed styles
+   (white background, warm brown/khaki heading accent, near-black body text).
+   Consumed by the Tailwind color tokens (base/surface/fg/muted/line/brand) in
+   _includes/head.html. Single (light) theme by design — no dark mode toggle. */
+:root {
+    --bg: 0 0% 100%;
+    /* page background — white, as on the original site */
+    --surface: 0 0% 97%;
+    /* cards / subtle contrast (original had none — kept minimal) */
+    --fg: 0 0% 13%;
+    /* primary text — matches original body copy (rgb 33,33,33) */
+    --muted: 0 0% 42%;
+    /* secondary text — matches original inactive nav links */
+    --line: 0 0% 0%;
+    /* borders & subtle fills (used at low alpha) */
+    --brand: 38 22% 40%;
+    /* warm brown/khaki heading accent from the original site */
+    --onbrand: 0 0% 100%;
+    /* text on brand-colored buttons */
+    --radius: 0.5rem;
+}
+
+/* Chrome/Safari fill inputs (autofill, and the same code path on paste) with
+   their own background + text color via this pseudo-class, overriding the
+   reservation form's bg-transparent/text-fg. The box-shadow trick repaints
+   the field's background without touching its actual background-color. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px hsl(var(--bg)) inset;
+    -webkit-text-fill-color: hsl(var(--fg));
+    caret-color: hsl(var(--fg));
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* No blue/grey flash when tapping links & buttons on touch devices */
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    /* Offset anchor jumps so sections clear the fixed header */
+    scroll-padding-top: 6rem;
+}
+
+body {
+    background-color: hsl(var(--bg));
+    color: hsl(var(--fg));
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scroll-reveal: elements start faded/offset, then animate in once visible
+   (toggled by the IntersectionObserver in assets/js/main.js). */
+. {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.opacity-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+/* "Pro hosty" nav dropdown (Okolí + Informace), built on a native <details>.
+   Hide the default disclosure marker cross-browser (list-style covers Firefox/
+   Chrome, the pseudo-element covers Safari/WebKit). */
+.nav-guests summary {
+    list-style: none;
+}
+
+.nav-guests summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Bed icons (assets/icons/bed-*.svg), used directly as <img>. */
+.bed-icon {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.bed-icon-double {
+    width: 2rem;
+    height: 1.4rem;
+}
+
+.bed-icon-single {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+/* Image carousels: slides are stacked; only `.active` is shown. */
+[data-carousel] {
+    position: relative;
+}
+
+[data-carousel] .carousel-slide {
+    display: none;
+}
+
+[data-carousel] .carousel-slide.active {
+    display: block;
+}
+
+/* Carousel position dots (bottom-center). Inactive dots are small and dim;
+   the active one widens into a pill, echoing the brand accent. */
+.carousel-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+    transition: width 0.25s ease, background-color 0.25s ease;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+.carousel-dot.is-active {
+    width: 1.1rem;
+    background: hsl(var(--brand));
+}
+
+/* e-chalupy calendar iframe. Height is set by JS from the iframe's posted content
+   height (assets/js/main.js); this is just the block-level base + a sensible
+   fallback height for before the first message / if JS is unavailable. */
+.echalupy-frame {
+    display: block;
+    width: 100%;
+    border: 0;
+    min-height: 600px;
+}
+
+/* Language switcher (in nav): the current language is highlighted, the others
+   read as muted links until hovered. */
+.is-active {
+    background-color: hsl(var(--brand));
+    color: hsl(var(--onbrand));
+}
+
+a:not(.is-active)[hreflang] {
+    color: hsl(var(--muted));
+}
+
+a:not(.is-active)[hreflang]:hover {
+    color: hsl(var(--brand));
+}
+
+/* Info ("guest guide") cards — used by the Info pages via the `guide` layout.
+   Each section is a card with a brand icon badge, heading and content. */
+.info-card {
+    display: flex;
+    gap: 1.1rem;
+    background: hsl(var(--bg));
+    border: 1px solid hsl(var(--line) / 0.1);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(40, 30, 15, 0.04);
+}
+
+.info-card__icon {
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.7rem;
+    background: hsl(var(--brand));
+    color: hsl(var(--onbrand));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-card__body {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.info-card__title {
+    font-family: 'Merriweather', ui-serif, Georgia, serif;
+    font-weight: 700;
+    color: hsl(var(--fg));
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 0.7rem;
+}
+
+.info-card__body p {
+    color: hsl(var(--fg));
+    line-height: 1.65;
+}
+
+.info-card__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.info-card__list li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: hsl(var(--fg));
+    line-height: 1.55;
+}
+
+.info-card__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 9999px;
+    background: hsl(var(--brand));
+}
+
+@media (max-width: 480px) {
+    .info-card {
+        gap: 0.9rem;
+        padding: 1.2rem;
+    }
+
+    .info-card__icon {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+}
+
+/* Long-form prose for the Info & Privacy pages. Colours follow the theme tokens
+   so the legal/house-rules text matches the rest of the site. */
+.prose h2 {
+    font-family: 'Merriweather', ui-serif, Georgia, serif;
+    font-weight: 700;
+    color: hsl(var(--brand));
+    font-size: 1.375rem;
+    line-height: 1.3;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    scroll-margin-top: 6rem;
+}
+
+.prose h2:first-child {
+    margin-top: 0;
+}
+
+.prose h3 {
+    font-family: 'Merriweather', ui-serif, Georgia, serif;
+    font-weight: 700;
+    color: hsl(var(--fg));
+    font-size: 1.1rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.prose p {
+    color: hsl(var(--fg));
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.prose ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+    color: hsl(var(--fg));
+}
+
+.prose li {
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+}
+
+.prose a {
+    color: hsl(var(--brand));
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.prose strong {
+    color: hsl(var(--fg));
+    font-weight: 700;
+}
+
+.prose .lead {
+    font-size: 1.05rem;
+    color: hsl(var(--muted));
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Jekyll Environment",
+    "image": "mcr.microsoft.com/devcontainers/jekyll:2",
+    "forwardPorts": [
+        4000,
+        35729
+    ],
+    "postCreateCommand": "bundle install && bundle exec jekyll serve --livereload --host 0.0.0.0 --force_polling --incremental",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "sissel.shopify-liquid"
+            ]
+        }
+    }
+}

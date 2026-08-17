@@ -1,0 +1,75 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/svg+xml" href="{{ '/assets/images/logo/favicon.svg' | relative_url }}">
+
+    {% include social-meta.html %}
+
+    {%- comment -%}
+    Custom document + share title. Home renders as just the site title; every other
+    page as "<page title> | <site title>". Emitted before {% seo %} (which runs with
+    title=false) so we fully own <title>, og:title and twitter:title with no duplicates.
+    {%- endcomment -%}
+    {%- if page.title == nil or page.title == site.title or page.url == "/" or page.url == "/en/" -%}
+    {%- assign full_title = site.title -%}
+    {%- else -%}
+    {%- assign full_title = page.title | append: " | " | append: site.title -%}
+    {%- endif -%}
+    <title>{{ full_title | escape }}</title>
+    <meta property="og:title" content="{{ full_title | escape }}">
+    <meta name="twitter:title" content="{{ full_title | escape }}">
+
+    {% seo title=false %}
+    {% include structured-data.html %}
+
+    <!-- Keep utility pages out of the search index. -->
+    {% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Semantic color tokens. Actual values live in CSS variables (assets/css/main.css).
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: 'hsl(var(--bg) / <alpha-value>)',
+                        surface: 'hsl(var(--surface) / <alpha-value>)',
+                        fg: 'hsl(var(--fg) / <alpha-value>)',
+                        muted: 'hsl(var(--muted) / <alpha-value>)',
+                        line: 'hsl(var(--line) / <alpha-value>)',
+                        brand: 'hsl(var(--brand) / <alpha-value>)',
+                        onbrand: 'hsl(var(--onbrand) / <alpha-value>)',
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'ui-serif', 'Georgia', 'serif'],
+                        sans: ['"Open Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <!-- Preconnect to both Google font domains so the fetch starts sooner -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Merriweather (headings) + Open Sans (body), one request. Preload so the browser
+         fetches the CSS immediately, then swap media to apply without blocking render. -->
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Open+Sans:wght@400;500;600;700;800&display=swap">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Open+Sans:wght@400;500;600;700;800&display=swap"
+        media="print" onload="this.media='all'">
+
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Open+Sans:wght@400;500;600;700;800&display=swap">
+    </noscript>
+
+    <!-- Main stylesheet loads normally. Cache-busted with the build timestamp so browsers
+         (and the devcontainer's forwarded-port cache) always pick up CSS edits. -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+</head>

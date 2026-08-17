@@ -1,0 +1,41 @@
+# German UI strings. The main marketing pages (Reservation, Area) are not yet
+# translated into German, so those nav links fall back to the English versions.
+nav:
+  home: "Startseite"
+  home_url: "/de/"
+  reservation: "Reservierung"
+  reservation_url: "/en/reservation/"
+  area: "Umgebung"
+  area_url: "/en/area/"
+  accommodation: "Unterkunft"
+  faq_label: "Häufig gestellte Fragen"
+  faq_url: "/de/haeufig-gestellte-fragen/"
+  info_label: "Informationen für Gäste"
+  info_url: "/de/information/"
+
+footer:
+  tagline: "Malé Svatoňovice, Podkrkonoší — ein Ferienhaus für einen erholsamen Urlaub und Bergausflüge."
+  explore_label: "Nützliche Links"
+  contact_label: "Kontakt"
+  operator_label: "Betreiber"
+  operator_note: "eine natürliche Person, die gemäß dem Gesetz ein Gewerbe betreibt und im Gewerberegister (Živnostenský rejstřík) eingetragen ist"
+  info_label: "Informationen für Gäste"
+  info_url: "/de/information/"
+  privacy_label: "Datenschutzrichtlinie"
+  privacy_url: "/de/datenschutz/"
+  made_by: "erstellt von"
+  rights: "Alle Rechte vorbehalten."
+  registered-comment: "Eine natürliche Person, die gemäß dem Gesetz ein Gewerbe betreibt und im Gewerberegister (Živnostenský rejstřík) eingetragen ist."
+
+
+common:
+  back_home: "Zurück zur Startseite"
+  not_found_title: "Seite nicht gefunden"
+  not_found_body: "Entschuldigung, die gesuchte Seite konnte nicht gefunden werden. Möglicherweise wurde sie verschoben oder existiert nicht mehr."
+
+# Shown on the German home stub until the full German version is ready.
+stub:
+  heading: "Willkommen in der Chaloupka pod lípou"
+  body: "Die vollständige deutsche Version der Website wird gerade vorbereitet. In der Zwischenzeit können Sie die Verfügbarkeit prüfen und die Informationen für Gäste lesen."
+  reservation_cta: "Verfügbarkeit prüfen"
+  info_cta: "Informationen für Gäste"

@@ -1,0 +1,645 @@
+{%- comment -%}
+Guest-registration form (kniha hostů). Posts a STRUCTURED JSON payload to a Google
+Apps Script Web App (site.guestbook_script_url) — no title-string mapping, no
+positional per-guest arrays. Each guest is one keyed object in a JS state array;
+the payload is built directly from that state, which is what prevents the
+array-misalignment bug that blanked names in the old Google Form.
+
+Payload: URLSearchParams({ data: JSON.stringify({ checkin, checkout, guests: [
+  { first_name, last_name, bdate, citizenship, passport, address }, … ] }) })
+
+Citizenship <select> submits the English value (site.data.countries[].en) that the
+sheet's flag / is-Czech logic expects; the Czech label (.cs) is display only.
+IDs are namespaced gb-* to stay clear of the reservation form.
+{%- endcomment -%}
+{%- assign t = site.data[page.lang].guestbook -%}
+{%- assign privacy_url = site.data[page.lang].footer.privacy_url -%}
+
+<form class="max-w-3xl mx-auto md:w-[58rem] md:max-w-[calc(100vw-3rem)] md:relative md:left-1/2 md:-translate-x-1/2" id="guestbook-form" novalidate>
+    <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+    <!-- Editor (dates + roster + detail + consent) -->
+    <div id="gb-editor">
+        <!-- Stay dates (shared for all guests) — block centered, contents left-aligned -->
+        <div class="max-w-md mx-auto">
+            <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">{{ t.dates_title }}
+                <span class="text-red-600 normal-case tracking-normal">*</span></p>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label for="gb-checkin"
+                        class="block text-muted text-xs tracking-wide uppercase mb-3">{{ t.checkin }}</label>
+                    <input type="date" id="gb-checkin" required
+                        class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg focus:outline-none focus:border-brand transition-colors">
+                </div>
+                <div>
+                    <label for="gb-checkout"
+                        class="block text-muted text-xs tracking-wide uppercase mb-3">{{ t.checkout }}</label>
+                    <input type="date" id="gb-checkout" required
+                        class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg focus:outline-none focus:border-brand transition-colors">
+                </div>
+            </div>
+            <p id="gb-nights" class="text-sm text-muted italic mt-4 h-5 font-serif"></p>
+        </div>
+
+        <hr class="border-0 border-t border-line/10 my-10">
+
+        <!-- Master–detail: the detail is centered on the page, the roster sticks out
+             to its left on large screens (and stacks above it on smaller ones). -->
+        <div class="lg:flex lg:justify-center mb-12">
+            <div class="relative w-full max-w-lg mx-auto lg:mx-0">
+                <!-- Roster: stacked above on small screens, absolute to the left on lg+ -->
+                <div class="mb-10 lg:mb-0 lg:absolute lg:right-full lg:top-0 lg:w-52 lg:mr-8 lg:border-r lg:border-line/10 lg:pr-6">
+                    <p class="text-brand text-xs font-bold tracking-widest uppercase mb-4">{{ t.roster_title }}</p>
+                    <ul id="gb-roster" class="space-y-1"></ul>
+                    <button type="button" id="gb-add-guest"
+                        class="mt-4 flex items-center gap-1.5 text-brand text-sm font-semibold hover:opacity-70 transition-opacity">
+                        <span class="text-lg leading-none">+</span> {{ t.add_guest }}
+                    </button>
+                </div>
+
+                <!-- Detail: the selected guest's fields flow directly on the page -->
+                <h3 id="gb-detail-title" class="text-fg text-2xl font-serif font-bold mb-1">{{ t.detail_title }} 1</h3>
+                <div class="w-10 h-0.5 bg-brand/40 mb-7"></div>
+
+                <div class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+                    <div>
+                        <label for="gb-first-name"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.first_name }}
+                            <span class="text-red-600">*</span></label>
+                        <input type="text" id="gb-first-name" data-field="first_name" autocomplete="given-name"
+                            placeholder="{{ t.first_name_placeholder }}"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+                    </div>
+                    <div>
+                        <label for="gb-last-name"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.last_name }}
+                            <span class="text-red-600">*</span></label>
+                        <input type="text" id="gb-last-name" data-field="last_name" autocomplete="family-name"
+                            placeholder="{{ t.last_name_placeholder }}"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+                    </div>
+                    <div>
+                        <label for="gb-bdate"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.bdate }}
+                            <span class="text-red-600">*</span></label>
+                        <input type="date" id="gb-bdate" data-field="bdate"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg focus:outline-none focus:border-brand transition-colors">
+                    </div>
+                    <div>
+                        <label for="gb-citizenship"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.citizenship }}
+                            <span class="text-red-600">*</span></label>
+                        <select id="gb-citizenship" data-field="citizenship"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base focus:outline-none focus:border-brand transition-colors">
+                            <option value="" disabled selected>{{ t.citizenship_placeholder }}</option>
+                            {%- for c in site.data.countries -%}
+                            <option value="{{ c.en }}">{{ c.cs }}</option>
+                            {%- endfor -%}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="gb-passport"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.passport }}
+                            <span class="text-red-600">*</span></label>
+                        <input type="text" id="gb-passport" data-field="passport" autocomplete="off"
+                            placeholder="{{ t.passport_placeholder }}"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label for="gb-address"
+                            class="block text-brand text-xs font-bold tracking-widest uppercase mb-3">{{ t.address }}
+                            <span class="text-red-600">*</span></label>
+                        <input type="text" id="gb-address" data-field="address" autocomplete="street-address"
+                            list="gb-address-suggestions" placeholder="{{ t.address_placeholder }}"
+                            class="w-full bg-transparent border-0 border-b-2 border-line/15 px-0.5 py-2.5 text-fg text-base placeholder-muted/70 focus:outline-none focus:border-brand transition-colors">
+                        <datalist id="gb-address-suggestions"></datalist>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consent + primary CTA — block centered, contents left-aligned -->
+        <div class="pt-6">
+            <div class="max-w-md mx-auto mb-8">
+                <div class="flex items-start gap-3 mb-2">
+                    <input type="checkbox" id="gb-gdpr" required
+                        class="mt-0.5 w-4 h-4 accent-brand shrink-0 cursor-pointer">
+                    <label for="gb-gdpr" class="text-sm text-muted leading-relaxed cursor-pointer">
+                        {{ t.gdpr_prefix }}
+                        <a href="{{ privacy_url | relative_url }}" class="text-brand font-medium hover:underline">{{ t.gdpr_link_text }}</a>.
+                        <span class="text-red-600">*</span>
+                    </label>
+                </div>
+                <p class="text-xs text-muted">{{ t.required_note }}</p>
+            </div>
+
+            <button type="button" id="gb-review-btn"
+                class="block mx-auto bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                {{ t.review_button }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Review step (hidden until "Zkontrolovat a odeslat") -->
+    <div id="gb-review" class="hidden">
+        <h3 class="text-fg text-2xl md:text-3xl font-serif font-bold tracking-tight mb-8">{{ t.review_title }}</h3>
+
+        <p class="text-brand text-xs font-bold tracking-widest uppercase mb-2">{{ t.review_dates }}</p>
+        <p id="gb-review-dates" class="text-fg font-serif text-lg mb-9"></p>
+
+        <p class="text-brand text-xs font-bold tracking-widest uppercase mb-1">{{ t.review_guests }}</p>
+        <ul id="gb-review-guests" class="divide-y divide-line/10 mb-10"></ul>
+
+        <div class="flex items-center justify-center gap-4">
+            <button type="button" id="gb-edit-btn"
+                class="font-semibold uppercase tracking-wider text-sm py-3.5 px-8 rounded-full border border-line/25 text-fg hover:border-brand hover:text-brand transition-colors">
+                {{ t.edit }}
+            </button>
+            <button type="submit" id="gb-submit-btn"
+                class="flex items-center justify-center gap-2 bg-brand text-onbrand font-semibold uppercase tracking-wider text-sm py-3.5 px-12 rounded-full hover:bg-brand/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed">
+                {{ t.submit }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Success confirmation (replaces the form once the data is sent) -->
+    <div id="gb-success" class="hidden text-center py-10">
+        <div class="mx-auto mb-6 w-14 h-14 rounded-full bg-brand/10 flex items-center justify-center">
+            <svg class="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+        <h3 class="text-fg text-2xl md:text-3xl font-serif font-bold tracking-tight max-w-xl mx-auto">{{ t.success_title }}</h3>
+        <p class="text-muted mt-3">{{ t.success_note }}</p>
+        <button type="button" id="gb-again"
+            class="mt-8 text-brand text-sm font-semibold hover:opacity-70 transition-opacity">{{ t.success_again }}</button>
+    </div>
+
+    <div id="guestbook-form-result" class="hidden mt-6 rounded-lg border px-4 py-3 text-sm text-center"></div>
+</form>
+
+<script>
+    (function () {
+        var form = document.getElementById('guestbook-form');
+        if (!form) return;
+
+        var STORAGE_KEY = 'guestbook-draft-v1';
+        var T = {
+            guestFallback: {{ t.guest_fallback | jsonify }},
+            detailTitle: {{ t.detail_title | jsonify }},
+            nightsOne: {{ t.nights_one | jsonify }},
+            nightsFew: {{ t.nights_few | jsonify }},
+            nightsMany: {{ t.nights_many | jsonify }},
+            childPill: {{ t.child_pill | jsonify }},
+            removeGuest: {{ t.remove_guest | jsonify }},
+            sending: {{ t.sending | jsonify }},
+            errorGeneric: {{ t.error_generic | jsonify }},
+            errorNetwork: {{ t.error_network | jsonify }},
+            errorBotcheck: {{ t.error_botcheck | jsonify }},
+            errorIncomplete: {{ t.error_incomplete | jsonify }},
+            errorDates: {{ t.error_dates | jsonify }},
+            restoredNote: {{ t.restored_note | jsonify }},
+            clearDraft: {{ t.clear_draft | jsonify }},
+            incompleteLabel: {{ t.incomplete_label | jsonify }}
+        };
+        // Czech-label lookup for the citizenship value (for review display).
+        var COUNTRY_CS = {};
+        {%- for c in site.data.countries -%}
+        COUNTRY_CS[{{ c.en | jsonify }}] = {{ c.cs | jsonify }};
+        {%- endfor -%}
+
+        var FIELDS = ['first_name', 'last_name', 'bdate', 'citizenship', 'passport', 'address'];
+
+        // --- Elements ---
+        var editor = document.getElementById('gb-editor');
+        var review = document.getElementById('gb-review');
+        var successEl = document.getElementById('gb-success');
+        var againBtn = document.getElementById('gb-again');
+        var checkinInput = document.getElementById('gb-checkin');
+        var checkoutInput = document.getElementById('gb-checkout');
+        var nightsEl = document.getElementById('gb-nights');
+        var rosterEl = document.getElementById('gb-roster');
+        var addGuestBtn = document.getElementById('gb-add-guest');
+        var detailTitleEl = document.getElementById('gb-detail-title');
+        var reviewBtn = document.getElementById('gb-review-btn');
+        var editBtn = document.getElementById('gb-edit-btn');
+        var submitBtn = document.getElementById('gb-submit-btn');
+        var result = document.getElementById('guestbook-form-result');
+        var addressInput = document.getElementById('gb-address');
+        var addressSuggestions = document.getElementById('gb-address-suggestions');
+        var detailInputs = {};
+        FIELDS.forEach(function (f) {
+            detailInputs[f] = form.querySelector('[data-field="' + f + '"]');
+        });
+
+        // --- State ---
+        function emptyGuest() {
+            return { first_name: '', last_name: '', bdate: '', citizenship: '', passport: '', address: '' };
+        }
+        var state = { checkin: '', checkout: '', guests: [emptyGuest()] };
+        var activeIndex = 0;
+
+        // --- Persistence ---
+        var saveTimer = null;
+        function scheduleSave() {
+            if (saveTimer) clearTimeout(saveTimer);
+            saveTimer = setTimeout(save, 400);
+        }
+        function save() {
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+        }
+        function clearDraft() {
+            try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        }
+        function restore() {
+            var raw;
+            try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return false; }
+            if (!raw) return false;
+            try {
+                var parsed = JSON.parse(raw);
+                if (!parsed || !Array.isArray(parsed.guests) || !parsed.guests.length) return false;
+                state = {
+                    checkin: parsed.checkin || '',
+                    checkout: parsed.checkout || '',
+                    guests: parsed.guests.map(function (g) {
+                        var ng = emptyGuest();
+                        FIELDS.forEach(function (f) { if (g[f]) ng[f] = String(g[f]); });
+                        return ng;
+                    })
+                };
+                return true;
+            } catch (e) { return false; }
+        }
+
+        // --- Dates ---
+        var today = new Date().toISOString().split('T')[0];
+        checkinInput.min = today;
+        checkoutInput.min = today;
+
+        function nightsBetween(a, b) {
+            if (!a || !b) return 0;
+            var d1 = new Date(a), d2 = new Date(b);
+            var diff = Math.round((d2 - d1) / 86400000);
+            return diff > 0 ? diff : 0;
+        }
+        function nightsWord(n) {
+            if (n === 1) return T.nightsOne;
+            if (n >= 2 && n <= 4) return T.nightsFew;
+            return T.nightsMany;
+        }
+        function renderNights() {
+            var n = nightsBetween(state.checkin, state.checkout);
+            nightsEl.textContent = n > 0 ? (n + ' ' + nightsWord(n)) : '';
+        }
+
+        // --- Roster ---
+        function guestLabel(g, i) {
+            var name = ((g.first_name || '') + ' ' + (g.last_name || '')).trim();
+            return name || (T.guestFallback + ' ' + (i + 1));
+        }
+        function renderRoster() {
+            rosterEl.innerHTML = '';
+            state.guests.forEach(function (g, i) {
+                var li = document.createElement('li');
+                var selected = i === activeIndex;
+                // Selection shown by a left accent bar, not a bordered card.
+                li.className = 'group flex items-baseline gap-2.5 py-2 pl-3 -ml-px border-l-2 cursor-pointer transition-colors ' +
+                    (selected ? 'border-brand' : 'border-transparent hover:border-line/25');
+                // Keyboard-operable: rows behave like buttons (Tab to focus, Enter/Space to select).
+                li.setAttribute('role', 'button');
+                li.setAttribute('tabindex', '0');
+                li.setAttribute('aria-pressed', selected ? 'true' : 'false');
+
+                var num = document.createElement('span');
+                num.className = 'shrink-0 text-xs tabular-nums ' + (selected ? 'text-brand font-bold' : 'text-muted/60');
+                num.textContent = String(i + 1) + '.';
+
+                var label = document.createElement('span');
+                label.className = 'flex-1 text-sm truncate ' + (selected ? 'text-fg font-semibold' : 'text-muted');
+                label.textContent = guestLabel(g, i);
+
+                li.appendChild(num);
+                li.appendChild(label);
+
+                // Incomplete cue in a fixed slot so the dot sits at the same x for
+                // every row (present as a transparent placeholder when not flagged).
+                var warn = document.createElement('span');
+                warn.className = 'shrink-0 self-center w-1.5 h-1.5 rounded-full';
+                if (!selected && !guestComplete(g)) {
+                    warn.classList.add('bg-amber-500/80');
+                    warn.setAttribute('role', 'img');
+                    warn.setAttribute('aria-label', T.incompleteLabel);
+                } else {
+                    warn.classList.add('bg-transparent');
+                }
+                li.appendChild(warn);
+
+                // Fixed-width remove slot, present on every row (empty on guest 1) so
+                // the dot's position never shifts between rows or on hover.
+                var rmSlot = document.createElement('span');
+                rmSlot.className = 'shrink-0 self-center w-5 flex justify-center';
+                if (state.guests.length > 1 && i > 0) {
+                    var rm = document.createElement('button');
+                    rm.type = 'button';
+                    rm.className = 'p-1 -m-0.5 text-muted/50 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:text-red-600 transition-all text-base leading-none';
+                    rm.setAttribute('aria-label', T.removeGuest);
+                    rm.textContent = '×';
+                    rm.addEventListener('click', function (ev) { ev.stopPropagation(); removeGuest(i); });
+                    rmSlot.appendChild(rm);
+                }
+                li.appendChild(rmSlot);
+
+                li.addEventListener('click', function () { selectGuest(i); });
+                li.addEventListener('keydown', function (ev) {
+                    if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+                        ev.preventDefault();
+                        selectGuest(i);
+                    }
+                });
+                rosterEl.appendChild(li);
+            });
+        }
+
+        // --- Detail ---
+        function renderDetail() {
+            var g = state.guests[activeIndex];
+            detailTitleEl.textContent = T.detailTitle + ' ' + (activeIndex + 1);
+            FIELDS.forEach(function (f) { detailInputs[f].value = g[f] || ''; });
+            // Offer guest 1's address as an autocomplete suggestion on later guests.
+            var base = (activeIndex > 0 && state.guests[0]) ? String(state.guests[0].address || '').trim() : '';
+            addressSuggestions.innerHTML = base ? '<option></option>' : '';
+            if (base) addressSuggestions.firstChild.value = base;
+        }
+
+        function selectGuest(i) {
+            activeIndex = i;
+            renderRoster();
+            renderDetail();
+        }
+        function addGuest() {
+            state.guests.push(emptyGuest());
+            activeIndex = state.guests.length - 1;
+            renderRoster();
+            renderDetail();
+            scheduleSave();
+        }
+        function removeGuest(i) {
+            state.guests.splice(i, 1);
+            if (activeIndex >= state.guests.length) activeIndex = state.guests.length - 1;
+            if (activeIndex < 0) activeIndex = 0;
+            renderRoster();
+            renderDetail();
+            scheduleSave();
+        }
+
+        // Flush the visible inputs into the active guest. Browser autofill (name /
+        // address) doesn't reliably fire 'input', so read the DOM directly before
+        // validating or sending — otherwise an autofilled value could be lost.
+        function syncActiveFromInputs() {
+            var g = state.guests[activeIndex];
+            if (!g) return;
+            FIELDS.forEach(function (f) { g[f] = detailInputs[f].value; });
+        }
+
+        // --- Input wiring ---
+        FIELDS.forEach(function (f) {
+            var el = detailInputs[f];
+            var evt = (el.tagName === 'SELECT') ? 'change' : 'input';
+            el.addEventListener(evt, function () {
+                state.guests[activeIndex][f] = el.value;
+                if (f === 'first_name' || f === 'last_name') renderRoster();
+                scheduleSave();
+            });
+        });
+
+        checkinInput.addEventListener('change', function () {
+            state.checkin = this.value;
+            checkoutInput.min = this.value || today;
+            if (state.checkout && state.checkout < this.value) {
+                state.checkout = this.value;
+                checkoutInput.value = this.value;
+            }
+            renderNights();
+            scheduleSave();
+        });
+        checkoutInput.addEventListener('change', function () {
+            state.checkout = this.value;
+            renderNights();
+            scheduleSave();
+        });
+
+        addGuestBtn.addEventListener('click', addGuest);
+
+        // --- Result banner (mirrors reservation form tones) ---
+        function showResult(message, tone) {
+            result.textContent = message;
+            result.classList.remove('hidden', 'bg-green-50', 'text-green-700', 'border-green-200',
+                'bg-red-50', 'text-red-700', 'border-red-200', 'bg-surface', 'text-muted', 'border-line/20');
+            if (tone === 'success') {
+                result.classList.add('bg-green-50', 'text-green-700', 'border-green-200');
+            } else if (tone === 'error') {
+                result.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+            } else {
+                result.classList.add('bg-surface', 'text-muted', 'border-line/20');
+            }
+        }
+
+        // --- Validation ---
+        function guestComplete(g) {
+            return FIELDS.every(function (f) { return String(g[f] || '').trim() !== ''; });
+        }
+        function datesValid() {
+            return state.checkin && state.checkout && nightsBetween(state.checkin, state.checkout) > 0;
+        }
+
+        // --- Review ---
+        function isChild(bdate) {
+            if (!bdate || !state.checkin) return false;
+            var b = new Date(bdate), ci = new Date(state.checkin);
+            var age = ci.getFullYear() - b.getFullYear();
+            var m = ci.getMonth() - b.getMonth();
+            if (m < 0 || (m === 0 && ci.getDate() < b.getDate())) age--;
+            return age < 18;
+        }
+        function fmtDate(iso) {
+            if (!iso) return '';
+            var p = iso.split('-');
+            return p.length === 3 ? (p[2] + '. ' + p[1] + '. ' + p[0]) : iso;
+        }
+        function buildReview() {
+            var n = nightsBetween(state.checkin, state.checkout);
+            document.getElementById('gb-review-dates').textContent =
+                fmtDate(state.checkin) + ' – ' + fmtDate(state.checkout) + '  (' + n + ' ' + nightsWord(n) + ')';
+
+            var ul = document.getElementById('gb-review-guests');
+            ul.innerHTML = '';
+            state.guests.forEach(function (g, i) {
+                var li = document.createElement('li');
+                li.className = 'flex gap-4 py-4';
+
+                var idx = document.createElement('span');
+                idx.className = 'shrink-0 text-brand font-serif text-lg leading-tight w-6';
+                idx.textContent = (i + 1) + '.';
+                li.appendChild(idx);
+
+                var body = document.createElement('div');
+                body.className = 'min-w-0';
+
+                var head = document.createElement('div');
+                head.className = 'flex items-center gap-2 mb-1';
+                var name = document.createElement('span');
+                name.className = 'text-fg font-semibold';
+                name.textContent = guestLabel(g, i);
+                head.appendChild(name);
+                if (isChild(g.bdate)) {
+                    var pill = document.createElement('span');
+                    pill.className = 'text-xs font-semibold uppercase tracking-wide text-brand border border-brand/40 rounded-full px-2 py-0.5';
+                    pill.textContent = T.childPill;
+                    head.appendChild(pill);
+                }
+                body.appendChild(head);
+
+                var meta = document.createElement('p');
+                meta.className = 'text-sm text-muted';
+                var cs = COUNTRY_CS[g.citizenship] || g.citizenship;
+                meta.textContent = fmtDate(g.bdate) + ' · ' + cs + ' · ' + g.passport + ' · ' + g.address;
+                body.appendChild(meta);
+
+                li.appendChild(body);
+                ul.appendChild(li);
+            });
+        }
+
+        function goReview() {
+            syncActiveFromInputs();
+            if (!document.getElementById('gb-gdpr').checked) {
+                document.getElementById('gb-gdpr').reportValidity && document.getElementById('gb-gdpr').reportValidity();
+                return;
+            }
+            if (!datesValid()) {
+                showResult(T.errorDates, 'error');
+                (checkinInput).focus();
+                return;
+            }
+            for (var i = 0; i < state.guests.length; i++) {
+                if (!guestComplete(state.guests[i])) {
+                    selectGuest(i);
+                    showResult(T.errorIncomplete, 'error');
+                    return;
+                }
+            }
+            result.classList.add('hidden');
+            buildReview();
+            editor.classList.add('hidden');
+            review.classList.remove('hidden');
+            review.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        function goEdit() {
+            review.classList.add('hidden');
+            editor.classList.remove('hidden');
+        }
+        reviewBtn.addEventListener('click', goReview);
+        editBtn.addEventListener('click', goEdit);
+
+        // Start a fresh registration after a successful submit (shared-link use).
+        againBtn.addEventListener('click', function () {
+            state = { checkin: '', checkout: '', guests: [emptyGuest()] };
+            activeIndex = 0;
+            checkinInput.value = '';
+            checkoutInput.value = '';
+            document.getElementById('gb-gdpr').checked = false;
+            renderNights();
+            renderRoster();
+            renderDetail();
+            successEl.classList.add('hidden');
+            review.classList.add('hidden');
+            editor.classList.remove('hidden');
+            editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // --- Submit ---
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            if (form.querySelector('[name="botcheck"]').checked) {
+                showResult(T.errorBotcheck, 'error');
+                return;
+            }
+
+            syncActiveFromInputs();
+            var payload = {
+                checkin: state.checkin,
+                checkout: state.checkout,
+                guests: state.guests.map(function (g) {
+                    return {
+                        first_name: g.first_name, last_name: g.last_name, bdate: g.bdate,
+                        citizenship: g.citizenship, passport: g.passport, address: g.address
+                    };
+                })
+            };
+
+            showResult(T.sending, 'pending');
+            submitBtn.disabled = true;
+
+            try {
+                var response = await fetch('{{ site.guestbook_script_url }}', {
+                    method: 'POST',
+                    mode: 'cors',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ data: JSON.stringify(payload) })
+                });
+                var json = await response.json();
+                if (json.status === 'success') {
+                    clearDraft();
+                    result.classList.add('hidden');
+                    editor.classList.add('hidden');
+                    review.classList.add('hidden');
+                    successEl.classList.remove('hidden');
+                    successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    showResult(T.errorGeneric, 'error');
+                    setTimeout(function () { result.classList.add('hidden'); }, 10000);
+                }
+            } catch (err) {
+                showResult(T.errorNetwork, 'error');
+                setTimeout(function () { result.classList.add('hidden'); }, 10000);
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+
+        // --- Init ---
+        var restored = restore();
+        if (restored) {
+            checkinInput.value = state.checkin || '';
+            checkoutInput.value = state.checkout || '';
+            if (state.checkin) checkoutInput.min = state.checkin;
+        }
+        renderNights();
+        renderRoster();
+        renderDetail();
+        if (restored) {
+            showResult(T.restoredNote + '  ', 'pending');
+            var clearBtn = document.createElement('button');
+            clearBtn.type = 'button';
+            clearBtn.className = 'underline font-medium';
+            clearBtn.textContent = T.clearDraft;
+            clearBtn.addEventListener('click', function () {
+                clearDraft();
+                state = { checkin: '', checkout: '', guests: [emptyGuest()] };
+                activeIndex = 0;
+                checkinInput.value = '';
+                checkoutInput.value = '';
+                renderNights();
+                renderRoster();
+                renderDetail();
+                result.classList.add('hidden');
+            });
+            result.appendChild(clearBtn);
+            setTimeout(function () { if (!result.classList.contains('bg-red-50')) result.classList.add('hidden'); }, 12000);
+        }
+    })();
+</script>

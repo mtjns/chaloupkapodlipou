@@ -1,0 +1,90 @@
+---
+layout: default
+title: "Rezervace"
+lang: cs
+ref: reservation
+og_description: "Orientační ceny, kalendář obsazenosti a kontaktní formulář pro rezervaci pobytu v Chaloupce pod lípou."
+permalink: /rezervace/
+reservation_url: /rezervace/
+area_url: /okoli/
+lang_url: /en/reservation/
+priority: 0.9
+---
+<section class="bg-surface pt-32 pb-16 px-4 md:px-8 text-center">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <h1 class="text-brand text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6">Rezervace</h1>
+        <p class="text-fg text-lg leading-relaxed">
+            Plánujete dovolenou nebo víkendový pobyt v přírodě? Rádi vás přivítáme v naší Chaloupce pod lípou.
+            Níže najdete <strong class="text-fg font-semibold">kalendář s aktuální dostupností</strong>.
+            Prohlédněte si volné termíny a vyberte si ideální čas pro svůj pobyt.
+        </p>
+    </div>
+</section>
+
+<section class="bg-base py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <div class="flex items-center justify-center gap-3 mb-2">
+            <span class="w-8 h-px bg-brand/40"></span>
+            <span class="text-brand text-xs font-semibold tracking-[0.2em] uppercase">Ceník 2026</span>
+            <span class="w-8 h-px bg-brand/40"></span>
+        </div>
+        <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-12 text-center">
+            Orientační ceny za celý objekt</h2>
+
+        <div class="max-w-lg mx-auto space-y-7">
+            <div class="flex items-center justify-between gap-4">
+                <div class="text-left">
+                    <p class="font-serif text-lg md:text-xl font-bold text-fg">Zimní sezóna</p>
+                    <p class="text-sm text-muted">1. 11. – 31. 3.</p>
+                </div>
+                <p class="font-serif font-bold text-brand leading-none whitespace-nowrap">
+                    <span class="text-3xl md:text-4xl">7 900</span>
+                    <span class="text-sm text-muted font-sans font-normal">Kč/noc</span>
+                </p>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+                <div class="text-left">
+                    <p class="font-serif text-lg md:text-xl font-bold text-fg">Letní sezóna</p>
+                    <p class="text-sm text-muted">1. 4. – 31. 10.</p>
+                </div>
+                <p class="font-serif font-bold text-brand leading-none whitespace-nowrap">
+                    <span class="text-3xl md:text-4xl">5 900</span>
+                    <span class="text-sm text-muted font-sans font-normal">Kč/noc</span>
+                </p>
+            </div>
+        </div>
+
+        <p class="text-muted text-sm text-center leading-relaxed mt-12 max-w-xl mx-auto">
+            Uvedené ceny platí za celý objekt při pobytu na 3 a více nocí. Při pobytu na 2 noci účtujeme 10 %
+            navíc. V termínech svátků a prázdnin jsou ceny individuální — pro konkrétní nabídku nás prosím
+            kontaktujte.
+        </p>
+    </div>
+</section>
+
+<section class="bg-surface py-16 px-4 md:px-8">
+    <div class="max-w-3xl mx-auto opacity-fade">
+        <h2 class="text-brand text-2xl md:text-3xl font-serif font-bold tracking-tight mb-8 text-center">Kalendář
+            obsazenosti</h2>
+        {% include echalupy-calendar.html %}
+    </div>
+</section>
+
+<section class="bg-base py-16 px-4 md:px-8">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+        <p class="text-fg text-lg leading-relaxed">
+            Pokud máte vybraný termín nebo dotaz, napište nám do formuláře a my se vám brzy ozveme s potvrzením
+            nebo dalšími detaily.
+        </p>
+    </div>
+    <div class="opacity-fade">
+        {% include reservation-form.html %}
+    </div>
+</section>
+
+<button id="scroll-top-btn" aria-label="Nahoru" type="button"
+    class="fixed bottom-8 right-8 w-12 h-12 bg-brand text-onbrand rounded-full flex items-center justify-center cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300 hover:scale-110 z-40">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>

@@ -1,0 +1,20 @@
+{%- comment -%}
+Full site layout: fixed nav + footer, content rendered as-is with no wrapper.
+Used by the main marketing pages (home, reservation, area, FAQ, info, privacy).
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'cs' }}">
+
+{% include head.html %}
+
+<body>
+    {% include nav.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
+</body>
+
+</html>

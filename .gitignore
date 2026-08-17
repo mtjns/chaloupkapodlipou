@@ -1,0 +1,30 @@
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+!*.code-workspace
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+# Ignore the generated compiled site
+_site/
+
+# Ignore the claude directory
+.claude/*
+
+# Ignore Jekyll caches
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ignore Ruby environment bloat
+.bundle/
+vendor/
+.ruby-lsp/
+
+# Optional: Ignore the Dev Container configuration
+# .devcontainer/

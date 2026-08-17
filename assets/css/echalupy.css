@@ -1,0 +1,148 @@
+/* Chaloupka pod lípou — availability calendar theme.
+ *
+ * Loaded INSIDE the e-chalupy.cz calendar iframe via its `extCss` URL parameter
+ * (see _includes/echalupy-calendar.html). Because the iframe is a separate origin,
+ * this is the only way to style it. Selectors target e-chalupy's own markup:
+ *   table.month            — one table per month
+ *   td.month-name          — month title row (colspan 7)
+ *   tr.days td             — weekday header row (Po–Ne)
+ *   td.day-free            — available day
+ *   td.day-full            — occupied day
+ *   td.day-shdw            — days spilling from the previous/next month
+ *   td.z / td.k            — arrival / departure (half) days
+ *
+ * Palette mirrors the site tokens in assets/css/main.css.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+    --cal-brand: #7c6c50;      /* warm brown (site brand) */
+    --cal-brand-ink: #faf7f0;  /* cream text on brand */
+    --cal-free: #8aa98c;       /* sage green — available */
+    --cal-free-ink: #1f2a22;
+    --cal-occ: #c67f63;        /* terracotta — occupied */
+    --cal-occ-ink: #ffffff;
+    --cal-shadow: #f2efe8;     /* other-month days */
+    --cal-shadow-ink: #b9b2a4;
+    --cal-line: #e7e2d8;       /* borders */
+    --cal-cream: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 8px 4px 4px;
+    background: transparent;
+    font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+    color: var(--cal-free-ink);
+    text-align: center;
+}
+
+/* --- Month table ------------------------------------------------------- */
+table.month {
+    display: inline-table;
+    width: 190px;
+    margin: 9px;
+    vertical-align: top;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--cal-line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--cal-cream);
+    box-shadow: 0 1px 3px rgba(40, 30, 15, 0.05);
+}
+
+/* Month title. e-chalupy sets the header colour inline from the `mesicPozadi`
+   URL param, so !important is needed here to win over it. */
+td.month-name {
+    background: var(--cal-brand) !important;
+    color: var(--cal-brand-ink) !important;
+    font-family: 'Merriweather', Georgia, serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    padding: 9px 4px;
+    text-align: center;
+}
+
+/* Weekday header row */
+tr.days td {
+    color: var(--cal-brand) !important;
+    background: #fbf9f4 !important;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--cal-line);
+}
+
+/* --- Day cells --------------------------------------------------------- */
+table.month td {
+    width: 14.28%;
+    height: 30px;
+    padding: 0;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #fff;
+    transition: filter 0.15s ease;
+}
+
+/* Day-state colours use !important so they win over e-chalupy's own param-driven
+   day colours regardless of cell. */
+td.day-free {
+    background: var(--cal-free) !important;
+    color: var(--cal-free-ink) !important;
+}
+
+td.day-full {
+    background: var(--cal-occ) !important;
+    color: var(--cal-occ-ink) !important;
+}
+
+td.day-shdw {
+    background: var(--cal-shadow) !important;
+    color: var(--cal-shadow-ink) !important;
+    font-weight: 400;
+}
+
+/* Arrival day (z): free in the morning, occupied overnight → diagonal split
+   with the occupied wedge in the lower-right. Departure day (k) is mirrored. */
+td.day-full.z,
+td.z {
+    background: linear-gradient(to bottom right, var(--cal-free) 0 50%, var(--cal-occ) 50% 100%) !important;
+    color: var(--cal-free-ink) !important;
+}
+
+td.day-full.k,
+td.k {
+    background: linear-gradient(to bottom right, var(--cal-occ) 0 50%, var(--cal-free) 50% 100%) !important;
+    color: var(--cal-free-ink) !important;
+}
+
+/* Gentle hover feedback on real (non-shadow) days */
+table.month td.day-free:hover,
+table.month td.day-full:hover {
+    filter: brightness(1.06);
+}
+
+/* --- Mobile ------------------------------------------------------------ */
+@media (max-width: 520px) {
+    table.month {
+        width: 44%;
+        margin: 2.5% 2%;
+    }
+
+    td.month-name {
+        font-size: 12px;
+        padding: 8px 2px;
+    }
+
+    table.month td {
+        height: 32px;   /* larger tap/scan target */
+        font-size: 13px;
+    }
+}

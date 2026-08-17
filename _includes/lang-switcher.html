@@ -1,0 +1,33 @@
+{%- comment -%}
+Language switcher. For each configured language (_data/languages.yml) it looks for
+a page sharing the current page's `ref` in that language and links to it. When a
+translation doesn't exist yet (e.g. Reservation/Area in PL/DE), it falls back to
+that language's home page so the switcher never dead-ends.
+
+Pass `class` for the wrapper and `link_class` for each link so the caller can style
+desktop vs. mobile placements.
+{%- endcomment -%}
+<div class="{{ include.class }}">
+    {%- for lng in site.data.languages -%}
+        {%- assign target = nil -%}
+        {%- for p in site.pages -%}
+            {%- if p.ref == page.ref and p.lang == lng.code -%}
+                {%- assign target = p -%}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+        {%- unless target -%}
+            {%- for p in site.pages -%}
+                {%- if p.ref == 'home' and p.lang == lng.code -%}
+                    {%- assign target = p -%}
+                    {%- break -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endunless -%}
+        {%- if target -%}
+        <a href="{{ target.url | relative_url }}" hreflang="{{ lng.code }}" title="{{ lng.name }}"
+            class="{{ include.link_class }} {% if lng.code == page.lang %}is-active{% endif %}"
+            {% if lng.code == page.lang %}aria-current="true"{% endif %}>{{ lng.label }}</a>
+        {%- endif -%}
+    {%- endfor -%}
+</div>

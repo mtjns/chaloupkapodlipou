@@ -1,0 +1,87 @@
+{%- assign t = site.data[page.lang] -%}
+{%- assign wa = site.phone_link | remove: '+' -%}
+{%- capture maps_url -%}https://www.google.com/maps/search/?api=1&query={{ site.map_query | url_encode }}{%- endcapture
+-%}
+<footer class="bg-surface border-t border-line/10 pt-20 pb-10 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto grid gap-12 lg:gap-8 lg:grid-cols-12">
+
+        <!-- Brand + operator -->
+        <div class="lg:col-span-5">
+            <span class="font-serif text-2xl font-bold text-brand">Chaloupka pod lípou</span>
+            <p class="text-muted text-sm mt-3 leading-relaxed max-w-xs">{{ t.footer.tagline }}</p>
+
+            <h3 class="text-fg text-sm font-bold tracking-widest mt-10 mb-4 uppercase">{{ t.footer.operator_label }}
+            </h3>
+            <p class="text-muted text-xs leading-relaxed">
+                {{ site.operator.name }}<br>
+                {{ site.operator.address }}<br>
+                IČ {{ site.operator.ico }}<br>
+            </p>
+            <p class="text-muted text-xs leading-relaxed mt-2 text-wrap max-w-xs">
+                {{ t.footer.operator_note }}
+            </p>
+        </div>
+
+        <!-- Useful links: main pages grouped tightly; Info/Privacy set apart below -->
+        <div class="lg:col-span-4 lg:mt-4">
+            <h3 class="text-fg text-sm font-bold tracking-widest mb-5 uppercase">{{ t.footer.explore_label }}</h3>
+            <ul class="space-y-1.5 text-sm">
+                <li><a href="{{ t.nav.home_url | relative_url }}"
+                        class="text-muted hover:text-brand transition-colors">{{ t.nav.home }}</a></li>
+                <li><a href="{{ t.nav.reservation_url | relative_url }}"
+                        class="text-muted hover:text-brand transition-colors">{{ t.nav.reservation }}</a></li>
+                <li><a href="{{ t.nav.area_url | relative_url }}"
+                        class="text-muted hover:text-brand transition-colors">{{ t.nav.area }}</a></li>
+            </ul>
+            <ul class="text-sm mt-7 space-y-3">
+                <li><a href="{{ t.footer.info_url | relative_url }}"
+                        class="text-muted hover:text-brand transition-colors">{{ t.footer.info_label }}</a></li>
+                <li><a href="{{ t.footer.privacy_url | relative_url }}"
+                        class="text-muted hover:text-brand transition-colors">{{ t.footer.privacy_label }}</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="lg:col-span-3 lg:mt-4">
+            <h3 class="text-fg text-sm font-bold tracking-widest mb-4 uppercase">{{ t.footer.contact_label }}</h3>
+            <p class="text-sm mb-2">
+                <a href="mailto:{{ site.email }}" class="text-muted hover:text-brand transition-colors">{{ site.email
+                    }}</a>
+            </p>
+            <p class="text-sm mb-2">
+                <a href="tel:{{ site.phone_link }}" class="text-muted hover:text-brand transition-colors">{{ site.phone
+                    }}</a>
+            </p>
+            <p class="text-sm mb-2">
+                <a href="https://wa.me/{{ wa }}" target="_blank" rel="noopener"
+                    class="inline-flex items-center gap-1.5 text-muted hover:text-brand transition-colors">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.885 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652a12.062 12.062 0 005.71 1.447h.006c6.585 0 11.946-5.335 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411" />
+                    </svg>
+                    WhatsApp
+                </a>
+            </p>
+            <p class="text-sm">
+                <a href="{{ maps_url }}" target="_blank" rel="noopener"
+                    class="inline-flex items-start gap-1.5 text-muted hover:text-brand transition-colors">
+                    <svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>{{ site.cottage_address }}</span>
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto border-t border-line/10 mt-14 pt-8 text-center text-muted text-xs">
+        <p>
+            <span class="block sm:inline">&copy; {{ 'now' | date: "%Y" }} Chaloupka pod lípou.</span>
+            <span class="block sm:inline"> {{ t.footer.rights }}</span>
+            <span class="block sm:inline mt-1 sm:mt-0"> {{ t.footer.made_by }} Matěj Jansa.</span>
+        </p>
+    </div>
+</footer>

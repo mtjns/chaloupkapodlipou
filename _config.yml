@@ -1,0 +1,90 @@
+title: "Chaloupka pod lípou"
+tagline: "Chalupa v Malých Svatoňovicích na úpatí Jestřebích hor"
+# Google/SEO meta description (kept under ~155 chars so it isn't truncated in search
+# results). The longer share/social blurb lives in og_description on each page.
+description: "Stylová chalupa pro 5 rodin v Malých Svatoňovicích v Podkrkonoší. Prostorná zahrada, 5 ložnic, plně vybavená kuchyně — ideální pro klidnou dovolenou i výlety do okolí."
+logo: "/assets/images/logo/logo.png"
+
+url: "https://chaloupkapodlipou.cz"
+baseurl: ""
+
+# Site-wide default language. Individual pages under /en/ override this via
+# front matter (lang: en) — see _includes/head.html and _data/*.yml.
+lang: cs-CZ
+
+# Default social-share image (Open Graph / Twitter) applied to every page unless a
+# page overrides it with `image:` in its front matter. Sized 1200×630 (1.91:1).
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: "/assets/images/og-image.jpg"
+        width: 1200
+        height: 630
+        alt: "Chaloupka pod lípou — chalupa v Malých Svatoňovicích"
+  - scope:
+      path: ""
+    values:
+      lang: cs
+  - scope:
+      path: "en"
+    values:
+      lang: en
+
+author:
+  name: "Lenka Jansová"
+  email: "chaloupkapodlipou@gmail.com"
+
+social:
+  name: "Chaloupka pod lípou"
+  links: []
+
+twitter:
+  card: summary_large_image
+
+# e-chalupy.cz availability calendar embed id (Rezervace/Reservation page).
+echalupy_id: "17388"
+
+# Google Apps Script Web App URL that receives the reservation form submissions.
+reservation_script_url: "https://script.google.com/macros/s/AKfycbzkmGbkCM20c2GRC-XyxXuKzOTFHSpNyrA4mLu-TwXXcmbT8eTPHHDpBbUWXo3vpJlF/exec"
+
+# Google Apps Script Web App URL that receives the guest-registration (kniha hostů)
+# submissions. PLACEHOLDER — replace with the new Web App /exec URL after deploying
+# apps-script/guestbook.gs (Execute as: me; Access: Anyone).
+guestbook_script_url: "REPLACE_WITH_GUESTBOOK_WEB_APP_URL"
+
+# Contact + legal/business info shown in the footer.
+email: "chaloupkapodlipou@gmail.com"
+phone: "+420 602 967 096"
+phone_link: "+420602967096"
+
+operator:
+  name: "Lenka Jansová"
+  ico: "19487452"
+  address: "K Žabárně 880, Rtyně v Podkrkonoší"
+
+# Physical address of the cottage itself (distinct from the operator's registered
+# business address above). Used for the footer contact link and the Maps query.
+cottage_address: "Malé Svatoňovice 80"
+
+# Google Maps search query, used to build the "open in Maps" link in the footer.
+map_query: "Chaloupka pod lípou, Malé Svatoňovice 80"
+
+permalink: pretty
+
+# Exclude raw development files from the production build
+exclude:
+  - .devcontainer/
+  - Gemfile
+  - Gemfile.lock
+  - .git/
+  - "**/*.md"
+  - "*.md"
+  - apps-script/
+  - .claude/
+
+# Required plugins for SEO and sitemap generation
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap

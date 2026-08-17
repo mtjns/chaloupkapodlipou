@@ -1,0 +1,46 @@
+# Citizenship dropdown source for the guest-registration form (kniha hostů).
+#   en: submitted value — MUST match the sheet's flag / is-Czech logic. "Czech
+#       Republic" triggers isCompleted=TRUE and drives the flag IMAGE() lookup
+#       (flag file name = the en value with spaces → underscores).
+#   cs: visible Czech label.
+# Czech first, then common nationalities alphabetically by Czech label.
+- { en: "Czech Republic", cs: "Česko" }
+- { en: "Slovakia", cs: "Slovensko" }
+- { en: "Belgium", cs: "Belgie" }
+- { en: "Bulgaria", cs: "Bulharsko" }
+- { en: "China", cs: "Čína" }
+- { en: "Denmark", cs: "Dánsko" }
+- { en: "Estonia", cs: "Estonsko" }
+- { en: "Finland", cs: "Finsko" }
+- { en: "France", cs: "Francie" }
+- { en: "Croatia", cs: "Chorvatsko" }
+- { en: "Ireland", cs: "Irsko" }
+- { en: "Italy", cs: "Itálie" }
+- { en: "Israel", cs: "Izrael" }
+- { en: "Japan", cs: "Japonsko" }
+- { en: "South Africa", cs: "Jižní Afrika" }
+- { en: "Canada", cs: "Kanada" }
+- { en: "South Korea", cs: "Korejská republika" }
+- { en: "Lithuania", cs: "Litva" }
+- { en: "Latvia", cs: "Lotyšsko" }
+- { en: "Luxembourg", cs: "Lucembursko" }
+- { en: "Hungary", cs: "Maďarsko" }
+- { en: "Germany", cs: "Německo" }
+- { en: "Netherlands", cs: "Nizozemsko" }
+- { en: "Norway", cs: "Norsko" }
+- { en: "Poland", cs: "Polsko" }
+- { en: "Portugal", cs: "Portugalsko" }
+- { en: "Austria", cs: "Rakousko" }
+- { en: "Romania", cs: "Rumunsko" }
+- { en: "Russia", cs: "Rusko" }
+- { en: "Greece", cs: "Řecko" }
+- { en: "Slovenia", cs: "Slovinsko" }
+- { en: "Serbia", cs: "Srbsko" }
+- { en: "Spain", cs: "Španělsko" }
+- { en: "Sweden", cs: "Švédsko" }
+- { en: "Switzerland", cs: "Švýcarsko" }
+- { en: "Ukraine", cs: "Ukrajina" }
+- { en: "United Kingdom", cs: "Velká Británie" }
+- { en: "United States", cs: "Spojené státy americké" }
+- { en: "Australia", cs: "Austrálie" }
+- { en: "Other", cs: "Jiné" }

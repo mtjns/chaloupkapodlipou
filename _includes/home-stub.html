@@ -1,0 +1,31 @@
+{%- comment -%}
+Minimal home page shown for languages whose full marketing site isn't translated
+yet (PL/DE). Strings come from site.data[page.lang].stub. Links to Reservation
+(EN fallback) and the guest Info page (which exists in this language).
+{%- endcomment -%}
+{%- assign s = site.data[page.lang].stub -%}
+{%- assign t = site.data[page.lang] -%}
+<section class="relative min-h-[70vh] flex items-center justify-center pt-24 pb-20 overflow-hidden bg-surface px-4">
+    <div class="absolute inset-0">
+        {% include placeholder-img.html label="Chaloupka pod lípou" class="" bare=true %}
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/10 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-2xl text-center">
+        <p class="text-white/90 uppercase tracking-[0.3em] text-xs md:text-sm mb-4 font-semibold [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+            Malé Svatoňovice &middot; Podkrkonoší</p>
+        <h1 class="text-white text-4xl md:text-6xl font-serif font-black tracking-tight leading-[1.05] [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] mb-6">
+            {{ s.heading }}</h1>
+        <p class="text-white/90 text-lg leading-relaxed mb-10 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">{{ s.body }}</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ t.nav.reservation_url | relative_url }}"
+                class="inline-flex items-center justify-center gap-3 bg-brand text-onbrand px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-brand/90 transition-colors shadow-lg">
+                {{ s.reservation_cta }}
+            </a>
+            <a href="{{ t.footer.info_url | relative_url }}"
+                class="inline-flex items-center justify-center gap-3 bg-white/15 text-white border border-white/30 px-8 py-3.5 rounded-full font-semibold uppercase tracking-wider text-sm hover:bg-white/25 transition-colors backdrop-blur-sm">
+                {{ s.info_cta }}
+            </a>
+        </div>
+    </div>
+</section>
