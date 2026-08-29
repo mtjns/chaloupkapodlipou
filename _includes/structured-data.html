@@ -10,10 +10,14 @@
   "logo": "{{ site.logo | absolute_url }}",
   "email": {{ site.email | jsonify }},
   "telephone": {{ site.phone | jsonify }},
-  "priceRange": "$$",
+  "priceRange": "5 900–7 900 Kč / noc",
   "currenciesAccepted": "CZK",
   "smokingAllowed": false,
+  "petsAllowed": false,
   "numberOfRooms": 5,
+  "checkinTime": "14:00",
+  "checkoutTime": "10:00",
+  "availableLanguage": ["cs", "en", "de", "pl", "fr"],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": {{ site.cottage_address | jsonify }},
@@ -22,10 +26,31 @@
     "addressRegion": "Královéhradecký kraj",
     "addressCountry": "CZ"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 50.540712,
+    "longitude": 16.0474436
+  },
   "hasMap": "https://www.google.com/maps/search/?api=1&query={{ site.map_query | url_encode }}",
+  "sameAs": [
+    "https://www.booking.com/hotel/cz/chaloupka-pod-lipou.cs.html",
+    "https://www.e-chalupy.cz/ubytovani-male-svatonovice-chaloupka-pod-lipou-pronajem-o17388",
+    "https://maps.app.goo.gl/ZLFLgANM88Jbrjft8"
+  ],
   "areaServed": {
     "@type": "Country",
     "name": "Česká republika"
+  },
+  "containsPlace": {
+    "@type": "Accommodation",
+    "name": "Chaloupka pod lípou — celý objekt",
+    "numberOfBedrooms": 5,
+    "numberOfBathroomsTotal": 2,
+    "occupancy": {
+      "@type": "QuantitativeValue",
+      "maxValue": 15,
+      "unitText": "osob"
+    }
   },
   "amenityFeature": [
     { "@type": "LocationFeatureSpecification", "name": "Zahrada", "value": true },
