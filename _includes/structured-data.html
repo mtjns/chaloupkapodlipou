@@ -7,18 +7,39 @@
   "description": {{ site.description | jsonify }},
   "url": "{{ site.url }}",
   "image": "{{ '/assets/images/og-image.jpg' | absolute_url }}",
-  "email": "chaloupkapodlipou@gmail.com",
+  "logo": "{{ site.logo | absolute_url }}",
+  "email": {{ site.email | jsonify }},
+  "telephone": {{ site.phone | jsonify }},
   "priceRange": "$$",
   "currenciesAccepted": "CZK",
+  "smokingAllowed": false,
+  "numberOfRooms": 5,
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": {{ site.cottage_address | jsonify }},
     "addressLocality": "Malé Svatoňovice",
+    "postalCode": "542 34",
     "addressRegion": "Královéhradecký kraj",
     "addressCountry": "CZ"
   },
+  "hasMap": "https://www.google.com/maps/search/?api=1&query={{ site.map_query | url_encode }}",
   "areaServed": {
     "@type": "Country",
     "name": "Česká republika"
-  }
+  },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Zahrada", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Ohniště", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Plynový gril", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Kolárna pro kola", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Plně vybavená kuchyně", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Zákaz kouření", "value": true }
+  ]
+  {%- comment -%}
+    Reviews / aggregateRating are intentionally NOT emitted here yet.
+    Google requires review rich results to correspond to reviews that are
+    visibly rendered on the page. Once a reviews section is added to the site
+    (data source: _data/reviews.yml), wire aggregateRating + review[] in here.
+  {%- endcomment -%}
 }
 </script>

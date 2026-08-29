@@ -1,0 +1,37 @@
+# Guest reviews — data source for a future reviews section on the site.
+#
+# These entries are placeholders. Replace them with real reviews you have
+# permission to display, quoting each guest accurately. Once a visible reviews
+# section is rendered on the page, wire aggregateRating + review[] into
+# _includes/structured-data.html so search engines can show the star rating
+# (Google requires the reviews to be visible on the page).
+#
+# Fields per review:
+#   name    Reviewer's display name, as shown on the review platform.
+#   photo   Profile picture — a local file under /assets/images/reviews/.
+#           Use "" (empty) to fall back to an initials avatar in the UI.
+#   rating  Whole number 1–5 (stars the guest gave).
+#   source  Where the review came from: "google" or "booking".
+#   text    The review text, as the guest wrote it.
+
+reviews:
+  - name: "Jana Nováková"
+    photo: "/assets/images/reviews/jana-novakova.jpg"
+    rating: 5
+    source: "google"
+    text: "Nádherná chalupa v klidném prostředí. Vše čisté, útulné a krásně
+      vybavené. Zahrada s ohništěm byla pro děti splněný sen. Určitě se vrátíme!"
+
+  - name: "Martin Dvořák"
+    photo: "/assets/images/reviews/martin-dvorak.jpg"
+    rating: 5
+    source: "booking"
+    text: "Perfektní místo pro rodinnou dovolenou. Prostorné pokoje, plně
+      vybavená kuchyně a majitelé velmi vstřícní. Skvělé tipy na výlety v okolí."
+
+  - name: "Petra Svobodová"
+    photo: ""
+    rating: 4
+    source: "google"
+    text: "Příjemný pobyt v pěkně zrekonstruované chalupě. Klid, čerstvý vzduch
+      a blízko do skal. Doporučujeme všem, kdo hledají odpočinek od města."
