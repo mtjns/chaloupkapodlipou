@@ -102,20 +102,44 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
         dots.forEach((dot, i) => dot.classList.toggle('is-active', i === current));
     };
 
+    // "3 / 18" position indicator (used by the reviews slider).
+    const counter = carousel.querySelector('[data-carousel-counter]');
+    const updateCounter = () => {
+        if (counter) counter.textContent = (current + 1) + ' / ' + slides.length;
+    };
+
     const show = (index) => {
         slides[current].classList.remove('active');
         current = (index + slides.length) % slides.length;
         slides[current].classList.add('active');
         updateDots();
+        updateCounter();
     };
 
-    const prevBtn = carousel.querySelector('[data-carousel-prev]');
-    const nextBtn = carousel.querySelector('[data-carousel-next]');
-    if (prevBtn) prevBtn.addEventListener('click', () => show(current - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => show(current + 1));
+    // May be more than one prev/next (e.g. the reviews slider has side arrows on
+    // desktop and a separate bottom set on mobile), so bind them all.
+    carousel.querySelectorAll('[data-carousel-prev]').forEach((b) => b.addEventListener('click', () => show(current - 1)));
+    carousel.querySelectorAll('[data-carousel-next]').forEach((b) => b.addEventListener('click', () => show(current + 1)));
     dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
 
+    // Touch swipe (primary navigation on mobile, where the arrows are hidden).
+    // Only a mostly-horizontal drag past the threshold counts, so vertical
+    // page scrolling still works.
+    let touchX = 0, touchY = 0;
+    carousel.addEventListener('touchstart', (e) => {
+        touchX = e.changedTouches[0].clientX;
+        touchY = e.changedTouches[0].clientY;
+    }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchX;
+        const dy = e.changedTouches[0].clientY - touchY;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+            show(dx < 0 ? current + 1 : current - 1);
+        }
+    }, { passive: true });
+
     updateDots();
+    updateCounter();
 });
 
 // e-chalupy availability calendar: the iframe posts its content height on load and

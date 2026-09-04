@@ -296,6 +296,95 @@ priority: 1.0
     </div>
 </section>
 
+<!-- Recenze -->
+<section id="recenze" class="bg-surface py-20 md:py-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto opacity-fade">
+        <div class="text-center mb-14">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+                <span class="text-brand text-sm font-semibold tracking-widest uppercase">Recenze</span>
+                <div class="w-8 h-1 bg-brand rounded-full"></div>
+            </div>
+            <h2 class="text-brand text-3xl md:text-4xl font-serif font-bold tracking-tight">Co říkají naši hosté</h2>
+        </div>
+
+        <div data-carousel class="max-w-3xl mx-auto">
+            <div class="flex items-center justify-center gap-2 sm:gap-6">
+                <button data-carousel-prev aria-label="Předchozí recenze"
+                    class="hidden sm:flex shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-base text-brand ring-1 ring-line/10 shadow-sm items-center justify-center hover:bg-brand hover:text-onbrand transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+
+                <div class="relative w-full min-w-0">
+                    {% for review in site.data.reviews.reviews %}
+                    <article
+                        class="carousel-slide{% if forloop.first %} active{% endif %} bg-base rounded-2xl shadow-sm ring-1 ring-line/5 p-7 md:p-9 min-h-[300px] flex flex-col">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center mb-5">
+                            <div class="flex items-center gap-4 min-w-0">
+                                {% if review.photo != "" %}
+                                <img src="{{ review.photo | relative_url }}" alt="{{ review.name }}"
+                                    class="w-12 h-12 rounded-full object-cover shrink-0" loading="lazy" width="96"
+                                    height="96">
+                                {% else %}
+                                <div
+                                    class="w-12 h-12 rounded-full bg-brand/15 text-brand flex items-center justify-center font-serif font-bold text-xl select-none shrink-0">
+                                    {{ review.name | slice: 0 | upcase }}</div>
+                                {% endif %}
+                                <div class="min-w-0">
+                                    <p class="text-fg font-semibold truncate">{{ review.name }}</p>
+                                    <span class="text-muted text-xs font-medium uppercase tracking-wider">{% if review.source == "google" %}Google{% else %}Booking.com{% endif %}</span>
+                                </div>
+                            </div>
+                            <div class="sm:ml-auto shrink-0">
+                                {% if review.source == "google" %}
+                                <div class="flex items-center gap-0.5" aria-label="Hodnocení {{ review.rating }} z 5">
+                                    {% for i in (1..5) %}
+                                    <svg class="w-4 h-4 {% if i <= review.rating %}text-brand{% else %}text-line/15{% endif %}"
+                                        fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.367 2.446a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.54 1.118l-3.366-2.446a1 1 0 00-1.175 0l-3.367 2.446c-.784.57-1.838-.196-1.539-1.118l1.286-3.957a1 1 0 00-.363-1.118L2.98 9.384c-.783-.57-.38-1.81.588-1.81h4.161a1 1 0 00.951-.69l1.286-3.957z" />
+                                    </svg>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                <span
+                                    class="inline-flex items-center justify-center w-9 h-9 rounded-md rounded-tl-none bg-[#003b95] text-white text-sm font-bold"
+                                    aria-label="Hodnocení {{ review.rating }} z 10">{{ review.rating }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="text-fg text-sm leading-relaxed break-words">{{ review.text }}</p>
+                    </article>
+                    {% endfor %}
+                </div>
+
+                <button data-carousel-next aria-label="Další recenze"
+                    class="hidden sm:flex shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-base text-brand ring-1 ring-line/10 shadow-sm items-center justify-center hover:bg-brand hover:text-onbrand transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex items-center justify-center gap-6 mt-6">
+                <button data-carousel-prev aria-label="Předchozí recenze"
+                    class="sm:hidden shrink-0 w-10 h-10 rounded-full bg-base text-brand ring-1 ring-line/10 shadow-sm flex items-center justify-center hover:bg-brand hover:text-onbrand transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <p data-carousel-counter class="text-muted text-sm"></p>
+                <button data-carousel-next aria-label="Další recenze"
+                    class="sm:hidden shrink-0 w-10 h-10 rounded-full bg-base text-brand ring-1 ring-line/10 shadow-sm flex items-center justify-center hover:bg-brand hover:text-onbrand transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="bg-brand text-onbrand py-16 md:py-20 px-4 md:px-8 text-center">
     <div class="max-w-3xl mx-auto opacity-fade">
