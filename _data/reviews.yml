@@ -15,23 +15,114 @@
 #   text    The review text, as the guest wrote it.
 
 reviews:
-  - name: "Jana Nováková"
-    photo: "/assets/images/reviews/jana-novakova.jpg"
-    rating: 5
-    source: "google"
-    text: "Nádherná chalupa v klidném prostředí. Vše čisté, útulné a krásně
-      vybavené. Zahrada s ohništěm byla pro děti splněný sen. Určitě se vrátíme!"
+## GOOGLE
 
-  - name: "Martin Dvořák"
-    photo: "/assets/images/reviews/martin-dvorak.jpg"
-    rating: 5
-    source: "booking"
-    text: "Perfektní místo pro rodinnou dovolenou. Prostorné pokoje, plně
-      vybavená kuchyně a majitelé velmi vstřícní. Skvělé tipy na výlety v okolí."
-
-  - name: "Petra Svobodová"
+  - name: "Helen"
     photo: ""
-    rating: 4
+    rating: 5
     source: "google"
-    text: "Příjemný pobyt v pěkně zrekonstruované chalupě. Klid, čerstvý vzduch
-      a blízko do skal. Doporučujeme všem, kdo hledají odpočinek od města."
+    text: "Krásne, pokojné miesto. Výhľad nádherný,odporúčam. Ubytovanie vybavené."
+
+  - name: "Roman Kožnar"
+    photo: ""
+    rating: 5
+    source: "google"
+    text: "Krásná chalupa na opravdu skvělém místě. Majitelé perfektní, příjemní, ochotní. Za celou rodinu - můžeme jen a jen doporučit!"
+
+  - name: "M H (mara)"
+    photo: ""
+    rating: 5
+    source: "google"
+    text: "Super klidné místo s krásným výhledem do krajiny. Prostory moderní, čisté a dobře řešené. K dispozici plynový grill, venkovní ohniště, kapslový kávovar, stolní fotbálek a bedna hraček pro děti :-)"
+
+  - name: "Dana Dobrovolná"
+    photo: ""
+    rating: 5
+    source: "google"
+    text: "Krásná, nově zrekonstruovaná chaloupka. Krásné prostředí, čistota, bohaté vybavení. Komunikace bez sebemenších problémů. Rozhodně doporučuji!!!"
+
+  - name: "terezka peckova"
+    photo: ""
+    rating: 5
+    source: "google"
+    text: "Krásna chata pro více lidí,nově vybavená a velké prostory. Skvělá lokalita, kousek od chaty nádherný Adršpach. Pán s paní velmi milí a ochotní. Skvělý pobyt,moc doporučuji a děkujeme:)"
+    
+  - name: "Sarah Blomme"
+    photo: "/assets/images/reviews/1.png"
+    rating: 5
+    source: "google"
+    text: "The cottage is situated in an area with very nice surroundings. I enjoyed the beautiful view on nature, the peaceful and quiet environment. The cottage itself is very spacious and is suitable for larger groups. There is a practical kitchen and a large living room, overviewing the garden and terrace. The interior is tidy and clean."
+    
+  - name: "R H"
+    photo: ""
+    rating: 5
+    source: "google"
+    text: "Krasné klidné místo na kopci s parádním výhledem do údolí. Ideální na MTB (kousek od TrutnovTrails), turistiku. Chaloupka voní novotou po kompletní rekonstrukci, doporučuji👍"
+
+  - name: "Tomáš Sobek"
+    photo: "/assets/images/reviews/2.png"
+    rating: 5
+    source: "google"
+    text: "Nádherný výhled do údolí, poklidné místo. I když je to na kopečku, užili jsme si výlety na kole."
+
+# BOOKING
+  
+  - name: "Pitrunová"
+    photo: ""
+    rating: 10
+    source: "booking"
+    text: "Dostatek místa, velké pokoje i hlavní společenská místnost. Dostatek nádobí, bylo tam vše, co jsme potřebovali."
+
+  - name: "Tereza"
+    photo: ""
+    rating: 9
+    source: "booking"
+    text: "Chaloupka je téměř na samotě, vede k ní strmý kopec a je odtud krásný výhled. Je to nově zařízená, čistá chalupa. Prostorné pokoje, příjemné matrace v postelích. K dispozici hry pro děti, zařízená kuchyně a prostorná jídelna. Venkovní ohniště jsme bohužel nevyzkoušeli (zradilo nás počasí) ale večery u něj budou určitě skvělé. Doporučuji a rádi se ještě někdy vrátíme."
+
+  - name: "Kristýna"
+    photo: "/assets/images/reviews/3.jpg"
+    rating: 10
+    source: "booking"
+    text: "Ubytovani mile predcilo nase ocekavani, bylo dokonce krásnější nez na fotkach 🌸. Nadherne misto, krasny dum, vse v naprostem poradku, ciste, nic nam nechybelo. Jsou zde i hracky pro děti ☺️.Večery jsme travili u ohniste, grilovali. S pani majitelkou byla vstricna domluva, dokonce nam ihned zaslala zapomenute nalezy ☺️😃. Lokalita je perfektni pro vylety ☺️. Ubytovani zde doporucuji opravdu vsema deseti 🍀🙏🏾!"
+
+  - name: "Miroslava"
+    photo: ""
+    rating: 10
+    source: "booking"
+    text: "Krásná chalupa, nový vkusný interiér, pohodlné prostorné pokoje i jídelna, celkové působí dům velmi příjemnou atmosférou, nic nám nechybělo 🙂. Komunikace s paní domácí velmi mila. Hezký vyhled do krajiny, klidná lokalita téměř na samotě. Noční výšlap na rozhlednu nad domem můžu jen doporučit 😃"
+
+  - name: "Andrea"
+    photo: "/assets/images/reviews/4.jpg"
+    rating: 10
+    source: "booking"
+    text: "Úžasné prostredí, krásna chalúpka všade čisto a útulné.Bolu sme nad mieru spokojný.Od chalúpky je 1/2 hod.do Adršpašských skál a aj do Babičkinho údolia, celá rodinka sme boli nad mieru spokojný."
+
+  - name: "Darina"
+    photo: ""
+    rating: 8
+    source: "booking"
+    text: "Chalupka je priestrana a cista. Vsetci sme mali kusok sukromia."
+
+  - name: "Augustinová"
+    photo: ""
+    rating: 10
+    source: "booking"
+    text: "Samotné ubytovanie v krásnom a pokojnom prostredí."
+
+  - name: "Michaela"
+    photo: ""
+    rating: 9
+    source: "booking"
+    text: "Die Größe der Unterkunft war sehr gut, der Kontakt zum Vermieter perfekt."
+
+  - name: "Mkrop"
+    photo: "/assets/images/reviews/5.jpg"
+    rating: 10
+    source: "booking"
+    text: "Bardzo przyjemna chatka na zboczu Gór Jastrzębich, trochę na uboczu powyżej Małych Svatonovic. Bardzo dobre miejsce wypadowe na całe CHKO Broumovsko. Rewelacyjny kontakt z właścicielką. Chatka czysta i dobrze wyposażona. Salon z dużym stołem świetnie się sprawdza jeśli chcesz posiedzieć wieczorami przy piwie i graniu. Już rezerwuję następną wizytę ;)"
+
+  - name: "Ulrike"
+    photo: ""
+    rating: 8
+    source: "booking"
+    text: "Das Haus ist sehr schön und gemütlich eingerichtet. Für Kinder ist Spielzeug vorhanden. Die Sitzgelegenheiten draußen sind bequem und der Garten und die Lagerfeuerstelle laden zum verweilen ein."
