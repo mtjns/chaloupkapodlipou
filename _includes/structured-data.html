@@ -59,12 +59,46 @@
     { "@type": "LocationFeatureSpecification", "name": "Kolárna pro kola", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Plně vybavená kuchyně", "value": true },
     { "@type": "LocationFeatureSpecification", "name": "Zákaz kouření", "value": true }
-  ]
+  ],
   {%- comment -%}
-    Reviews / aggregateRating are intentionally NOT emitted here yet.
-    Google requires review rich results to correspond to reviews that are
-    visibly rendered on the page. Once a reviews section is added to the site
-    (data source: _data/reviews.yml), wire aggregateRating + review[] in here.
+    aggregateRating + review[] mirror the reviews rendered on the home page
+    (data source: _data/reviews.yml). Google ratings are 1–5, Booking 1–10, so
+    each review keeps its own bestRating; the aggregate normalises everything to
+    a 5-point scale (Booking value / 2) for a single comparable score.
   {%- endcomment -%}
+  {%- assign rtotal = 0.0 -%}
+  {%- assign rcount = 0 -%}
+  {%- for r in site.data.reviews.reviews -%}
+    {%- if r.source == "google" -%}
+      {%- assign norm = r.rating | times: 1.0 -%}
+    {%- else -%}
+      {%- assign norm = r.rating | divided_by: 2.0 -%}
+    {%- endif -%}
+    {%- assign rtotal = rtotal | plus: norm -%}
+    {%- assign rcount = rcount | plus: 1 -%}
+  {%- endfor -%}
+  {%- assign ravg = rtotal | divided_by: rcount | round: 2 -%}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ ravg }},
+    "bestRating": 5,
+    "worstRating": 1,
+    "reviewCount": {{ rcount }}
+  },
+  "review": [
+    {%- for r in site.data.reviews.reviews -%}
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": {{ r.name | jsonify }} },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": {{ r.rating }},
+        "bestRating": {% if r.source == "google" %}5{% else %}10{% endif %},
+        "worstRating": 1
+      },
+      "reviewBody": {{ r.text | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
 }
 </script>
