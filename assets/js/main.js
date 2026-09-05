@@ -147,6 +147,10 @@ document.querySelectorAll('[data-carousel]').forEach((carousel) => {
 window.addEventListener('message', (e) => {
     if (e.origin !== 'https://obsazenost.e-chalupy.cz') return;
     if (!e.data || e.data.msg !== 'echalupy-calendar-height') return;
+    // On phones the frame is a fixed-height scroll box (see .echalupy-frame in
+    // main.css); leave it be so the calendar scrolls internally instead of
+    // stretching the page. On larger screens, fit the frame to its content.
+    if (window.matchMedia('(max-width: 640px)').matches) return;
     const frame = document.getElementById('echalupy-kalendar');
     const height = parseInt(e.data.height, 10);
     if (frame && height > 0) frame.style.height = (height + 8) + 'px';

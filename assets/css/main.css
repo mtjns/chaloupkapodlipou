@@ -141,6 +141,16 @@ body {
     min-height: 600px;
 }
 
+/* On phones the frame is a fixed-height scroll box: the 12 full-width months
+   scroll inside the iframe's own document instead of growing the page. main.js
+   skips its auto-resize below this width so this height sticks. */
+@media (max-width: 640px) {
+    .echalupy-frame {
+        height: 70vh;
+        min-height: 480px;
+    }
+}
+
 /* Language switcher (in nav): the current language is highlighted, the others
    read as muted links until hovered. */
 .is-active {

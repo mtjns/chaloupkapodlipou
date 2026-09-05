@@ -130,19 +130,24 @@ table.month td.day-full:hover {
 }
 
 /* --- Mobile ------------------------------------------------------------ */
-@media (max-width: 520px) {
+/* One month per row at full width so day cells and the arrival/departure
+   diagonals stay large and legible. The frame itself becomes a fixed-height
+   scroll box on phones (see .echalupy-frame in main.css + main.js), so all 12
+   months scroll inside it instead of stretching the page. */
+@media (max-width: 640px) {
     table.month {
-        width: 46%;
-        margin: 2.5% 2%;
+        display: table;
+        width: 100%;
+        margin: 12px auto;
     }
 
     td.month-name {
-        font-size: 13px;
-        padding: 9px 2px;
+        font-size: 15px;
+        padding: 11px 4px;
     }
 
     table.month td {
-        height: 34px;   /* larger tap/scan target */
-        font-size: 14px;
+        height: 40px;   /* larger tap/scan target */
+        font-size: 15px;
     }
 }
