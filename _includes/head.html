@@ -23,6 +23,11 @@
     {% seo title=false %}
     {% include structured-data.html %}
 
+    <!-- Preload the hero photo on the home page so it starts fetching immediately. -->
+    {% if page.ref == "home" %}
+    <link rel="preload" as="image" href="{{ '/assets/images/chaloupka.jpg' | relative_url }}">
+    {% endif %}
+
     <!-- Keep utility pages out of the search index. -->
     {% if page.noindex %}<meta name="robots" content="noindex, follow">{% endif %}
 
