@@ -1,0 +1,25 @@
+{%- comment -%}
+Emits <link rel="alternate" hreflang="..."> tags pairing this page with its
+translations. Pairing is by shared `ref` — the same logic as lang-switcher.html —
+so a tag is emitted ONLY for languages that actually have this page translated.
+Unlike the switcher we deliberately do NOT fall back to the home page: hreflang
+must point to genuinely equivalent content, or Google treats unrelated pages as
+translations of each other.
+
+Absolute URLs are required (absolute_url prepends site.url). x-default points at
+the primary Czech version. Skipped on utility/noindex pages and any page without a
+ref/lang, since those have no translation set to declare.
+{%- endcomment -%}
+{%- if page.ref and page.lang and page.noindex != true -%}
+    {%- for lng in site.data.languages -%}
+        {%- for p in site.pages -%}
+            {%- if p.ref == page.ref and p.lang == lng.code -%}
+    <link rel="alternate" hreflang="{{ lng.code }}" href="{{ p.url | absolute_url }}">
+                {%- if lng.code == 'cs' %}
+    <link rel="alternate" hreflang="x-default" href="{{ p.url | absolute_url }}">
+                {%- endif -%}
+                {%- break -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
+{%- endif -%}

@@ -22,6 +22,7 @@
 
     {% seo title=false %}
     {% include structured-data.html %}
+    {% include hreflang.html %}
 
     <!-- Preload the hero photo on the home page so it starts fetching immediately. -->
     {% if page.ref == "home" %}
