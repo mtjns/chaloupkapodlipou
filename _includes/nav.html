@@ -39,13 +39,11 @@
                 <a href="{{ t.nav.reservation_url | relative_url }}"
                     class="block w-full md:w-auto text-center py-2.5 px-5 md:ml-2 rounded-full bg-brand text-onbrand font-serif font-semibold tracking-wide hover:bg-brand/90 transition-colors shadow-sm">{{ t.nav.reservation }}</a>
                 {%- endunless -%}
+            </div>
 
-                <!-- Language switcher: inline row on desktop, full-width row on mobile -->
-                <div class="md:pl-6 md:border-l md:border-line/15 mt-2 md:mt-0">
-                    {% include lang-switcher.html
-                        class="flex items-center justify-center gap-1"
-                        link_class="px-2 py-1 text-xs font-semibold tracking-widest rounded transition-colors" %}
-                </div>
+            <!-- Language switcher dropdown: next to the burger on mobile, inline on desktop -->
+            <div class="md:pl-4 md:border-l md:border-line/15">
+                {% include lang-switcher.html %}
             </div>
 
             <div id="mobile-menu-btn" class="md:hidden cursor-pointer flex flex-col gap-1.5 p-2">

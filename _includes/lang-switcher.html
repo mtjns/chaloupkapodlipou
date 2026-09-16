@@ -1,33 +1,49 @@
 {%- comment -%}
-Language switcher. For each configured language (_data/languages.yml) it looks for
-a page sharing the current page's `ref` in that language and links to it. When a
-translation doesn't exist yet (e.g. Reservation/Area in PL/DE), it falls back to
-that language's home page so the switcher never dead-ends.
+Language switcher dropdown (used in the nav, both mobile and desktop). For each
+configured language (_data/languages.yml) it looks for a page sharing the current
+page's `ref` in that language and links to it. When a translation doesn't exist yet
+(e.g. Reservation/Area in PL/DE), it falls back to that language's home page so the
+switcher never dead-ends.
 
-Pass `class` for the wrapper and `link_class` for each link so the caller can style
-desktop vs. mobile placements.
+Rendered as a native <details>/<summary> dropdown; assets/js/main.js adds
+outside-click-to-close (shared with the "Pro hosty" nav dropdown via .nav-lang).
 {%- endcomment -%}
-<div class="{{ include.class }}">
-    {%- for lng in site.data.languages -%}
-        {%- assign target = nil -%}
-        {%- for p in site.pages -%}
-            {%- if p.ref == page.ref and p.lang == lng.code -%}
-                {%- assign target = p -%}
-                {%- break -%}
-            {%- endif -%}
-        {%- endfor -%}
-        {%- unless target -%}
+{%- assign current_label = page.lang | upcase -%}
+{%- for lng in site.data.languages -%}
+    {%- if lng.code == page.lang -%}{%- assign current_label = lng.label -%}{%- endif -%}
+{%- endfor -%}
+<details class="nav-lang group relative shrink-0">
+    <summary
+        class="flex items-center gap-1 cursor-pointer list-none px-2.5 py-1.5 rounded-lg hover:bg-surface font-serif text-sm font-semibold tracking-widest text-fg transition">
+        {{ current_label }}
+        <svg class="w-3 h-3 transition-transform group-open:rotate-180" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </summary>
+    <div
+        class="absolute right-0 top-full mt-2 w-20 flex flex-col items-stretch gap-1 bg-base border border-line/10 rounded-xl shadow-lg p-1.5 z-50">
+        {%- for lng in site.data.languages -%}
+            {%- assign target = nil -%}
             {%- for p in site.pages -%}
-                {%- if p.ref == 'home' and p.lang == lng.code -%}
+                {%- if p.ref == page.ref and p.lang == lng.code -%}
                     {%- assign target = p -%}
                     {%- break -%}
                 {%- endif -%}
             {%- endfor -%}
-        {%- endunless -%}
-        {%- if target -%}
-        <a href="{{ target.url | relative_url }}" hreflang="{{ lng.code }}" title="{{ lng.name }}"
-            class="{{ include.link_class }} {% if lng.code == page.lang %}is-active{% endif %}"
-            {% if lng.code == page.lang %}aria-current="true"{% endif %}>{{ lng.label }}</a>
-        {%- endif -%}
-    {%- endfor -%}
-</div>
+            {%- unless target -%}
+                {%- for p in site.pages -%}
+                    {%- if p.ref == 'home' and p.lang == lng.code -%}
+                        {%- assign target = p -%}
+                        {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endunless -%}
+            {%- if target -%}
+            <a href="{{ target.url | relative_url }}" hreflang="{{ lng.code }}" title="{{ lng.name }}"
+                class="block w-full text-center py-2 px-3 rounded-lg font-serif text-sm font-semibold tracking-widest transition {% if lng.code == page.lang %}is-active{% endif %}"
+                {% if lng.code == page.lang %}aria-current="true"{% endif %}>{{ lng.label }}</a>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</details>

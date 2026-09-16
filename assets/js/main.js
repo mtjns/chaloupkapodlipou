@@ -29,10 +29,10 @@ if (mobileNav) {
     });
 }
 
-// "Pro hosty" nav dropdown: close it when clicking anywhere outside (desktop
-// hover-free click-to-open via native <details>/<summary> needs this for a
-// dropdown feel — otherwise it stays open until the summary is clicked again).
-document.querySelectorAll('details.nav-guests').forEach((details) => {
+// Nav dropdowns ("Pro hosty" + language switcher): close on click outside.
+// Native <details>/<summary> click-to-open needs this for a dropdown feel —
+// otherwise it stays open until the summary is clicked again.
+document.querySelectorAll('details.nav-guests, details.nav-lang').forEach((details) => {
     document.addEventListener('click', (e) => {
         if (details.open && !details.contains(e.target)) {
             details.removeAttribute('open');
