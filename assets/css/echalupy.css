@@ -60,7 +60,7 @@ td.month-name {
     color: var(--cal-brand-ink) !important;
     font-family: 'Merriweather', Georgia, serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 17px;
     letter-spacing: 0.02em;
     padding: 11px 4px;
     text-align: center;
@@ -79,11 +79,14 @@ tr.days td {
 }
 
 /* --- Day cells --------------------------------------------------------- */
+/* font-size needs !important: e-chalupy's own inline stylesheet sets
+   ".month td.day-free/.day-full/.day-half/.day-shdw { font-size: 11px }",
+   which outranks our lower-specificity "table.month td" on class count alone. */
 table.month td {
     width: 14.28%;
     height: 36px;
     padding: 0;
-    font-size: 14px;
+    font-size: 16px !important;
     font-weight: 600;
     text-align: center;
     vertical-align: middle;
@@ -148,6 +151,6 @@ table.month td.day-full:hover {
 
     table.month td {
         height: 40px;   /* larger tap/scan target */
-        font-size: 15px;
+        font-size: 15px !important;
     }
 }
